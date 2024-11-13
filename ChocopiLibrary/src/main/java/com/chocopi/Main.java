@@ -12,9 +12,6 @@ public class Main {
         // Retrieve all users
         List<User> users = userDAO.getAllUsers();
 
-        // Print each user's details
-        for (User user : users) {
 
-        }
     }
 }
