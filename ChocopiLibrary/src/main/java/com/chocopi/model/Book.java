@@ -4,7 +4,6 @@ public class Book {
     private int bookId;
     private String title;
     private String description;
-    private String name;
     private String image;
     private String genre;
     private int rating;
@@ -16,11 +15,10 @@ public class Book {
     // Constructor
     public Book() {}
 
-    public Book(int bookId, String title, String description, String name, String image, String genre, int rating, int availableQuantity, String author, int publishYear, String publisher) {
+    public Book(int bookId, String title, String description, String image, String genre, int rating, int availableQuantity, String author, int publishYear, String publisher) {
         this.bookId = bookId;
         this.title = title;
         this.description = description;
-        this.name = name;
         this.image = image;
         this.genre = genre;
         this.rating = rating;
@@ -53,14 +51,6 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getImage() {
