@@ -1,18 +1,20 @@
 package com.chocopi;
 
-import com.chocopi.util.DatabaseConnection;
-import java.sql.Connection;
+import com.chocopi.dao.*;
+import com.chocopi.model.*;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Lấy kết nối đến database
-        Connection connection = DatabaseConnection.getConnection();
+        UserDAO userDAO = new UserDAO();
 
-        // Kiểm tra nếu connection không null thì kết nối thành công
-        if (connection != null) {
-            System.out.println("Connection is established and working.");
-        } else {
-            System.out.println("Connection failed.");
+        // Retrieve all users
+        List<User> users = userDAO.getAllUsers();
+
+        // Print each user's details
+        for (User user : users) {
+
         }
     }
 }
