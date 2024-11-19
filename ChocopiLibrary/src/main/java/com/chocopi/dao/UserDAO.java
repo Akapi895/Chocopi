@@ -141,4 +141,25 @@ public class UserDAO {
             return false;
         }
     }
+
+    public String getUserFavor(int userId) {
+        String favor = null;
+        String sql = "SELECT favor FROM Users WHERE user_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                favor = rs.getString("favor");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return favor;
+    }
+
 }

@@ -89,4 +89,29 @@ public class BookManagementDAO {
             return false;
         }
     }
+
+    public List<String> getFrequentGenresByUser(int userId) {
+        List<String> genres = new ArrayList<>();
+        String sql = "SELECT b.genre, COUNT(b.genre) AS genre_count " +
+                "FROM BookManagement bm " +
+                "JOIN Books b ON bm.book_id = b.book_id " +
+                "WHERE bm.user_id = ? " +
+                "GROUP BY b.genre " +
+                "ORDER BY genre_count DESC " +
+                "LIMIT 3";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                genres.add(rs.getString("genre"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return genres;
+    }
 }

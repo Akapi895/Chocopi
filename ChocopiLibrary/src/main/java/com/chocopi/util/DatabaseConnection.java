@@ -11,14 +11,12 @@ public class DatabaseConnection {
     private static Connection connection = null;
 
     public static Connection getConnection() {
-        if (connection == null) {
-            try {
+        try {
+            if (connection == null || connection.isClosed()) {
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                System.out.println("Database connected successfully.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Failed to connect to the database.");
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return connection;
     }

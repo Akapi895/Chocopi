@@ -2,6 +2,7 @@ package com.chocopi.dao;
 
 import com.chocopi.model.Book;
 import com.chocopi.util.DatabaseConnection;
+import com.chocopi.service.BookService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -137,6 +138,113 @@ public class BookDAO {
             e.printStackTrace();
         }
         return books;
+    }
+
+    public List<Book> getBooksByGenre(String genre) {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM Books WHERE genre = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, genre);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Book book = new Book();
+                book.setBookId(rs.getInt("book_id"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("author"));
+                book.setGenre(rs.getString("genre"));
+                books.add(book);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
+
+    public void addBooksByQuery(String query) {
+        List<Book> books = BookService.fetchBooksInfo(query);
+
+        if (books == null || books.isEmpty()) {
+            System.err.println("Không thể lấy thông tin sách từ Google Books API.");
+            return;
+        }
+
+        String sql = "INSERT INTO Books (title, description, author, publisher, publishYear, genre," +
+                " rating, available_quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            for (Book book : books) {
+                pstmt.setString(1, book.getTitle());
+                pstmt.setString(2, book.getDescription());
+                pstmt.setString(3, book.getAuthor());
+                pstmt.setString(4, book.getPublisher());
+                pstmt.setInt(5, book.getPublishYear());
+                pstmt.setString(6, book.getGenre());
+                pstmt.setInt(7, book.getRating());
+                pstmt.setInt(8, book.getAvailableQuantity());
+
+                int rowsAffected = pstmt.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    System.out.println("Thêm sách mới thành công: " + book.getTitle());
+                } else {
+                    System.out.println("Thêm sách không thành công: " + book.getTitle());
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Book> getBooksWithoutImage() throws Exception {
+        List<Book> books = new ArrayList<>();
+        String query = "SELECT book_id, title, description, image, genre, rating, available_quantity, author, publishYear, publisher " +
+                "FROM Books WHERE image IS NULL OR image = ''";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                int bookId = rs.getInt("book_id");
+                String title = rs.getString("title");
+                String description = rs.getString("description");
+                String image = rs.getString("image");
+                String genre = rs.getString("genre");
+                int rating = rs.getInt("rating");
+                int availableQuantity = rs.getInt("available_quantity");
+                String author = rs.getString("author");
+                int publishYear = rs.getInt("publishYear");
+                String publisher = rs.getString("publisher");
+
+                Book book = new Book(bookId, title, description, image, genre, rating, availableQuantity, author, publishYear, publisher);
+                books.add(book);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Lỗi khi lấy danh sách sách chưa có ảnh: " + e.getMessage());
+        }
+
+        return books;
+    }
+
+    public void updateBookImage(Book book) throws Exception {
+        String query = "UPDATE Books SET image = ? WHERE book_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, book.getImage());
+            pstmt.setInt(2, book.getBookId());
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Lỗi khi cập nhật đường dẫn ảnh: " + e.getMessage());
+        }
     }
 
 }

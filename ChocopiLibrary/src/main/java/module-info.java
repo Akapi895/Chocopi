@@ -7,6 +7,10 @@ module chocopi.example.chocopilibrary {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires java.net.http;
+    requires com.google.gson;
+    requires okhttp3;
+    requires org.json;
 
     opens com.chocopi.util to javafx.fxml;
     exports com.chocopi.util to javafx.fxml;
@@ -16,4 +20,6 @@ module chocopi.example.chocopilibrary {
 
     opens com.chocopi.dao to javafx.fxml;
     exports com.chocopi.dao to javafx.fxml;
+
+    exports com.chocopi.service;
 }

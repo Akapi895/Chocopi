@@ -15,7 +15,21 @@ public class Book {
     // Constructor
     public Book() {}
 
-    public Book(int bookId, String title, String description, String image, String genre, int rating, int availableQuantity, String author, int publishYear, String publisher) {
+    public Book(String title, String description, String image, String genre, int rating,
+                int availableQuantity, String author, int publishYear, String publisher) {
+        this.title = title;
+        this.description = description;
+        this.image = image;
+        this.genre = genre;
+        this.rating = rating;
+        this.availableQuantity = availableQuantity;
+        this.author = author;
+        this.publishYear = publishYear;
+        this.publisher = publisher;
+    }
+
+    public Book(int bookId, String title, String description, String image, String genre,
+                int rating, int availableQuantity, String author, int publishYear, String publisher) {
         this.bookId = bookId;
         this.title = title;
         this.description = description;
@@ -107,5 +121,20 @@ public class Book {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
+                ", genre='" + genre + '\'' +
+                ", rating=" + rating +
+                ", availableQuantity=" + availableQuantity +
+                ", author='" + author + '\'' +
+                ", publishYear=" + publishYear +
+                ", publisher='" + publisher + '\'' +
+                '}';
     }
 }
