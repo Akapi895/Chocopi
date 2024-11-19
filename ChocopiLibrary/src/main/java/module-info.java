@@ -21,5 +21,12 @@ module chocopi.example.chocopilibrary {
     opens com.chocopi.dao to javafx.fxml;
     exports com.chocopi.dao to javafx.fxml;
 
-    exports com.chocopi.service;
+    opens com.chocopi.service to javafx.fxml;
+    exports com.chocopi.service to javafx.fxml;
+
+    opens com.chocopi.controller to javafx.fxml;
+    exports com.chocopi.controller to javafx.fxml;
+
+    opens com.chocopi to javafx.fxml;
+    exports com.chocopi;
 }

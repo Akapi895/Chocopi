@@ -15,8 +15,6 @@ target/
 *.iml
 *.ipr
 
-src/main/java/com/chocopi/util/ApiConfig
-
 ### Eclipse ###
 .apt_generated
 .classpath

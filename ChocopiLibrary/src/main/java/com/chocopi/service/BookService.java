@@ -131,13 +131,7 @@ public class BookService {
 
         return imagePath;
     }
-
-    /**
-     * Tải ảnh từ URL và lưu vào đường dẫn chỉ định.
-     *
-     * @param imageUrl URL của ảnh.
-     * @param outputPath Đường dẫn lưu ảnh.
-     */
+    
     private static void downloadImage(String imageUrl, String destinationPath) {
         try (InputStream in = new URL(imageUrl).openStream()) {
             Files.copy(in, Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);

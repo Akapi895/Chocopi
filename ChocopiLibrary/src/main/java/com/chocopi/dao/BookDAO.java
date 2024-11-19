@@ -246,5 +246,4 @@ public class BookDAO {
             throw new Exception("Lỗi khi cập nhật đường dẫn ảnh: " + e.getMessage());
         }
     }
-
 }
