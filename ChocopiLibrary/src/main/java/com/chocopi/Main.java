@@ -2,6 +2,10 @@ package com.chocopi;
 
 import com.chocopi.util.DatabaseConnection;
 import java.sql.Connection;
+<<<<<<< Updated upstream
+=======
+import java.sql.SQLException;
+>>>>>>> Stashed changes
 
 public class Main {
     public static void main(String[] args) {
