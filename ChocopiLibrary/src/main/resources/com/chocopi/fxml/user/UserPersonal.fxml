@@ -12,82 +12,129 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.UserController">
-   <children>
-      <AnchorPane layoutY="5.0" prefHeight="402.0" prefWidth="130.0">
-         <children>
-            <Button layoutX="8.0" layoutY="68.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" text="Home" />
-            <Label alignment="CENTER" layoutX="7.0" layoutY="15.0" prefHeight="42.0" prefWidth="114.0" text="CHOCO.BOOK" textAlignment="CENTER" />
-            <Button layoutX="8.0" layoutY="114.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" text="Personal" />
-            <Button layoutX="8.0" layoutY="160.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" text="History" />
-            <Button layoutX="8.0" layoutY="206.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" text="Log out" />
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="160.0" fitWidth="120.0" layoutX="166.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="182.39999999999998" />
-      <Label layoutX="175.0" layoutY="30.0" prefHeight="26.0" prefWidth="222.0" text="PERSONAL INFORMATION" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c1c1c1" height="26.0" layoutX="166.0" layoutY="30.0" stroke="#c1c1c1" strokeType="INSIDE" width="4.0" />
-      <Label layoutX="175.0" layoutY="264.0" prefHeight="26.0" prefWidth="222.0" text="DOCUMENT INFORMATION" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c1c1c1" height="26.0" layoutX="166.0" layoutY="263.0" stroke="#c1c1c1" strokeType="INSIDE" width="4.0" />
-      <GridPane layoutX="303.0" layoutY="62.0" prefHeight="195.0" prefWidth="274.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="75.80003662109375" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.39996337890625" minWidth="10.0" prefWidth="190.39996337890625" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="28.399993896484375" minHeight="10.0" prefHeight="28.399993896484375" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="94.59998168945313" minHeight="10.0" prefHeight="81.20000610351562" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label prefHeight="18.0" prefWidth="86.0" text="Full Name:" />
-            <Label text="Age:" GridPane.rowIndex="1" />
-            <Label text="Course class::" GridPane.rowIndex="2" />
-            <Label text="Email: " GridPane.rowIndex="3" />
-            <TextField maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="148.0" GridPane.columnIndex="1" />
-            <TextField maxHeight="20.0" maxWidth="120.0" minHeight="20.0" prefHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField maxHeight="20.0" maxWidth="165.0" minHeight="20.0" prefHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField maxHeight="20.0" minHeight="20.0" prefHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Phone:" GridPane.rowIndex="4" />
-            <TextField maxHeight="20.0" maxWidth="165.0" minHeight="20.0" prefHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="Favor:" GridPane.rowIndex="5" />
-            <TextArea maxHeight="65.0" prefHeight="58.0" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-         </children>
-      </GridPane>
-      <GridPane layoutX="175.0" layoutY="289.0" prefHeight="75.0" prefWidth="259.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.5999755859375" minWidth="10.0" prefWidth="197.5999755859375" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="36.20002441406251" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Label prefHeight="18.0" prefWidth="191.0" text="Total number of books borrowed:" />
-            <Label text="Total number of books available:" GridPane.rowIndex="1" />
-            <Label GridPane.rowIndex="2" />
-         </children>
-      </GridPane>
-      <Button layoutX="317.0" layoutY="358.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="381.0" layoutY="358.0" mnemonicParsing="false" text="Save" />
-      <Button layoutX="182.0" layoutY="131.0" mnemonicParsing="false" text="+ Add photo" />
-      <Label layoutX="183.0" layoutY="228.0" text="ID:" underline="true">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="212.0" layoutY="228.0" text="userID" />
-   </children>
+<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserPersonalUI">
+   <fx:include source="SideBar.fxml" />
+   <AnchorPane>
+      <children>
+         <!--      <fx:include source="SideBar.fxml" />-->
+         <ImageView fx:id="userImage" fitHeight="240.0" fitWidth="180.0" layoutX="291.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="281.66666666666663" />
+         <Label layoutX="292.0" layoutY="60.0" prefHeight="27.0" prefWidth="302.0" text="PERSONAL INFORMATION" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold" size="22.0" />
+            </font>
+         </Label>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c1c1c1" height="26.0" layoutX="279.0" layoutY="60.0" stroke="#c1c1c1" strokeType="INSIDE" width="4.0" />
+         <Label layoutX="292.0" layoutY="475.0" prefHeight="27.0" prefWidth="296.0" text="DOCUMENT INFORMATION" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold" size="22.0" />
+            </font>
+         </Label>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c1c1c1" height="26.0" layoutX="279.0" layoutY="475.0" stroke="#c1c1c1" strokeType="INSIDE" width="4.0" />
+         <GridPane layoutX="506.0" layoutY="125.0" prefHeight="264.0" prefWidth="435.0">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="108.80001220703124" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.66668701171875" minWidth="10.0" prefWidth="327.1999877929687" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="130.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+               <Label prefHeight="18.0" prefWidth="86.0" text="Full Name:">
+                  <font>
+                     <Font size="16.0" />
+                  </font></Label>
+               <Label text="Age:" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="16.0" />
+                  </font></Label>
+               <Label text="Email: " GridPane.rowIndex="2">
+                  <font>
+                     <Font size="16.0" />
+                  </font></Label>
+               <TextField maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="148.0" GridPane.columnIndex="1" />
+               <TextField maxHeight="30.0" maxWidth="120.0" minHeight="20.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               <TextField maxHeight="30.0" minHeight="20.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <Label text="Phone:" GridPane.rowIndex="3">
+                  <font>
+                     <Font size="16.0" />
+                  </font></Label>
+               <TextField maxHeight="30.0" maxWidth="165.0" minHeight="20.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               <Label text="Favor:" GridPane.rowIndex="4">
+                  <font>
+                     <Font size="16.0" />
+                  </font></Label>
+               <TextArea maxHeight="80.0" prefHeight="80.0" prefWidth="294.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               <Label text="Password: " GridPane.rowIndex="5">
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Label>
+               <TextField maxHeight="30.0" minHeight="20.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            </children>
+         </GridPane>
+         <GridPane layoutX="297.0" layoutY="516.0" prefHeight="75.0" prefWidth="340.0">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.4" minWidth="10.0" prefWidth="251.53338623046875" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.39998779296877" minWidth="10.0" prefWidth="88.06661376953127" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+               <Label prefHeight="20.0" prefWidth="248.0" text="Total number of books borrowed:">
+                  <font>
+                     <Font size="16.0" />
+                  </font></Label>
+               <Label prefHeight="26.0" prefWidth="288.0" text="Total number of books available:" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="16.0" />
+                  </font></Label>
+               <Label GridPane.rowIndex="2" />
+               <Label fx:id="totalBooksBorrowedLabel" prefHeight="52.0" prefWidth="94.0" text="Total" GridPane.columnIndex="1">
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Label>
+               <Label fx:id="totalBooksAvailableLabel" layoutX="262.0" layoutY="10.0" prefHeight="52.0" prefWidth="94.0" text="Left" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Label>
+            </children>
+         </GridPane>
+         <Button layoutX="578.0" layoutY="613.0" mnemonicParsing="false" onAction="#handleEditButtonClick" text="Edit">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+         <Button layoutX="663.0" layoutY="613.0" mnemonicParsing="false" onAction="#handleSaveButtonClick" text="Save">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+         <Button layoutX="325.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleAddPhotoButtonClick" text="+ Add photo">
+            <font>
+               <Font size="16.0" />
+            </font></Button>
+         <Label layoutX="335.0" layoutY="387.0" text="ID:" underline="true">
+            <font>
+               <Font name="System Italic" size="16.0" />
+            </font>
+         </Label>
+         <Label fx:id="userIdLabel" layoutX="381.0" layoutY="387.0" text="userID">
+            <font>
+               <Font size="16.0" />
+            </font></Label>
+         <Label fx:id="userNameLabel" layoutX="345.0" layoutY="365.0" text="userName">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+      </children>
+   </AnchorPane>
 </AnchorPane>
