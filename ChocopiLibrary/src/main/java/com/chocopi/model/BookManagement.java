@@ -20,6 +20,13 @@ public class BookManagement {
         this.returnDate = returnDate;
     }
 
+    public BookManagement(int userId, int bookId, Date borrowDate, Date returnDate) {
+        this.userId = userId;
+        this.bookId = bookId;
+        this.borrowDate = borrowDate;
+        this.returnDate = returnDate;
+    }
+
     // Getters and Setters
     public int getRecordId() {
         return recordId;

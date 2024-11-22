@@ -162,4 +162,24 @@ public class UserDAO {
         return favor;
     }
 
+    public User authenticate(String username, String password) {
+        String query = "SELECT * FROM Users WHERE username = ? AND password = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                User user = new User();
+                user.setUserId(rs.getInt("user_id"));
+                user.setUsername(rs.getString("username"));
+                user.setName(rs.getString("name"));
+                user.setRole(rs.getString("role"));
+                return user;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null; // Trả về null nếu thông tin không đúng
+    }
 }

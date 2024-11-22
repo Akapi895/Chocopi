@@ -98,7 +98,7 @@ public class BookManagementDAO {
                 "WHERE bm.user_id = ? " +
                 "GROUP BY b.genre " +
                 "ORDER BY genre_count DESC " +
-                "LIMIT 3";
+                "LIMIT 4";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
