@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.fxml.Register">
-   <children>
+   <children>   
       <Label layoutX="426.0" layoutY="65.0" text="CHOCO.BOOK">
          <font>
             <Font size="30.0" />
