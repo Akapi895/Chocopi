@@ -16,22 +16,14 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.AdminHome">
-    <fx:include source="../SideBar.fxml" />
-   <TableView layoutX="285.0" layoutY="223.0" prefHeight="200.0" prefWidth="383.0">
+    <fx:include source="SideBar.fxml" />
+   <TableView layoutX="285.0" layoutY="223.0" prefHeight="200.0" prefWidth="392.0">
      <columns>
-       <TableColumn maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="User ID" />
-       <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="User Name" />
-         <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Email" />
-         <TableColumn maxWidth="100.0" minWidth="110.0" prefWidth="100.0" text="Borrowed Books" />
+       <TableColumn maxWidth="70.0" minWidth="70.0" prefWidth="70.0" style="-fx-font-size: 14;" text="User ID" />
+       <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" style="-fx-font-size: 14;" text="Name" />
+         <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" style="-fx-font-size: 14;" text="Email" />
+         <TableColumn maxWidth="120.0" minWidth="110.0" prefWidth="120.0" style="-fx-font-size: 14;" text="Borrowed Books" />
      </columns>
-   </TableView>
-   <TableView layoutX="285.0" layoutY="472.0" prefHeight="200.0" prefWidth="383.0">
-      <columns>
-         <TableColumn maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Book ID" />
-         <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Name" />
-         <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Author" />
-         <TableColumn maxWidth="100.0" minWidth="110.0" prefWidth="100.0" text="Genre" />
-      </columns>
    </TableView>
    <Label layoutX="285.0" layoutY="194.0" text="Student">
       <font>
@@ -43,9 +35,9 @@
          <Font size="16.0" />
       </font>
    </Label>
-   <Separator layoutX="348.0" layoutY="207.0" prefHeight="2.0" prefWidth="319.0" />
-   <Separator layoutX="327.0" layoutY="457.0" prefHeight="3.0" prefWidth="340.0" />
-   <PieChart layoutX="687.0" layoutY="272.0" prefHeight="311.0" prefWidth="319.0" />
+   <Separator layoutX="352.0" layoutY="207.0" prefHeight="3.0" prefWidth="268.0" />
+   <Separator layoutX="331.0" layoutY="457.0" prefHeight="3.0" prefWidth="288.0" />
+   <PieChart layoutX="706.0" layoutY="295.0" prefHeight="286.0" prefWidth="300.0" />
    <GridPane layoutX="285.0" layoutY="53.0" prefHeight="119.0" prefWidth="653.0">
       <columnConstraints>
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -180,4 +172,22 @@
          </VBox>
       </children>
    </GridPane>
+   <Label layoutX="631.0" layoutY="194.0" text="Details" underline="true">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Label layoutX="630.0" layoutY="444.0" text="Details" underline="true">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <TableView layoutX="285.0" layoutY="474.0" prefHeight="200.0" prefWidth="392.0">
+      <columns>
+         <TableColumn maxWidth="70.0" minWidth="70.0" prefWidth="70.0" style="-fx-font-size: 14;" text="Book ID" />
+         <TableColumn maxWidth="120.0" minWidth="100.0" prefWidth="120.0" style="-fx-font-size: 14;" text="Name" />
+         <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" style="-fx-font-size: 14;" text="Author" />
+         <TableColumn maxWidth="120.0" minWidth="110.0" style="-fx-font-size: 14;" text="Genre" />
+      </columns>
+   </TableView>
 </AnchorPane>

@@ -23,7 +23,7 @@ public class AdminController {
     }
 
     public void moveToBookScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/AdminBook.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/admin/AdminBook.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -31,7 +31,7 @@ public class AdminController {
     }
 
     public void moveToStudentScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/AdminStudent.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/admin/AdminStudent.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

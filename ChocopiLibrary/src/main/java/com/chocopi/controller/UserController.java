@@ -17,7 +17,7 @@ public class UserController {
     private Parent root;
 
     public void moveToHomeScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/UserHome.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/user/UserHome.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -25,7 +25,7 @@ public class UserController {
     }
 
     public void moveToPersonalScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/UserPersonal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/user/UserPersonal.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -41,7 +41,7 @@ public class UserController {
     }
 
     public void moveToStories(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/UserStories.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/user/userEachGenre.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     public void moveToHistory(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/UserHistory.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/user/UserHistory.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

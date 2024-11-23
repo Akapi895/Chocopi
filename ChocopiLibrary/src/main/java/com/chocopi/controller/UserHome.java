@@ -15,7 +15,7 @@ public class    UserHome extends Application {
     @Override
     public void start(Stage primaryStage) {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/UserHome.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/user/UserHome.fxml"));
             Scene homeScene = new Scene(root);
             if (getClass().getResource("view.css") != null)
                 homeScene.getStylesheets().add(getClass().getResource("view.css").toExternalForm());
