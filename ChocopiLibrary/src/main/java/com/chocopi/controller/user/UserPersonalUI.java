@@ -2,6 +2,7 @@ package com.chocopi.controller.user;
 
 import com.chocopi.dao.UserDAO;
 import com.chocopi.model.User;
+import com.chocopi.util.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -64,13 +65,14 @@ public class UserPersonalUI {
 
     @FXML
     public void initialize() {
-        // Lấy thông tin người dùng từ UserDAO
-        int userId = Integer.parseInt(userIdLabel.getText());  // Lấy userId từ Label đã có
+        int userId = 0;
+        userId = SessionManager.getUserId();
+
         UserDAO userDAO = new UserDAO();
-        User user = userDAO.getUserById(userId);  // Lấy thông tin người dùng từ cơ sở dữ liệu
+        User user = userDAO.getUserById(userId);
 
         if (user != null) {
-            // Điền thông tin vào các trường giao diện
+            userIdLabel.setText(String.valueOf(user.getUserId()));
             userNameLabel.setText(user.getUsername());
             fullNameField.setText(user.getName());
             ageField.setText(String.valueOf(user.getAge()));
