@@ -107,5 +107,10 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <Label layoutX="12.0" text="⬅">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

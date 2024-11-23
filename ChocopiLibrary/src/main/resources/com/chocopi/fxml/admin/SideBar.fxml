@@ -5,8 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="715.0" prefWidth="245.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="com.chocopi.controller.user.abstractUserSideBar">
+<AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="715.0" prefWidth="245.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.abstractUserSideBar">
     <children>
+      <AnchorPane prefHeight="715.0" prefWidth="245.0" style="-fx-background-color: #ffd3e4;" />
         <Button layoutX="14.0" layoutY="122.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Home">
             <font>
                 <Font size="18.0" />
