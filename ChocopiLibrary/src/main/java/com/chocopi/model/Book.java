@@ -12,6 +12,14 @@ public class Book {
     private int publishYear;
     private String publisher;
 
+    /*
+     * Computers: 1-160
+     * Business: 161-270
+     * Education: 271-360
+     * Self - help: 361-460
+     * Fiction: 461-550
+     * Others: 551-600
+     */
     // Constructor
     public Book() {}
 

@@ -1,6 +1,7 @@
 package com.chocopi.model;
 
 public class User {
+    public static final int maxBorrowed = 30;
     private int userId;
     private String username;
     private String password;
@@ -11,6 +12,38 @@ public class User {
     private String favor;
     private String email;
     private String role;
+    private int totalBorrowed;
+
+    public User() {}
+
+    public User(String username, String password, String name, String avatar,
+                int age, String phone, String favor, String email, int totalBorrowed, String role) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.avatar = avatar;
+        this.age = age;
+        this.phone = phone;
+        this.favor = favor;
+        this.email = email;
+        this.totalBorrowed = totalBorrowed;
+        this.role = role;
+    }
+
+    public User(int userId, String username, String password, String name, String avatar,
+                int age, String phone, String favor, String email, int totalBorrowed, String role) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.avatar = avatar;
+        this.age = age;
+        this.phone = phone;
+        this.favor = favor;
+        this.email = email;
+        this.totalBorrowed = totalBorrowed;
+        this.role = role;
+    }
 
     // Getters và Setters
     public int getUserId() {
@@ -91,5 +124,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getTotalBorrowed() {
+        return totalBorrowed;
+    }
+
+    public void setTotalBorrowed(int totalBorrowed) {
+        this.totalBorrowed = totalBorrowed;
     }
 }

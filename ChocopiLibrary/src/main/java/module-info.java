@@ -11,6 +11,7 @@ module chocopi.example.chocopilibrary {
     requires com.google.gson;
     requires okhttp3;
     requires org.json;
+    requires java.desktop;
 
     opens com.chocopi.util to javafx.fxml;
     exports com.chocopi.util to javafx.fxml;
@@ -29,4 +30,6 @@ module chocopi.example.chocopilibrary {
 
     opens com.chocopi to javafx.fxml;
     exports com.chocopi;
+    exports com.chocopi.controller.user to javafx.fxml;
+    opens com.chocopi.controller.user to javafx.fxml;
 }

@@ -3,6 +3,8 @@ package com.chocopi.dao;
 import com.chocopi.model.Book;
 import com.chocopi.util.DatabaseConnection;
 import com.chocopi.service.BookService;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,6 +39,22 @@ public class BookDAO {
         return books;
     }
 
+    public int lastBookId() {
+        String query = "SELECT MAX(book_id) FROM books";
+        try (Connection connection = DatabaseConnection.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            } else {
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
     public boolean addBook(Book book) {
         String sql = "INSERT INTO Books (title, description, author, publisher, publishYear," +
                 " genre, rating, available_quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -146,7 +164,6 @@ public class BookDAO {
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
             pstmt.setString(1, genre);
             ResultSet rs = pstmt.executeQuery();
 
@@ -164,40 +181,35 @@ public class BookDAO {
         return books;
     }
 
-    public void addBooksByQuery(String query) {
-        List<Book> books = BookService.fetchBooksInfo(query);
-
-        if (books == null || books.isEmpty()) {
-            System.err.println("Không thể lấy thông tin sách từ Google Books API.");
-            return;
-        }
-
-        String sql = "INSERT INTO Books (title, description, author, publisher, publishYear, genre," +
-                " rating, available_quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    public static List<String> getBookImagesByGenre(String genre) {
+        List<String> bookImages = new ArrayList<>();
+        String sql = "SELECT image FROM Books WHERE genre = ? LIMIT 6";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, genre);
+            ResultSet resultSet = pstmt.executeQuery();
 
-            for (Book book : books) {
-                pstmt.setString(1, book.getTitle());
-                pstmt.setString(2, book.getDescription());
-                pstmt.setString(3, book.getAuthor());
-                pstmt.setString(4, book.getPublisher());
-                pstmt.setInt(5, book.getPublishYear());
-                pstmt.setString(6, book.getGenre());
-                pstmt.setInt(7, book.getRating());
-                pstmt.setInt(8, book.getAvailableQuantity());
-
-                int rowsAffected = pstmt.executeUpdate();
-
-                if (rowsAffected > 0) {
-                    System.out.println("Thêm sách mới thành công: " + book.getTitle());
-                } else {
-                    System.out.println("Thêm sách không thành công: " + book.getTitle());
-                }
+            while (resultSet.next()) {
+                bookImages.add(resultSet.getString("image"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+
+        return bookImages;
+    }
+
+    public static void addBooksByQuery(String query) {
+        List<Book> books = BookService.fetchBooksInfo(query);
+
+        if (books.isEmpty()) {
+            System.out.println("Không tìm thấy sách nào với từ khóa: " + query);
+        } else {
+            BookDAO bookDAO = new BookDAO();
+            for (Book book : books) {
+                bookDAO.addBook(book);
+            }
         }
     }
 
@@ -245,5 +257,36 @@ public class BookDAO {
             e.printStackTrace();
             throw new Exception("Lỗi khi cập nhật đường dẫn ảnh: " + e.getMessage());
         }
+    }
+
+    public static JSONArray getBooksJson() {
+        JSONArray booksJsonArray = new JSONArray(); // Mảng JSON để chứa các sách
+
+        // Kết nối tới cơ sở dữ liệu
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            // Truy vấn SQL lấy ID và tên sách
+            String query = "SELECT book_id, title FROM books"; // Giả sử bảng sách có tên là "books"
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            // Duyệt qua kết quả và tạo các đối tượng JSON
+            while (rs.next()) {
+                int bookId = rs.getInt("book_id");
+                String title = rs.getString("title");
+
+                // Tạo đối tượng JSON cho mỗi sách
+                JSONObject bookJson = new JSONObject();
+                bookJson.put("bookId", bookId);
+                bookJson.put("title", title);
+
+                // Thêm đối tượng JSON vào mảng JSON
+                booksJsonArray.put(bookJson);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return booksJsonArray; // Trả về mảng JSON chứa danh sách sách
     }
 }

@@ -180,6 +180,6 @@ public class UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null; // Trả về null nếu thông tin không đúng
+        return null;
     }
 }

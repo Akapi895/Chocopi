@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.UserController">
+<StackPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserHomeUI">
    <children>
       <fx:include source="SideBar.fxml" />
       <AnchorPane id="page1" prefHeight="700.0" prefWidth="1024.0">
@@ -87,7 +87,7 @@
                <children>
                   <Button layoutY="35.0" mnemonicParsing="false" prefHeight="105.0" prefWidth="75.0" text="Button" />
                   <Separator layoutY="26.0" prefHeight="4.0" prefWidth="527.0" />
-                  <Label prefHeight="27.0" prefWidth="198.0" text="Bussiness &amp; Economics">
+                  <Label prefHeight="27.0" prefWidth="198.0" text="Bussiness">
                      <font>
                         <Font size="18.0" />
                      </font>
