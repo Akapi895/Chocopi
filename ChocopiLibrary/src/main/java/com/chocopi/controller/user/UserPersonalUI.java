@@ -14,7 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import javafx.stage.FileChooser;
 
-public class UserPersonalUI {
+public class UserPersonalUI extends abstractUserSideBar {
     @FXML
     private ImageView userImage;
 

@@ -13,16 +13,18 @@ public class DatabaseConnection {
     private DatabaseConnection() {}
 
     public static Connection getConnection() {
-        if (connection == null) {
-            synchronized (DatabaseConnection.class) {
-                if (connection == null) {
-                    try {
+        try {
+            // Kiểm tra nếu kết nối đã bị đóng hoặc chưa được tạo, mở kết nối mới
+            if (connection == null || connection.isClosed()) {
+                synchronized (DatabaseConnection.class) {
+                    if (connection == null || connection.isClosed()) {
                         connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
                     }
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Có thể ném lại ngoại lệ nếu cần hoặc thông báo lỗi.
         }
         return connection;
     }
@@ -31,7 +33,7 @@ public class DatabaseConnection {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                connection = null; // Đảm bảo tạo mới ở lần gọi tiếp theo.
+                connection = null; // Đảm bảo kết nối được khởi tạo lại khi cần thiết
             }
         } catch (SQLException e) {
             e.printStackTrace();
