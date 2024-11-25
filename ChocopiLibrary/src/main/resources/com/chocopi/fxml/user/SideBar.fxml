@@ -8,7 +8,7 @@
 <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="715.0" prefWidth="245.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserSideBarController">
     <children>
         <AnchorPane prefHeight="728.0" prefWidth="246.0" style="-fx-background-color: #d3f2ff;" />
-        <Button layoutX="14.0" layoutY="122.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Home">
+        <Button layoutX="14.0" layoutY="122.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" onAction="#handleHomeClick" text="Home">
             <font>
                 <Font size="18.0" />
             </font></Button>
@@ -16,15 +16,15 @@
             <font>
                 <Font size="24.0" />
             </font></Label>
-        <Button layoutX="14.0" layoutY="184.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Personal">
+        <Button layoutX="14.0" layoutY="184.0" mnemonicParsing="false" onAction="#handlePersonalClick" prefHeight="42.0" prefWidth="220.0" text="Personal">
             <font>
                 <Font size="18.0" />
             </font></Button>
-        <Button layoutX="14.0" layoutY="246.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="History">
+        <Button layoutX="14.0" layoutY="246.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" onAction="#handleHistoryClick" text="History">
             <font>
                 <Font size="18.0" />
             </font></Button>
-        <Button layoutX="13.0" layoutY="308.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Log out">
+        <Button layoutX="13.0" layoutY="308.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" onAction="#handleLogoutClick" text="Log out">
             <font>
                 <Font size="18.0" />
             </font></Button>
