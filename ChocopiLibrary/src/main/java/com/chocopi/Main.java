@@ -6,16 +6,25 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/Login.fxml"));
-        Scene scene = new Scene(loader.load());
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Login");
-        primaryStage.show();
+    public void start(Stage primaryStage) {
+        try {
+            // Load file FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/Login.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            // Cấu hình Stage
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Login - Choco.Book");
+            primaryStage.setResizable(false); // Không cho phép thay đổi kích thước cửa sổ
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch(args); // Khởi chạy ứng dụng JavaFX
     }
 }

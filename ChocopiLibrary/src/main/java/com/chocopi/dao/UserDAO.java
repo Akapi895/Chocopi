@@ -36,9 +36,8 @@ public class UserDAO {
     }
 
     public boolean addUser(User user) {
-        String sql = "INSERT INTO Users (username, password, name, email, phone, role) VALUES (?, ?, ?, ?, ?, ?)";
-
-        // Sử dụng DatabaseConnection để lấy Connection
+        String sql = "INSERT INTO Users (username, password, name, email, favor, age, phone, role, avatar) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -46,9 +45,11 @@ public class UserDAO {
             pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getName());
             pstmt.setString(4, user.getEmail());
-            pstmt.setString(5, user.getPhone());
-            pstmt.setString(6, user.getRole());
-            // Set các thuộc tính khác nếu cần
+            pstmt.setString(5, user.getFavor());
+            pstmt.setString(6, String.valueOf(user.getAge()));
+            pstmt.setString(7, user.getPhone());
+            pstmt.setString(8, user.getRole());
+            pstmt.setString(9, String.valueOf(user.getAvatar()));
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
@@ -131,22 +132,6 @@ public class UserDAO {
         return user;
     }
 
-    public boolean updateUserPassword(int userId, String newPassword) {
-        String sql = "UPDATE Users SET password = ? WHERE user_id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setString(1, newPassword);
-            pstmt.setInt(2, userId);
-
-            int rowsAffected = pstmt.executeUpdate();
-            return rowsAffected > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
     public String getUserFavor(int userId) {
         String favor = null;
         String sql = "SELECT favor FROM Users WHERE user_id = ?";
@@ -194,5 +179,42 @@ public class UserDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static boolean checkUsername(String username) {
+        String sql = "SELECT COUNT(*) FROM Users WHERE username = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                if (count > 0) {
+                    return true;
+                }
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static int getLastUserId() throws SQLException {
+        String query = "SELECT MAX(user_id) AS lastId FROM users";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            if (resultSet.next()) {
+                return resultSet.getInt("lastId");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return -1;
     }
 }
