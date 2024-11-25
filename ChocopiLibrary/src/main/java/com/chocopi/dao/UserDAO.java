@@ -59,8 +59,8 @@ public class UserDAO {
         }
     }
 
-    public boolean updateUser(User user) {
-        String sql = "UPDATE Users SET username = ?, password = ?, name = ?, email = ?, phone = ?, role = ? WHERE user_id = ?";
+    public static boolean updateUser(User user) {
+        String sql = "UPDATE Users SET username = ?, password = ?, name = ?, email = ?, phone = ?, role = ?, age = ?, favor = ? WHERE user_id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -71,7 +71,9 @@ public class UserDAO {
             pstmt.setString(4, user.getEmail());
             pstmt.setString(5, user.getPhone());
             pstmt.setString(6, user.getRole());
-            pstmt.setInt(7, user.getUserId());
+            pstmt.setInt(7, user.getAge());
+            pstmt.setString(8, user.getFavor());
+            pstmt.setInt(9, user.getUserId());
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
@@ -99,7 +101,7 @@ public class UserDAO {
         }
     }
 
-    public User getUserById(int userId) {
+    public static User getUserById(int userId) {
         String sql = "SELECT * FROM Users WHERE user_id = ?";
         User user = null;
 
@@ -118,7 +120,10 @@ public class UserDAO {
                 user.setEmail(rs.getString("email"));
                 user.setPhone(rs.getString("phone"));
                 user.setRole(rs.getString("role"));
-                // Gán các thuộc tính khác của User
+                user.setAge(rs.getInt("age"));
+                user.setFavor(rs.getString("favor"));
+                user.setAvatar(rs.getString("avatar"));
+                user.setTotalBorrowed(rs.getInt("totalBorrowed"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -173,8 +178,16 @@ public class UserDAO {
                 User user = new User();
                 user.setUserId(rs.getInt("user_id"));
                 user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
                 user.setName(rs.getString("name"));
+                user.setAvatar(rs.getString("avatar"));
+                user.setAge(rs.getInt("age"));
+                user.setPhone(rs.getString("phone"));
+                user.setFavor(rs.getString("favor"));
+                user.setEmail(rs.getString("email"));
                 user.setRole(rs.getString("role"));
+                user.setTotalBorrowed(rs.getInt("totalBorrowed"));
+
                 return user;
             }
         } catch (Exception e) {

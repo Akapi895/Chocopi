@@ -16,6 +16,19 @@ public class User {
 
     public User() {}
 
+    public User(User user) {
+        this.userId = user.getUserId();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.name = user.getName();
+        this.avatar = user.getAvatar();
+        this.age = user.getAge();
+        this.phone = user.getPhone();
+        this.favor = user.getFavor();
+        this.email = user.getEmail();
+        this.role = user.getRole();
+    }
+
     public User(String username, String password, String name, String avatar,
                 int age, String phone, String favor, String email, int totalBorrowed, String role) {
         this.username = username;
@@ -45,6 +58,12 @@ public class User {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "User [userId=" + userId + ", username=" + username + ", password="
+                + password + ", name=" + name + ", avatar=" + avatar + ", age=" + age
+                + ", phone=" + phone + ", favor=" + favor + ", email=" + email + ", role=" + role + "]";
+    }
     // Getters và Setters
     public int getUserId() {
         return userId;
@@ -119,7 +138,10 @@ public class User {
     }
 
     public String getRole() {
-        return role;
+        if (role != null) {
+            return role;
+        }
+        return null;
     }
 
     public void setRole(String role) {
