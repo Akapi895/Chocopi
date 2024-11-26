@@ -21,6 +21,9 @@ import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 import javax.imageio.ImageIO;
 
 public class UserPersonalUI extends UserSideBarController {
+//    @FXML
+//    private UserSideBarController sideBar;
+
     @FXML
     private ImageView userImage;
 

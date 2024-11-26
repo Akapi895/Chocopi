@@ -14,8 +14,8 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserPersonalUI">
-   <fx:include source="SideBar.fxml" />
    <AnchorPane>
+      <fx:include source="SideBar.fxml" />
       <children>
          <ImageView fx:id="userImage" fitHeight="240.0" fitWidth="180.0" layoutX="291.0" layoutY="121.0" pickOnBounds="true" AnchorPane.bottomAnchor="281.66666666666663" />
          <Label layoutX="292.0" layoutY="60.0" prefHeight="27.0" prefWidth="302.0" text="PERSONAL INFORMATION" textAlignment="CENTER">
