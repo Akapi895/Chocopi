@@ -68,6 +68,14 @@ public class SessionManager {
         userId = 0;
         username = null;
         role = null;
+        password = null;
+        name = null;
+        avatar = null;
+        age = 0;
+        phone = null;
+        favor = null;
+        email = null;
+        totalBorrowed = 0;
     }
 
     public static String getName() {
