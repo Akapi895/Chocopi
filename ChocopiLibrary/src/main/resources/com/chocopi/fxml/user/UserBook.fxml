@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.UserController">
+<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserBookUI">
     <children>
-        <ImageView fitHeight="280.0" fitWidth="210.0" layoutX="105.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="image" fitHeight="280.0" fitWidth="210.0" layoutX="105.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
         <GridPane layoutX="361.0" layoutY="118.0" prefHeight="79.0" prefWidth="422.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.400048828125" minWidth="10.0" prefWidth="58.40003662109376" />
@@ -40,6 +40,30 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
+            <Label fx:id="authorLabel" text="Author" GridPane.columnIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="genreLabel" text="Genre" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="ratingLabel" text="Rating" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
             </children>
         </GridPane>
         <VBox layoutX="105.0" layoutY="367.0" prefHeight="137.0" prefWidth="806.0">
@@ -49,7 +73,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label text="....">
+                <Label fx:id="descriptionLabel" prefHeight="125.0" prefWidth="819.0" text="Description of the book">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -86,34 +110,49 @@
                                 <Font size="14.0" />
                             </font>
                         </Label>
+                  <Label fx:id="publisherLabel" text="Publisher" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="publishYearLabel" text="publish year" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </GridPane>
             </children>
         </VBox>
-        <Label layoutX="361.0" layoutY="52.0" prefHeight="26.0" prefWidth="435.0" text="Book Name">
+        <Label fx:id="titleLabel" layoutX="361.0" layoutY="52.0" prefHeight="26.0" prefWidth="435.0" text="Book Name">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <Button layoutX="421.0" layoutY="230.0" mnemonicParsing="false" text="Borrow">
+        <Button layoutX="421.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleBorrowClick" text="Borrow">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
-        <Button layoutX="515.0" layoutY="230.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="64.0" text="Likes">
+        <Button layoutX="515.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleLikeClick" prefHeight="30.0" prefWidth="64.0" text="Like">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
-        <Button layoutX="990.0" layoutY="8.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0" styleClass="button1" text="?">
+        <Button layoutX="990.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleHelpClick" prefHeight="22.0" prefWidth="22.0" styleClass="button1" text="?">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
-        <Label layoutX="12.0" text="⬅">
+        <Button layoutX="14.0" layoutY="14.0" onAction="#handleBackClick" text="⬅">
             <font>
-                <Font size="40.0" />
+                <Font size="16.0" />
             </font>
-        </Label>
+        </Button>
+      <Button fx:id="dislikeButton" layoutX="515.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleDislikeClick" prefHeight="30.0" prefWidth="64.0" text="Dislike" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

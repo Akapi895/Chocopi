@@ -15,7 +15,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserHomeUI {
+public class UserHomeUI extends UserSideBarController {
     @FXML
     private TextField searchField;
 
