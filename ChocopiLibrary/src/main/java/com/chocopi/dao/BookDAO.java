@@ -55,6 +55,29 @@ public class BookDAO {
             return 0;
         }
     }
+
+    public static Book getBookById(int bookId) {
+        String sql = "SELECT * FROM Books WHERE book_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            Book book = new Book();
+            book.setBookId(rs.getInt("book_id"));
+            book.setTitle(rs.getString("title"));
+            book.setDescription(rs.getString("description"));
+            book.setAuthor(rs.getString("author"));
+            book.setPublisher(rs.getString("publisher"));
+            book.setPublishYear(rs.getInt("publishYear"));
+            book.setGenre(rs.getString("genre"));
+            book.setRating(rs.getInt("rating"));
+            book.setAvailableQuantity(rs.getInt("available_quantity"));
+            return book;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean addBook(Book book) {
         String sql = "INSERT INTO Books (title, description, author, publisher, publishYear," +
                 " genre, rating, available_quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
