@@ -153,7 +153,7 @@ public class BookDAO {
         }
     }
 
-    public List<Book> searchBooks(String keyword) {
+    public static List<Book> searchBooks(String keyword) {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM Books WHERE title LIKE ? OR author LIKE ? OR genre LIKE ?";
 
@@ -177,7 +177,8 @@ public class BookDAO {
                     book.setGenre(rs.getString("genre"));
                     book.setRating(rs.getInt("rating"));
                     book.setAvailableQuantity(rs.getInt("available_quantity"));
-                    // Gán các thuộc tính khác của Book
+                    book.setImage(rs.getString("image"));
+
                     books.add(book);
                 }
             }
@@ -336,4 +337,5 @@ public class BookDAO {
 
         return booksJsonArray; // Trả về mảng JSON chứa danh sách sách
     }
+
 }

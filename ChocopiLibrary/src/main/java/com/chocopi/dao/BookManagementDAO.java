@@ -1,5 +1,6 @@
 package com.chocopi.dao;
 
+import com.chocopi.model.Book;
 import com.chocopi.model.BookManagement;
 import com.chocopi.util.DatabaseConnection;
 
@@ -52,28 +53,7 @@ public class BookManagementDAO {
         }
     }
 
-    public boolean updateRecord(BookManagement record) {
-        String sql = "UPDATE BookManagement SET user_id = ?, book_id = ?, borrow_date = ?, return_date = ? WHERE record_id = ?";
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, record.getUserId());
-            pstmt.setInt(2, record.getBookId());
-            pstmt.setDate(3, record.getBorrowDate());
-            pstmt.setDate(4, record.getReturnDate());
-            pstmt.setInt(5, record.getRecordId());
-
-            int rowsAffected = pstmt.executeUpdate();
-            return rowsAffected > 0;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public boolean deleteRecord(int recordId) {
+    public static boolean deleteRecord(int recordId) {
         String sql = "DELETE FROM BookManagement WHERE record_id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -98,7 +78,7 @@ public class BookManagementDAO {
                 "WHERE bm.user_id = ? " +
                 "GROUP BY b.genre " +
                 "ORDER BY genre_count DESC " +
-                "LIMIT 4";
+                "LIMIT 5";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -113,5 +93,85 @@ public class BookManagementDAO {
             e.printStackTrace();
         }
         return genres;
+    }
+
+    public static int getRecordIdByUserIdAndBookId(int userId, int bookId) {
+        String sql = "SELECT * FROM BookManagement WHERE user_id = ? AND book_id = ?";
+        int record = 0;
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, bookId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                record = rs.getInt("record_id");
+                break;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return record;
+    }
+
+    public static List<Integer> getBookIdByUserId(int userId) {
+        List<Integer> books = new ArrayList<>();
+        String sql = "SELECT * FROM bookmanagement WHERE user_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                int book = rs.getInt("book_id");
+                books.add(book);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return books;
+    }
+
+    public static List<Book> getBookByUserId(int userId) {
+        List<Integer> bookIds = new ArrayList<>();
+        String sql = "SELECT book_id FROM bookmanagement WHERE user_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                int BookId = rs.getInt("book_id");
+                bookIds.add(BookId);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        List<Book> books = new ArrayList<>();
+        for (int bookId : bookIds) {
+            Book book = BookDAO.getBookById(bookId);
+            if (book != null) {
+                books.add(book);
+            }
+        }
+        return books;
+    }
+
+    public static boolean checkBorrowed(int userId, int bookId) {
+        String sql = "SELECT * FROM BookManagement WHERE user_id = ? AND book_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, bookId);
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) return true; // Tìm được thì trả về đúng
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 }

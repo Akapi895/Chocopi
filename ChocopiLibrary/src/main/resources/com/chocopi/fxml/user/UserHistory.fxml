@@ -4,63 +4,90 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.UserController">
+<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserHistoryUI">
     <Button layoutX="990.0" layoutY="8.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0" styleClass="button1" text="?">
         <font>
             <Font size="14.0" />
         </font></Button>
     <fx:include source="SideBar.fxml" />
-    <AnchorPane layoutX="312.0" layoutY="51.0" prefHeight="195.0" prefWidth="652.0">
+    <AnchorPane layoutX="290.0" layoutY="43.0" prefHeight="195.0" prefWidth="652.0">
         <children>
-            <Button layoutY="35.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="95.0" text="Button" />
-            <Separator layoutY="27.0" prefHeight="3.0" prefWidth="655.0" />
-            <Label prefHeight="26.0" prefWidth="130.0" text="Borrowed books">
+            <Separator layoutY="27.0" prefHeight="3.0" prefWidth="688.0" />
+            <Label prefHeight="27.0" prefWidth="147.0" text="Borrowed books">
                 <font>
                     <Font size="18.0" />
                 </font>
             </Label>
-            <Label alignment="CENTER" layoutX="626.0" layoutY="174.0" text="More" underline="true" />
-            <Button layoutX="140.0" layoutY="35.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="95.0" text="Button" />
-            <Button layoutX="280.0" layoutY="35.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="95.0" text="Button" />
-            <Button layoutX="420.0" layoutY="35.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="95.0" text="Button" />
-            <Button layoutX="560.0" layoutY="35.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="95.0" text="Button" />
-        </children>
-    </AnchorPane>
-    <AnchorPane layoutX="312.0" layoutY="243.0" prefHeight="195.0" prefWidth="652.0">
-        <children>
-            <Button layoutY="35.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="95.0" text="Button" />
-            <Separator layoutY="27.0" prefHeight="3.0" prefWidth="655.0" />
-            <Label prefHeight="26.0" prefWidth="130.0" text="Interest">
+            <AnchorPane layoutY="30.0" prefHeight="185.0" prefWidth="688.0">
+                <children>
+                    <ImageView fx:id="borrow1" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="borrow2" fitHeight="145.0" fitWidth="105.0" layoutX="145.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="borrow3" fitHeight="145.0" fitWidth="105.0" layoutX="290.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="borrow4" fitHeight="145.0" fitWidth="105.0" layoutX="435.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="borrow5" fitHeight="145.0" fitWidth="105.0" layoutX="580.0" pickOnBounds="true" preserveRatio="true" />
+                    <Button fx:id="brwBtn1" layoutX="11.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
+               <Button fx:id="brwBtn3" layoutX="301.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
+               <Button fx:id="brwBtn2" layoutX="156.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
+               <Button fx:id="brwBtn5" layoutX="591.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
+               <Button fx:id="brwBtn4" layoutX="445.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
+                </children>
+            </AnchorPane>
+            <Button layoutX="632.0" layoutY="-2.0" mnemonicParsing="false" onAction="#handleBorrowMore" style="-fx-background-color: transparent;" text="More" underline="true">
                 <font>
-                    <Font size="18.0" />
+                    <Font size="15.0" />
                 </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="626.0" layoutY="174.0" text="More" underline="true" />
-            <Button layoutX="140.0" layoutY="35.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="95.0" text="Button" />
-            <Button layoutX="280.0" layoutY="35.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="95.0" text="Button" />
-            <Button layoutX="420.0" layoutY="35.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="95.0" text="Button" />
-            <Button layoutX="560.0" layoutY="35.0" mnemonicParsing="false" prefHeight="130.0" prefWidth="95.0" text="Button" />
+            </Button>
         </children>
     </AnchorPane>
-    <AnchorPane layoutX="312.0" layoutY="430.0" prefHeight="195.0" prefWidth="652.0">
+    <AnchorPane layoutX="290.0" layoutY="480.0" prefHeight="214.0" prefWidth="688.0">
         <children>
-            <Separator layoutY="27.0" prefHeight="3.0" prefWidth="655.0" />
+            <Separator layoutY="27.0" prefHeight="3.0" prefWidth="688.0" />
             <Label prefHeight="26.0" prefWidth="130.0" text="Any question?">
                 <font>
                     <Font size="18.0" />
                 </font>
             </Label>
-            <Separator layoutX="327.0" layoutY="42.0" orientation="VERTICAL" prefHeight="168.0" prefWidth="6.0" />
-            <TextArea layoutY="36.0" prefHeight="178.0" prefWidth="322.0" text="Type your questions...&#10;">
+            <Separator layoutX="340.0" layoutY="41.0" orientation="VERTICAL" prefHeight="168.0" prefWidth="6.0" />
+            <TextArea fx:id="questionInput" layoutY="36.0" prefHeight="178.0" prefWidth="335.0" text="Type your questions...&#10;">
                 <font>
                     <Font name="System Italic" size="12.0" />
                 </font>
             </TextArea>
-            <TextArea editable="false" layoutX="334.0" layoutY="36.0" prefHeight="178.0" prefWidth="322.0" />
-            <Button layoutX="272.0" layoutY="180.0" mnemonicParsing="false" text="Send" />
+            <TextArea fx:id="questionOutput" editable="false" layoutX="348.0" layoutY="36.0" prefHeight="178.0" prefWidth="335.0" />
+            <Button layoutX="272.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleSendRequest" text="Send" />
+        </children>
+    </AnchorPane>
+    <AnchorPane layoutX="290.0" layoutY="269.0" prefHeight="195.0" prefWidth="652.0">
+        <children>
+            <Separator layoutY="27.0" prefHeight="3.0" prefWidth="688.0" />
+            <Label prefHeight="27.0" prefWidth="147.0" text="Interest">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
+            <AnchorPane layoutY="30.0" prefHeight="185.0" prefWidth="688.0">
+                <children>
+                    <ImageView fx:id="interest1" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="interest2" fitHeight="145.0" fitWidth="105.0" layoutX="145.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="interest3" fitHeight="145.0" fitWidth="105.0" layoutX="290.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="interest4" fitHeight="145.0" fitWidth="105.0" layoutX="435.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="interest5" fitHeight="145.0" fitWidth="105.0" layoutX="580.0" pickOnBounds="true" preserveRatio="true" />
+               <Button fx:id="favor1" layoutX="11.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
+               <Button fx:id="favor3" layoutX="301.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
+               <Button fx:id="favor2" layoutX="156.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
+               <Button fx:id="favor5" layoutX="591.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
+               <Button fx:id="favor4" layoutX="446.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
+                </children>
+            </AnchorPane>
+            <Button layoutX="630.0" layoutY="-2.0" mnemonicParsing="false" onAction="#handleInterestMore" style="-fx-background-color: transparent;" text="More" underline="true">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Button>
         </children>
     </AnchorPane>
 </AnchorPane>

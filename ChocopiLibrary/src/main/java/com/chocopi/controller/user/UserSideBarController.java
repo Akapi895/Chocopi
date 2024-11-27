@@ -1,5 +1,6 @@
 package com.chocopi.controller.user;
 
+import com.chocopi.util.BookSessionManager;
 import com.chocopi.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +30,7 @@ public class UserSideBarController {
 
     @FXML
     private void handleHomeClick(ActionEvent event) {
+        BookSessionManager.setPage(1);
         switchScene(event, "/com/chocopi/fxml/user/UserHome.fxml");
     }
 

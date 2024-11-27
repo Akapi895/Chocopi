@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserAddition">
+    <fx:include source="SideBar.fxml" />
+    <AnchorPane layoutX="301.0" layoutY="15.0" prefHeight="70.0" prefWidth="674.0">
+        <children>
+            <TextField fx:id="searchField" layoutX="187.0" layoutY="20.0" onAction="#handleSearch" prefHeight="30.0" prefWidth="299.0" promptText="🔎 Searching ...">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </TextField>
+        </children>
+    </AnchorPane>
+    <GridPane layoutX="301.0" layoutY="120.0" prefHeight="587.0" prefWidth="688.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <children>
+            <AnchorPane prefHeight="185.0" prefWidth="690.0">
+                <children>
+                    <ImageView fx:id="image1" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image2" fitHeight="145.0" fitWidth="105.0" layoutX="145.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image3" fitHeight="145.0" fitWidth="105.0" layoutX="290.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image4" fitHeight="145.0" fitWidth="105.0" layoutX="435.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image5" fitHeight="145.0" fitWidth="105.0" layoutX="580.0" pickOnBounds="true" preserveRatio="true" />
+                    <Button fx:id="nameBtn1" layoutX="8.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn2" layoutX="153.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn3" layoutX="298.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn4" layoutX="443.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn5" layoutX="588.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+
+                </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="185.0" prefWidth="690.0" GridPane.rowIndex="1">
+                <children>
+                    <ImageView fx:id="image6" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image7" fitHeight="145.0" fitWidth="105.0" layoutX="145.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image8" fitHeight="145.0" fitWidth="105.0" layoutX="290.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image9" fitHeight="145.0" fitWidth="105.0" layoutX="435.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image10" fitHeight="145.0" fitWidth="105.0" layoutX="580.0" pickOnBounds="true" preserveRatio="true" />
+                    <Button fx:id="nameBtn6" layoutX="8.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn7" layoutX="153.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn8" layoutX="299.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn9" layoutX="443.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn10" layoutX="588.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="193.0" prefHeight="185.0" prefWidth="690.0" GridPane.rowIndex="2">
+                <children>
+                    <ImageView fx:id="image11" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image12" fitHeight="145.0" fitWidth="105.0" layoutX="145.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image13" fitHeight="145.0" fitWidth="105.0" layoutX="290.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image14" fitHeight="145.0" fitWidth="105.0" layoutX="435.0" pickOnBounds="true" preserveRatio="true" />
+                    <ImageView fx:id="image15" fitHeight="145.0" fitWidth="105.0" layoutX="580.0" pickOnBounds="true" preserveRatio="true" />
+                    <Button fx:id="nameBtn11" layoutX="8.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn12" layoutX="153.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn13" layoutX="299.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn14" layoutX="443.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                    <Button fx:id="nameBtn15" layoutX="588.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" underline="true" wrapText="true" />
+                </children>
+            </AnchorPane>
+            <Button fx:id="previousButton" mnemonicParsing="false" onAction="#showPreviousPage" text="Previous" GridPane.rowIndex="3">
+                <font>
+                    <Font size="13.0" />
+                </font>
+                <GridPane.margin>
+                    <Insets left="180.0" />
+                </GridPane.margin>
+            </Button>
+            <Button fx:id="nextButton" layoutX="190.0" layoutY="516.0" mnemonicParsing="false" onAction="#showNextPage" text="Next" GridPane.rowIndex="3">
+                <font>
+                    <Font size="13.0" />
+                </font>
+                <GridPane.margin>
+                    <Insets left="470.0" />
+                </GridPane.margin>
+            </Button>
+        </children>
+    </GridPane>
+    <Label fx:id="additionLabel" layoutX="302.0" layoutY="79.0" prefHeight="27.0" prefWidth="601.0" text="Title">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+    <Separator layoutX="302.0" layoutY="107.0" prefHeight="2.0" prefWidth="665.0" />
+    <Button layoutX="962.0" layoutY="35.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0" styleClass="button1" text="?">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Button>
+</AnchorPane>

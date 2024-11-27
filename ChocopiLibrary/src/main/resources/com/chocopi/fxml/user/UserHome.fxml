@@ -13,24 +13,15 @@
 
 <StackPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserHomeUI">
    <children>
-<!--      <fx:include source="SideBar.fxml" />-->
       <AnchorPane id="page1" prefHeight="700.0" prefWidth="1024.0">
          <fx:include source="SideBar.fxml" />
          <children>
             <AnchorPane layoutX="301.0" layoutY="15.0" prefHeight="70.0" prefWidth="674.0">
                <children>
-                  <TextField fx:id="searchField" layoutX="105.0" layoutY="21.0" prefHeight="30.0" prefWidth="299.0" promptText="🔎 Searching ...">
+                  <TextField fx:id="searchField" layoutX="187.0" layoutY="20.0" prefHeight="30.0" prefWidth="299.0" promptText="🔎 Searching ...">
                      <font>
                         <Font size="14.0" />
                      </font></TextField>
-                  <Button layoutX="451.0" layoutY="21.0" mnemonicParsing="false" styleClass="button1" text="Advanced">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Button>
-                  <Button layoutX="551.0" layoutY="21.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0" styleClass="button1" text="?">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Button>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="546.0" layoutY="644.0" prefHeight="36.0" prefWidth="174.0">
@@ -192,6 +183,11 @@
                   </HBox>
                </children>
             </AnchorPane>
+            <Button layoutX="962.0" layoutY="35.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0" styleClass="button1" text="?">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

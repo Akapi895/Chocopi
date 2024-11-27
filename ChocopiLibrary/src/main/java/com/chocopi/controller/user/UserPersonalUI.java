@@ -103,16 +103,14 @@ public class UserPersonalUI extends UserSideBarController {
 
         String avatarPath = user.getAvatar();
 
-        if (avatarPath != null && !avatarPath.isEmpty()) {
-            Image newImage = new Image("file:" + avatarPath, true);
-            userImage.setImage(newImage);
-            try {
-                Image image = new Image(getClass().getResource(avatarPath).toExternalForm());
-                userImage.setImage(image);
-            } catch (Exception e) {
+        try {
+            if (avatarPath != null && !avatarPath.isEmpty()) {
+                Image newImage = new Image(getClass().getResource(avatarPath).toExternalForm());
+                userImage.setImage(newImage);
+            } else {
                 userImage.setImage(new Image(getClass().getResource("/com/chocopi/images/avatar/0.png").toExternalForm()));
             }
-        } else {
+        } catch (Exception e) {
             userImage.setImage(new Image(getClass().getResource("/com/chocopi/images/avatar/0.png").toExternalForm()));
         }
     }

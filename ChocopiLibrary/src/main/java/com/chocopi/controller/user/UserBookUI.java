@@ -47,7 +47,7 @@ public class UserBookUI {
     private Label publishYearLabel;
 
     @FXML
-    private Button borrowButton;
+    private Button borrowBtn, returnBtn;
 
     @FXML
     private Button likeButton;
@@ -69,11 +69,26 @@ public class UserBookUI {
         publishYearLabel.setText(String.valueOf(book.getPublishYear()));
 
         String imageUrl = book.getImage();
+        System.out.println(imageUrl);
         if (imageUrl != null) {
-            Image newImage = new Image(Objects.requireNonNull(getClass().getResource(imageUrl)).toExternalForm());
-            image.setImage(newImage);
+            image.setImage(new Image(getClass().getResource(imageUrl).toExternalForm()));
         } else {
+            System.out.println("Error finding image");
             image.setImage(new Image(Objects.requireNonNull(getClass().getResource("/com/chocopi/images/book/0.jpg")).toExternalForm()));
+        }
+
+        int userId = SessionManager.getUserId();
+        if (BookManagementDAO.checkBorrowed(userId, bookId)) {
+            borrowBtn.setDisable(true);
+            borrowBtn.setVisible(false);
+            returnBtn.setDisable(false);
+            returnBtn.setVisible(true);
+        }
+        if (LikeDAO.isBookLikedByUser(userId, bookId)) {
+            likeButton.setDisable(true);
+            likeButton.setVisible(false);
+            dislikeButton.setDisable(false);
+            dislikeButton.setVisible(true);
         }
     }
 
@@ -97,8 +112,28 @@ public class UserBookUI {
         record.setBorrowDate(Date.valueOf(borrowDate));
         record.setReturnDate(Date.valueOf(returnDate));
 
+        borrowBtn.setDisable(true);
+        borrowBtn.setVisible(false);
+        returnBtn.setDisable(false);
+        returnBtn.setVisible(true);
+
         BookManagementDAO bookManagementDAO = new BookManagementDAO();
         bookManagementDAO.addRecord(record);
+    }
+
+    @FXML
+    private void handleReturnClick() {
+        int userId = SessionManager.getUserId();
+        int bookId = BookSessionManager.getBookId();
+        int recordId = BookManagementDAO.getRecordIdByUserIdAndBookId(userId, bookId);
+        boolean del = BookManagementDAO.deleteRecord(recordId);
+        if (del) {
+            borrowBtn.setDisable(false);
+            borrowBtn.setVisible(true);
+
+            returnBtn.setDisable(true);
+            returnBtn.setVisible(false);
+        }
     }
 
     @FXML

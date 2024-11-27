@@ -1,5 +1,6 @@
 package com.chocopi.dao;
 
+import com.chocopi.model.Book;
 import com.chocopi.util.DatabaseConnection;
 
 import java.sql.*;
@@ -38,8 +39,7 @@ public class LikeDAO {
         }
     }
 
-    // Phương thức để lấy danh sách các bản ghi "like" theo userId
-    public List<Integer> getLikedBooksByUser(int userId) {
+    public static List<Integer> getLikedBooksByUser(int userId) {
         List<Integer> likedBooks = new ArrayList<>();
         String sql = "SELECT book_id FROM likes WHERE user_id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -58,8 +58,34 @@ public class LikeDAO {
         return likedBooks;
     }
 
-    // Phương thức để kiểm tra xem một người dùng đã like một cuốn sách chưa
-    public boolean isBookLikedByUser(int userId, int bookId) {
+    public static List<Book> getBooksByUser(int userId) {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT book_id FROM likes WHERE user_id = ?";
+
+        List<Integer> bookIds = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    bookIds.add(rs.getInt("book_id"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        for (int bookId : bookIds) {
+            Book book = BookDAO.getBookById(bookId);
+            if (book != null) {
+                books.add(book);
+            }
+        }
+
+        return books;
+    }
+
+    public static boolean isBookLikedByUser(int userId, int bookId) {
         String sql = "SELECT COUNT(*) AS count FROM likes WHERE user_id = ? AND book_id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -78,7 +104,6 @@ public class LikeDAO {
         return false;
     }
 
-    // Phương thức để lấy tất cả bản ghi "like"
     public List<String> getAllLikes() {
         List<String> likes = new ArrayList<>();
         String sql = "SELECT like_id, user_id, book_id FROM likes";

@@ -5,10 +5,23 @@ public class BookSessionManager {
     private static String genre;
     private static int page;
     private static String lastPage; // lưu fxml path
+    private static String search;
+    private static String labelTitle;
 
-    public static void setBookSession(int bookId, String genre) {
-        BookSessionManager.bookId = bookId;
-        BookSessionManager.genre = genre;
+    public static void setLabelTitle(String labelTitle) {
+        BookSessionManager.labelTitle = labelTitle;
+    }
+
+    public static String getLabelTitle() {
+        return labelTitle;
+    }
+
+    public static void setSearch(String search) {
+        BookSessionManager.search = search;
+    }
+
+    public static String getSearch() {
+        return search;
     }
 
     public static void setBookId(int bookId) {
@@ -48,6 +61,7 @@ public class BookSessionManager {
         genre = null;
         page = 1;
         lastPage = null;
+        search = null;
     }
 
     public static boolean hasBookSession() {
