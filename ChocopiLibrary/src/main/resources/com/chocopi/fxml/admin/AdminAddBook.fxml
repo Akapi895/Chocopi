@@ -14,10 +14,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.AdminController">
+<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminAddBookController">
    <children>
-      <ImageView fitHeight="280.0" fitWidth="210.0" layoutX="161.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="214.0" layoutY="186.0" mnemonicParsing="false" text="+Add photo">
+      <ImageView fx:id="photo" fitHeight="280.0" fitWidth="210.0" layoutX="161.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnAddPhoto" layoutX="214.0" layoutY="186.0" mnemonicParsing="false" onAction="#addPhoto" text="+Add photo">
          <font>
             <Font size="14.0" />
          </font>
@@ -51,22 +51,22 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="148.0" GridPane.columnIndex="1" />
-            <TextField maxHeight="30.0" maxWidth="279.0" minHeight="20.0" prefHeight="30.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField maxHeight="30.0" minHeight="20.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="bookname" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="148.0" GridPane.columnIndex="1" />
+            <TextField fx:id="author" maxHeight="30.0" maxWidth="279.0" minHeight="20.0" prefHeight="30.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="gerne" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Publish year:" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField maxHeight="30.0" maxWidth="287.0" minHeight="20.0" prefHeight="30.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="publishyear" maxHeight="30.0" maxWidth="287.0" minHeight="20.0" prefHeight="30.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Publisher:" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField maxHeight="30.0" maxWidth="275.0" minHeight="20.0" prefHeight="30.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField maxHeight="30.0" maxWidth="288.0" minHeight="20.0" prefHeight="30.0" prefWidth="288.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="publisher" maxHeight="30.0" maxWidth="275.0" minHeight="20.0" prefHeight="30.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="rating" maxHeight="30.0" maxWidth="288.0" minHeight="20.0" prefHeight="30.0" prefWidth="288.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label text="Rating:" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -81,7 +81,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextArea prefHeight="175.0" prefWidth="697.0" />
+            <TextArea fx:id="description" prefHeight="175.0" prefWidth="697.0" />
          </children>
       </VBox>
       <HBox layoutX="161.0" layoutY="601.0" prefHeight="37.0" prefWidth="200.0">
@@ -95,17 +95,24 @@
                </padding>
             </Label>
             <Label />
-            <Button mnemonicParsing="false" text="+ Select file">
+            <Button fx:id="btnSelectFile" mnemonicParsing="false" onAction="#selectFile" text="+ Select file">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </Button>
          </children>
       </HBox>
-      <Button layoutX="781.0" layoutY="601.0" mnemonicParsing="false" prefWidth="81.0" text="Save">
+      <Button fx:id="btnSave" layoutX="781.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleSaveClick" prefWidth="81.0" text="Save">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <Label layoutX="12.0" text="⬅">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Button fx:id="back" layoutX="12.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBookClick" prefHeight="38.0" prefWidth="40.0" text="Back" />
+      <ImageView fx:id="file" fitHeight="30.0" fitWidth="210.0" layoutX="371.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

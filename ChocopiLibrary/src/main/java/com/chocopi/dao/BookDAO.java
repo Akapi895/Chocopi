@@ -36,6 +36,25 @@ public class BookDAO {
         return books;
     }
 
+    public boolean isBookExists(String bookTitle) {
+        String sql = "SELECT COUNT(*) FROM books WHERE title = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, bookTitle);
+
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public boolean addBook(Book book) {
         String sql = "INSERT INTO Books (title, description, author, publisher, publishYear," +
                 " genre, rating, available_quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

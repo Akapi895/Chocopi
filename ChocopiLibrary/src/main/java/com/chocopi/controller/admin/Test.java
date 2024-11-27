@@ -1,4 +1,4 @@
-package com.chocopi.controller;
+package com.chocopi.controller.admin;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class    UserHome extends Application {
+public class Test extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -15,7 +15,7 @@ public class    UserHome extends Application {
     @Override
     public void start(Stage primaryStage) {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/user/UserHome.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/chocopi/fxml/admin/AdminHum.fxml"));
             Scene homeScene = new Scene(root);
             if (getClass().getResource("view.css") != null)
                 homeScene.getStylesheets().add(getClass().getResource("view.css").toExternalForm());
