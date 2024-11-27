@@ -46,7 +46,7 @@ public class BookSessionManager {
     public static void clearBookSession() {
         bookId = 0;
         genre = null;
-        page = 0;
+        page = 1;
         lastPage = null;
     }
 
