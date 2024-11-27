@@ -143,6 +143,6 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", publishYear=" + publishYear +
                 ", publisher='" + publisher + '\'' +
-                '}';
+                '}' + "\n";
     }
 }

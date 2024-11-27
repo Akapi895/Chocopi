@@ -59,19 +59,25 @@ public class BookDAO {
     public static Book getBookById(int bookId) {
         String sql = "SELECT * FROM Books WHERE book_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            Book book = new Book();
-            book.setBookId(rs.getInt("book_id"));
-            book.setTitle(rs.getString("title"));
-            book.setDescription(rs.getString("description"));
-            book.setAuthor(rs.getString("author"));
-            book.setPublisher(rs.getString("publisher"));
-            book.setPublishYear(rs.getInt("publishYear"));
-            book.setGenre(rs.getString("genre"));
-            book.setRating(rs.getInt("rating"));
-            book.setAvailableQuantity(rs.getInt("available_quantity"));
-            return book;
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, String.valueOf(bookId));
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    Book book = new Book();
+                    book.setBookId(rs.getInt("book_id"));
+                    book.setTitle(rs.getString("title"));
+                    book.setDescription(rs.getString("description"));
+                    book.setAuthor(rs.getString("author"));
+                    book.setPublisher(rs.getString("publisher"));
+                    book.setPublishYear(rs.getInt("publishYear"));
+                    book.setGenre(rs.getString("genre"));
+                    book.setRating(rs.getInt("rating"));
+                    book.setAvailableQuantity(rs.getInt("available_quantity"));
+                    book.setImage(rs.getString("image"));
+                    return book;
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -181,7 +187,7 @@ public class BookDAO {
         return books;
     }
 
-    public List<Book> getBooksByGenre(String genre) {
+    public static List<Book> getBooksByGenre(String genre) {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM Books WHERE genre = ?";
 
@@ -196,6 +202,12 @@ public class BookDAO {
                 book.setTitle(rs.getString("title"));
                 book.setAuthor(rs.getString("author"));
                 book.setGenre(rs.getString("genre"));
+                book.setImage(rs.getString("image"));
+                book.setDescription(rs.getString("description"));
+                book.setPublisher(rs.getString("publisher"));
+                book.setPublishYear(rs.getInt("publishYear"));
+                book.setRating(rs.getInt("rating"));
+                book.setAvailableQuantity(rs.getInt("available_quantity"));
                 books.add(book);
             }
         } catch (SQLException e) {
@@ -204,9 +216,9 @@ public class BookDAO {
         return books;
     }
 
-    public static List<String> getBookImagesByGenre(String genre) {
-        List<String> bookImages = new ArrayList<>();
-        String sql = "SELECT image FROM Books WHERE genre = ? LIMIT 6";
+    public static List<Book> get6BookImagesByGenre(String genre) {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM Books WHERE genre = ? LIMIT 6";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -214,13 +226,25 @@ public class BookDAO {
             ResultSet resultSet = pstmt.executeQuery();
 
             while (resultSet.next()) {
-                bookImages.add(resultSet.getString("image"));
+                Book book = new Book();
+                book.setBookId(resultSet.getInt("book_id"));
+                book.setTitle(resultSet.getString("title"));
+                book.setAuthor(resultSet.getString("author"));
+                book.setGenre(resultSet.getString("genre"));
+                book.setImage(resultSet.getString("image"));
+                book.setDescription(resultSet.getString("description"));
+                book.setPublisher(resultSet.getString("publisher"));
+                book.setPublishYear(resultSet.getInt("publishYear"));
+                book.setRating(resultSet.getInt("rating"));
+                book.setAvailableQuantity(resultSet.getInt("available_quantity"));
+
+                books.add(book);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return bookImages;
+        return books;
     }
 
     public static void addBooksByQuery(String query) {
