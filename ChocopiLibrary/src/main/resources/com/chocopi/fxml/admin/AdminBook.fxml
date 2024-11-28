@@ -10,12 +10,12 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminBookController">
     <fx:include source="SideBar.fxml" />
-<TableView layoutX="314.0" layoutY="150.0" prefHeight="462.0" prefWidth="650.0">
+<TableView fx:id="bookTableView" layoutX="314.0" layoutY="150.0" prefHeight="462.0" prefWidth="650.0">
   <columns>
-    <TableColumn fx:id="bookidcolumn" prefWidth="90.0" style="-fx-font-size: 16;" text="Book ID" />
-    <TableColumn fx:id="namecolumn" prefWidth="187.0" style="-fx-font-size: 16;" text="Name" />
-      <TableColumn fx:id="statuscolumn" prefWidth="187.0" style="-fx-font-size: 16;" text="Status" />
-      <TableColumn fx:id="timesborrowedcolumn" prefWidth="184.79996337890623" style="-fx-font-size: 16;" text="Times borrowed" />
+    <TableColumn fx:id="bookIdColumn" prefWidth="90.0" style="-fx-font-size: 16;" text="Book ID" />
+    <TableColumn fx:id="nameColumn" prefWidth="187.0" style="-fx-font-size: 16;" text="Name" />
+      <TableColumn fx:id="statusColumn" prefWidth="187.0" style="-fx-font-size: 16;" text="Status" />
+      <TableColumn fx:id="timesBorrowedColumn" prefWidth="184.79996337890623" style="-fx-font-size: 16;" text="Times borrowed" />
   </columns>
 </TableView>
    <Label layoutX="314.0" layoutY="90.0" text="Book ID:" underline="true">
@@ -23,13 +23,13 @@
          <Font size="18.0" />
       </font>
    </Label>
-   <TextField layoutX="398.0" layoutY="90.0" />
-   <Button layoutX="864.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleAddBookClick" text="+ Add Book">
+   <TextField fx:id="bookId" layoutX="398.0" layoutY="90.0" />
+   <Button fx:id="btnAddBook" layoutX="864.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleAddBookClick" text="+ Add Book">
       <font>
          <Font size="16.0" />
       </font>
    </Button>
-   <Button fx:id="btnDelete" layoutX="896.0" layoutY="643.0" mnemonicParsing="false" text="Delete">
+   <Button fx:id="btnDelete" layoutX="896.0" layoutY="643.0" mnemonicParsing="false" onAction="#handleDeleteClick" text="Delete">
       <font>
          <Font size="16.0" />
       </font>

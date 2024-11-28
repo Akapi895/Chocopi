@@ -1,6 +1,7 @@
 package com.chocopi.model;
 
 public class User {
+    public static final int maxBorrowed = 30;
     private int userId;
     private String username;
     private String password;
@@ -11,7 +12,58 @@ public class User {
     private String favor;
     private String email;
     private String role;
+    private int totalBorrowed;
 
+    public User() {}
+
+    public User(User user) {
+        this.userId = user.getUserId();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.name = user.getName();
+        this.avatar = user.getAvatar();
+        this.age = user.getAge();
+        this.phone = user.getPhone();
+        this.favor = user.getFavor();
+        this.email = user.getEmail();
+        this.role = user.getRole();
+    }
+
+    public User(String username, String password, String name, String avatar,
+                int age, String phone, String favor, String email, int totalBorrowed, String role) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.avatar = avatar;
+        this.age = age;
+        this.phone = phone;
+        this.favor = favor;
+        this.email = email;
+        this.totalBorrowed = totalBorrowed;
+        this.role = role;
+    }
+
+    public User(int userId, String username, String password, String name, String avatar,
+                int age, String phone, String favor, String email, int totalBorrowed, String role) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.avatar = avatar;
+        this.age = age;
+        this.phone = phone;
+        this.favor = favor;
+        this.email = email;
+        this.totalBorrowed = totalBorrowed;
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User [userId=" + userId + ", username=" + username + ", password="
+                + password + ", name=" + name + ", avatar=" + avatar + ", age=" + age
+                + ", phone=" + phone + ", favor=" + favor + ", email=" + email + ", role=" + role + "]";
+    }
     // Getters và Setters
     public int getUserId() {
         return userId;
@@ -86,10 +138,21 @@ public class User {
     }
 
     public String getRole() {
-        return role;
+        if (role != null) {
+            return role;
+        }
+        return null;
     }
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getTotalBorrowed() {
+        return totalBorrowed;
+    }
+
+    public void setTotalBorrowed(int totalBorrowed) {
+        this.totalBorrowed = totalBorrowed;
     }
 }

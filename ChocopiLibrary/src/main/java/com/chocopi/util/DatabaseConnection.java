@@ -10,16 +10,33 @@ public class DatabaseConnection {
     private static final String PASSWORD = "Betterc@llquang1112";
     private static Connection connection = null;
 
+    private DatabaseConnection() {}
+
     public static Connection getConnection() {
-        if (connection == null) {
-            try {
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                System.out.println("Database connected successfully.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Failed to connect to the database.");
+        try {
+            // Kiểm tra nếu kết nối đã bị đóng hoặc chưa được tạo, mở kết nối mới
+            if (connection == null || connection.isClosed()) {
+                synchronized (DatabaseConnection.class) {
+                    if (connection == null || connection.isClosed()) {
+                        connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                    }
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Có thể ném lại ngoại lệ nếu cần hoặc thông báo lỗi.
         }
         return connection;
+    }
+
+    public static void closeConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                connection = null; // Đảm bảo kết nối được khởi tạo lại khi cần thiết
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -139,7 +139,7 @@ public class BookDAO {
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     Book book = new Book();
-                    book.setBookId(rs.getInt("book_id"));
+                    book.setBookId(rs.getInt("bookId"));
                     book.setTitle(rs.getString("title"));
                     book.setDescription(rs.getString("description"));
                     book.setAuthor(rs.getString("author"));
