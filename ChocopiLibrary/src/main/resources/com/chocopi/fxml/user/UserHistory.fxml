@@ -9,10 +9,6 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserHistoryUI">
-    <Button layoutX="990.0" layoutY="8.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0" styleClass="button1" text="?">
-        <font>
-            <Font size="14.0" />
-        </font></Button>
     <fx:include source="SideBar.fxml" />
     <AnchorPane layoutX="290.0" layoutY="43.0" prefHeight="195.0" prefWidth="652.0">
         <children>
