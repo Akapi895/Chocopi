@@ -60,9 +60,13 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [userId=" + userId + ", username=" + username + ", password="
-                + password + ", name=" + name + ", avatar=" + avatar + ", age=" + age
-                + ", phone=" + phone + ", favor=" + favor + ", email=" + email + ", role=" + role + "]";
+        return "[userId = " + userId + ", username = " + username + ", password = "
+                + password + ", name = " + name + ", avatar = " + avatar + ", age = " + age
+                + ", phone = " + phone + ", favor = " + favor + ", email = " + email + ", role = " + role + "]";
+    }
+
+    public String userInfo() {
+        return "[userId = " + userId + ", name = " + name + ", age = " + age + ", favor = " + favor + "]";
     }
     // Getters và Setters
     public int getUserId() {

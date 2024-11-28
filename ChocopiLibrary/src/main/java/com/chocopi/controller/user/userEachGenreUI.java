@@ -24,9 +24,6 @@ import java.util.List;
 
 public class userEachGenreUI extends UserSideBarController {
     @FXML
-    private GridPane gridPane;
-
-    @FXML
     private AnchorPane mainPane;
 
     @FXML
@@ -79,6 +76,13 @@ public class userEachGenreUI extends UserSideBarController {
 
 
     private void updatePage() {
+        for (int i = 0 ; i < ITEMS_PER_PAGE; ++i) {
+            images.get(i).setVisible(false);
+            images.get(i).setDisable(true);
+            buttons.get(i).setVisible(false);
+            buttons.get(i).setDisable(true);
+        }
+
         if (books == null || books.isEmpty()) {
             return;
         }
@@ -88,9 +92,6 @@ public class userEachGenreUI extends UserSideBarController {
 
         if (startIndex < 0) {
             startIndex = 0;
-        }
-        if (endIndex > books.size()) {
-            endIndex = books.size();
         }
 
         if (startIndex >= endIndex) {
@@ -106,6 +107,11 @@ public class userEachGenreUI extends UserSideBarController {
                 buttons.get(i).setVisible(false);
                 buttons.get(i).setDisable(true);
             } else {
+                images.get(i).setVisible(true);
+                images.get(i).setDisable(false);
+                buttons.get(i).setVisible(true);
+                buttons.get(i).setDisable(false);
+
                 Book book = currentItems.get(i);
 
                 if (book.getImage() != null && !book.getImage().isEmpty()) {
@@ -128,6 +134,7 @@ public class userEachGenreUI extends UserSideBarController {
 
     public void handleSearch(ActionEvent event) {
         String searchText = searchField.getText();
+        BookSessionManager.setPage(0);
 
         if (searchText != null && !searchText.trim().isEmpty()) {
             searchBooks(searchText);
@@ -136,9 +143,19 @@ public class userEachGenreUI extends UserSideBarController {
         }
     }
 
-    //TODO: xử lý tìm kiếm
     private void searchBooks(String searchText) {
-        System.out.println("Đang tìm kiếm sách với từ khóa: " + searchText);
+        BookSessionManager.setSearch(searchText);
+        BookSessionManager.setLastPage("/com/chocopi/fxml/userEachGenreUI.fxml");
+        BookSessionManager.setLabelTitle("Searching");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserAddition.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = (Stage) mainPane.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void showBookDetails(Book selectedBook) {

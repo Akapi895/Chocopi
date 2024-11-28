@@ -39,6 +39,23 @@ public class BookDAO {
         return books;
     }
 
+    public static String getAllBookIdandTitle() {
+        String sql = "SELECT book_id, title FROM Books";
+        String books = "";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String book = rs.getInt("book_id") + ". " + rs.getString("title");
+                if (!books.isEmpty()) books += "; ";
+                books += book;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return books;
+    }
     public int lastBookId() {
         String query = "SELECT MAX(book_id) FROM books";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -155,15 +172,10 @@ public class BookDAO {
 
     public static List<Book> searchBooks(String keyword) {
         List<Book> books = new ArrayList<>();
-        String sql = "SELECT * FROM Books WHERE title LIKE ? OR author LIKE ? OR genre LIKE ?";
+        String sql = "SELECT * FROM Books";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            String searchKeyword = "%" + keyword + "%";
-            pstmt.setString(1, searchKeyword);
-            pstmt.setString(2, searchKeyword);
-            pstmt.setString(3, searchKeyword);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
@@ -179,13 +191,24 @@ public class BookDAO {
                     book.setAvailableQuantity(rs.getInt("available_quantity"));
                     book.setImage(rs.getString("image"));
 
-                    books.add(book);
+                    // Kiểm tra từ khóa
+                    if (matchesKeyword(book, keyword)) {
+                        books.add(book);
+                    }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return books;
+    }
+
+    // Phương thức kiểm tra từ khóa
+    private static boolean matchesKeyword(Book book, String keyword) {
+        String lowerKeyword = keyword.toLowerCase();
+        return (book.getTitle() != null && book.getTitle().toLowerCase().contains(lowerKeyword)) ||
+                (book.getAuthor() != null && book.getAuthor().toLowerCase().contains(lowerKeyword)) ||
+                (book.getGenre() != null && book.getGenre().toLowerCase().contains(lowerKeyword));
     }
 
     public static List<Book> getBooksByGenre(String genre) {

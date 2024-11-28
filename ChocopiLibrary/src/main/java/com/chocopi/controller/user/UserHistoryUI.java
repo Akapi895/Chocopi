@@ -4,6 +4,7 @@ import com.chocopi.dao.BookDAO;
 import com.chocopi.dao.BookManagementDAO;
 import com.chocopi.dao.LikeDAO;
 import com.chocopi.model.Book;
+import com.chocopi.service.OpenAIChatClient;
 import com.chocopi.util.BookSessionManager;
 import com.chocopi.util.SessionManager;
 import javafx.fxml.FXML;
@@ -39,6 +40,9 @@ public class UserHistoryUI extends UserSideBarController {
     private Button favor1, favor2, favor3, favor4, favor5;
     private List<Button> favors = new ArrayList<Button>();
 
+    @FXML
+    private Button moreBrw, moreInterest;
+
     // Question section
     @FXML
     private TextArea questionInput, questionOutput;
@@ -48,18 +52,18 @@ public class UserHistoryUI extends UserSideBarController {
     //TODO
     @FXML
     private void handleSendRequest() {
+        questionOutput.setText("Loading...");
+
         String question = questionInput.getText().trim();
         if (!question.isEmpty()) {
-            // Simulate sending the question to a service (e.g., chatbot or FAQ API)
-            String response = "Your question: " + question + "\nResponse: This is a placeholder response.";
+            String response = OpenAIChatClient.handleUserQuestion(question);
             questionOutput.setText(response);
-            questionInput.clear();
+//            questionInput.clear();
         } else {
             questionOutput.setText("Please type a question before sending.");
         }
     }
 
-    // TODO
     @FXML
     private void handleBorrowMore() {
         try {
@@ -75,7 +79,6 @@ public class UserHistoryUI extends UserSideBarController {
         }
     }
 
-    // TODO
     @FXML
     private void handleInterestMore() {
         try {
@@ -94,6 +97,9 @@ public class UserHistoryUI extends UserSideBarController {
     @FXML
     private void initialize() {
         List<Integer> brwBookId = BookManagementDAO.getBookIdByUserId(SessionManager.getUserId());
+        if (brwBookId.isEmpty()) {
+            moreBrw.setDisable(true);
+        }
         brwImages = Arrays.asList(borrow1, borrow2, borrow3, borrow4, borrow5);
         brwBtns = Arrays.asList(brwBtn1, brwBtn2, brwBtn3, brwBtn4, brwBtn5);
 
@@ -121,6 +127,9 @@ public class UserHistoryUI extends UserSideBarController {
         }
 
         List<Integer> likeBookId = LikeDAO.getLikedBooksByUser(SessionManager.getUserId());
+        if (likeBookId.isEmpty()) {
+            moreInterest.setDisable(true);
+        }
         interestBtns = Arrays.asList(interest1, interest2, interest3, interest4, interest5);
         favors = Arrays.asList(favor1, favor2, favor3, favor4, favor5);
 

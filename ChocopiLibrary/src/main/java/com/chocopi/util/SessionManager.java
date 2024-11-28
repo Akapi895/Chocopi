@@ -109,5 +109,9 @@ public class SessionManager {
     public static String getPassword() {
         return password;
     }
+
+    public static void setUserId(int userId) {
+        SessionManager.userId = userId;
+    }
 }
 

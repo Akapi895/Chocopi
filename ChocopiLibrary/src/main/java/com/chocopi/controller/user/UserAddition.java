@@ -63,12 +63,15 @@ public class UserAddition extends UserSideBarController {
         if (BookSessionManager.getLabelTitle().equals("Interest")) {
             additionLabel.setText("Interest");
             books = LikeDAO.getBooksByUser(SessionManager.getUserId());
+            BookSessionManager.setPage(0);
         } else if (BookSessionManager.getLabelTitle().equals("Borrowed Books")) {
             additionLabel.setText("Borrowed Books");
             books = BookManagementDAO.getBookByUserId(SessionManager.getUserId());
+            BookSessionManager.setPage(0);
         } else {
             additionLabel.setText("Searching for: " + BookSessionManager.getSearch());
             books = BookDAO.searchBooks(BookSessionManager.getSearch());
+            BookSessionManager.setPage(0);
         }
 
         imageViewList = Arrays.asList(
@@ -86,6 +89,13 @@ public class UserAddition extends UserSideBarController {
     }
 
     private void updatePage() {
+        for (int i = 0 ; i < ITEMS_PER_PAGE; ++i) {
+            imageViewList.get(i).setVisible(false);
+            imageViewList.get(i).setDisable(true);
+            buttonList.get(i).setVisible(false);
+            buttonList.get(i).setDisable(true);
+        }
+
         if (books == null || books.isEmpty()) {
             return;
         }
@@ -96,9 +106,6 @@ public class UserAddition extends UserSideBarController {
         if (startIndex < 0) {
             startIndex = 0;
         }
-        if (endIndex > books.size()) {
-            endIndex = books.size();
-        }
 
         if (startIndex >= endIndex) {
             return;
@@ -106,14 +113,21 @@ public class UserAddition extends UserSideBarController {
 
         List<Book> currentItems = books.subList(startIndex, endIndex);
 
-        for (int i = 0; i < ITEMS_PER_PAGE; i++) {
+        for (int i = 0; i < endIndex - startIndex; i++) {
             if (i >= currentItems.size()) {
+                System.out.println(i);
                 imageViewList.get(i).setVisible(false);
                 imageViewList.get(i).setDisable(true);
                 buttonList.get(i).setVisible(false);
                 buttonList.get(i).setDisable(true);
             } else {
+                imageViewList.get(i).setVisible(true);
+                imageViewList.get(i).setDisable(false);
+                buttonList.get(i).setVisible(true);
+                buttonList.get(i).setDisable(false);
+
                 Book book = currentItems.get(i);
+                System.out.println(book.toString());
 
                 if (book.getImage() != null && !book.getImage().isEmpty()) {
                     imageViewList.get(i).setImage(new Image(getClass().getResource(book.getImage()).toExternalForm()));
@@ -135,6 +149,7 @@ public class UserAddition extends UserSideBarController {
 
     public void handleSearch(ActionEvent event) {
         String searchText = searchField.getText();
+        BookSessionManager.setPage(0);
 
         if (searchText != null && !searchText.trim().isEmpty()) {
             searchBooks(searchText);
@@ -143,9 +158,19 @@ public class UserAddition extends UserSideBarController {
         }
     }
 
-    //TODO: xử lý tìm kiếm
     private void searchBooks(String searchText) {
-        System.out.println("Đang tìm kiếm sách với từ khóa: " + searchText);
+        BookSessionManager.setSearch(searchText);
+        BookSessionManager.setLastPage("/com/chocopi/fxml/UserAddition.fxml");
+        BookSessionManager.setLabelTitle("Searching");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserAddition.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = (Stage) mainPane.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void showBookDetails(Book selectedBook) {
@@ -153,7 +178,7 @@ public class UserAddition extends UserSideBarController {
             BookSessionManager.setBookId(selectedBook.getBookId());
             BookSessionManager.setGenre(selectedBook.getGenre());
             BookSessionManager.setPage(currentPage);
-            BookSessionManager.setLastPage("/com/chocopi/fxml/user/userEachGenre.fxml");
+            BookSessionManager.setLastPage("/com/chocopi/fxml/user/UserAddition.fxml");
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserBook.fxml"));
             Parent root = loader.load();

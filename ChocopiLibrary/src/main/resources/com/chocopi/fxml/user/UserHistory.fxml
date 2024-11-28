@@ -36,7 +36,7 @@
                <Button fx:id="brwBtn4" layoutX="445.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
                 </children>
             </AnchorPane>
-            <Button layoutX="632.0" layoutY="-2.0" mnemonicParsing="false" onAction="#handleBorrowMore" style="-fx-background-color: transparent;" text="More" underline="true">
+            <Button fx:id="moreBrw" layoutX="632.0" layoutY="-2.0" mnemonicParsing="false" onAction="#handleBorrowMore" style="-fx-background-color: transparent;" text="More" underline="true">
                 <font>
                     <Font size="15.0" />
                 </font>
@@ -52,13 +52,16 @@
                 </font>
             </Label>
             <Separator layoutX="340.0" layoutY="41.0" orientation="VERTICAL" prefHeight="168.0" prefWidth="6.0" />
-            <TextArea fx:id="questionInput" layoutY="36.0" prefHeight="178.0" prefWidth="335.0" text="Type your questions...&#10;">
+            <TextArea fx:id="questionInput" layoutY="36.0" prefHeight="178.0" prefWidth="335.0" promptText="Type your questions..." wrapText="true">
                 <font>
-                    <Font name="System Italic" size="12.0" />
+                    <Font name="System Italic" size="14.0" />
                 </font>
             </TextArea>
-            <TextArea fx:id="questionOutput" editable="false" layoutX="348.0" layoutY="36.0" prefHeight="178.0" prefWidth="335.0" />
-            <Button layoutX="272.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleSendRequest" text="Send" />
+            <TextArea fx:id="questionOutput" editable="false" layoutX="348.0" layoutY="36.0" prefHeight="178.0" prefWidth="335.0" promptText="The answer goes here..." wrapText="true">
+            <font>
+               <Font size="14.0" />
+            </font></TextArea>
+            <Button layoutX="278.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleSendRequest" text="Send" />
         </children>
     </AnchorPane>
     <AnchorPane layoutX="290.0" layoutY="269.0" prefHeight="195.0" prefWidth="652.0">
@@ -83,7 +86,7 @@
                <Button fx:id="favor4" layoutX="446.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" underline="true" />
                 </children>
             </AnchorPane>
-            <Button layoutX="630.0" layoutY="-2.0" mnemonicParsing="false" onAction="#handleInterestMore" style="-fx-background-color: transparent;" text="More" underline="true">
+            <Button fx:id="moreInterest" layoutX="630.0" layoutY="-2.0" mnemonicParsing="false" onAction="#handleInterestMore" style="-fx-background-color: transparent;" text="More" underline="true">
                 <font>
                     <Font size="15.0" />
                 </font>

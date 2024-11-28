@@ -18,7 +18,7 @@
          <children>
             <AnchorPane layoutX="301.0" layoutY="15.0" prefHeight="70.0" prefWidth="674.0">
                <children>
-                  <TextField fx:id="searchField" layoutX="187.0" layoutY="20.0" prefHeight="30.0" prefWidth="299.0" promptText="🔎 Searching ...">
+                  <TextField fx:id="searchField" onAction="#handleSearch" layoutX="187.0" layoutY="20.0" prefHeight="30.0" prefWidth="299.0" promptText="🔎 Searching ...">
                      <font>
                         <Font size="14.0" />
                      </font></TextField>

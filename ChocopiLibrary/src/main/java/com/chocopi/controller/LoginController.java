@@ -51,7 +51,7 @@ public class LoginController {
                 }
             } else {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserPersonal.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserHome.fxml"));
                     Scene userHomeScene = new Scene(loader.load());
                     Stage stage = (Stage) usernameField.getScene().getWindow();
                     stage.setScene(userHomeScene);

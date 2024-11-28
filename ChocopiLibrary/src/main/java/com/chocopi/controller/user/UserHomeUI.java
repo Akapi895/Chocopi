@@ -3,6 +3,7 @@ package com.chocopi.controller.user;
 import com.chocopi.dao.BookDAO;
 import com.chocopi.model.Book;
 import com.chocopi.util.BookSessionManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -54,6 +55,33 @@ public class UserHomeUI {
         genre1.setText("Computers");
         genre2.setText("Business");
         genre3.setText("Education");
+    }
+
+    @FXML
+    public void handleSearch(ActionEvent event) {
+        BookSessionManager.setPage(0);
+        String searchText = searchField.getText();
+
+        if (searchText != null && !searchText.trim().isEmpty()) {
+            searchBooks(searchText);
+        } else {
+            System.out.println("Vui lòng nhập từ khóa tìm kiếm.");
+        }
+    }
+
+    private void searchBooks(String searchText) {
+        BookSessionManager.setSearch(searchText);
+        BookSessionManager.setLastPage("/com/chocopi/fxml/UserHome.fxml");
+        BookSessionManager.setLabelTitle("Searching");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserAddition.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = (Stage) searchField.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
