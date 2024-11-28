@@ -71,17 +71,11 @@ public class OpenAIChatClient {
         String responseContent = null;
         try {
             responseContent = chatClient.sendMessage(query);
-            System.out.println("Response Content: " + responseContent);
+//            System.out.println("Response Content: " + responseContent);
         } catch (IOException e) {
             System.err.println("Error occurred: " + e.getMessage());
         }
-        if (responseContent == null) responseContent = "Hãy đưa ra câu hỏi thích hợp.";
+        if (responseContent == null) responseContent = "Vui lòng đợi trong giây lát...";
         return responseContent;
     }
-
-    public static void main(String[] args) {
-        SessionManager.setUserId(2);
-        System.out.println(handleUserQuestion("tôi cần học tiếng anh"));
-    }
 }
-

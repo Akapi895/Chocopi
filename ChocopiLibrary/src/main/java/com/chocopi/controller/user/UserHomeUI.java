@@ -41,20 +41,20 @@ public class UserHomeUI {
     @FXML
     private void onPage1Clicked() {
         BookSessionManager.clearBookSession();
-        BookSessionManager.setPage(1);
-        genre1.setText("Computers");
-        genre2.setText("Business");
-        genre3.setText("Education");
+        BookSessionManager.setPage(0);
+        genre1.setText("Self - help");
+        genre2.setText("Fiction");
+        genre3.setText("Others");
 
         initialize();
     }
 
     private void Page1() {
         BookSessionManager.clearBookSession();
-        BookSessionManager.setPage(1);
-        genre1.setText("Computers");
-        genre2.setText("Business");
-        genre3.setText("Education");
+        BookSessionManager.setPage(0);
+        genre1.setText("Self - help");
+        genre2.setText("Fiction");
+        genre3.setText("Others");
     }
 
     @FXML
@@ -87,20 +87,20 @@ public class UserHomeUI {
     @FXML
     private void onPage2Clicked() {
         BookSessionManager.clearBookSession();
-        BookSessionManager.setPage(2);
-        genre1.setText("Self - help");
-        genre2.setText("Fiction");
-        genre3.setText("Others");
+        BookSessionManager.setPage(1);
+        genre1.setText("Computers");
+        genre2.setText("Business");
+        genre3.setText("Education");
 
         initialize();
     }
 
     private void Page2() {
         BookSessionManager.clearBookSession();
-        BookSessionManager.setPage(2);
-        genre1.setText("Self - help");
-        genre2.setText("Fiction");
-        genre3.setText("Others");
+        BookSessionManager.setPage(1);
+        genre1.setText("Computers");
+        genre2.setText("Business");
+        genre3.setText("Education");
     }
 
 
@@ -109,6 +109,7 @@ public class UserHomeUI {
             BookSessionManager.clearBookSession();
             BookSessionManager.setGenre(genre);
             BookSessionManager.setLastPage("/com/chocopi/fxml/user/UserHome.fxml");
+            BookSessionManager.setPage(0);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/userEachGenre.fxml"));
             Parent root = loader.load();

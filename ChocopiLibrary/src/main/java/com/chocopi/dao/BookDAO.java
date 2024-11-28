@@ -39,6 +39,25 @@ public class BookDAO {
         return books;
     }
 
+    public boolean isBookExists(String bookTitle) {
+        String sql = "SELECT COUNT(*) FROM books WHERE title = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, bookTitle);
+
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static String getAllBookIdandTitle() {
         String sql = "SELECT book_id, title FROM Books";
         String books = "";
@@ -170,6 +189,7 @@ public class BookDAO {
         }
     }
 
+    //TODO: check conflict
     public static List<Book> searchBooks(String keyword) {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM Books";

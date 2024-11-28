@@ -6,41 +6,29 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.AdminController">
-   <children>
-      <Label layoutX="115.0" layoutY="42.0" prefHeight="33.0" prefWidth="70.0" text="Mã sinh viên:" />
-      <GridPane prefHeight="400.0" prefWidth="88.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.66665649414062" minWidth="0.0" prefWidth="0.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="147.0" text="Home" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="147.0" text="Logout" GridPane.rowIndex="3" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="147.0" text="Book" GridPane.rowIndex="2" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="147.0" text="Student" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
-      <TextField layoutX="185.0" layoutY="46.0" prefHeight="25.0" prefWidth="88.0" />
-      <TableView layoutX="103.0" layoutY="82.0" prefHeight="303.0" prefWidth="476.0">
+<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminStudentController">
+    <fx:include source="SideBar.fxml" />
+    <AnchorPane />
+    <TableView fx:id="recordTableView" layoutX="334.0" layoutY="170.0" prefHeight="443.0" prefWidth="619.0">
         <columns>
-          <TableColumn prefWidth="79.0" text="MSV" />
-          <TableColumn prefWidth="79.0" text="Tên" />
-            <TableColumn prefWidth="79.0" text="ID Sách" />
-            <TableColumn prefWidth="79.0" text="Ngày mượn" />
-            <TableColumn prefWidth="79.0" text="Ngày trả" />
-            <TableColumn prefWidth="79.0" text="Xoá sách" />
+            <TableColumn fx:id="userIdColumn" prefWidth="90.0" style="-fx-font-size: 16;" text="User ID" />
+            <TableColumn fx:id="nameColumn" prefWidth="159.0" style="-fx-font-size: 16;" text="Name" />
+            <TableColumn fx:id="bookIdColumn" prefWidth="90.0" style="-fx-font-size: 16;" text="Book ID" />
+            <TableColumn fx:id="borrowDateColumn" prefWidth="140.0" style="-fx-font-size: 16;" text="Borrow Date" />
+            <TableColumn fx:id="returnDateColumn" prefWidth="140.0" style="-fx-font-size: 16;" text="Return Date" />
         </columns>
-      </TableView>
-   </children>
+    </TableView>
+    <TextField fx:id="userId" layoutX="415.0" layoutY="117.0" prefHeight="26.0" prefWidth="162.0" />
+    <Label layoutX="334.0" layoutY="114.0" prefHeight="33.0" prefWidth="70.0" text="User ID: " underline="true">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+    <Button fx:id="btnDelete" layoutX="885.0" layoutY="643.0" mnemonicParsing="false" text="Delete" onAction="#handleDeleteClick">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
 </AnchorPane>

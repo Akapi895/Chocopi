@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" layoutX="-2.0" layoutY="-2.0" prefHeight="715.0" prefWidth="245.0" fx:controller="com.chocopi.controller.user.abstractUserSideBar">
+<AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="715.0" prefWidth="245.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="com.chocopi.controller.admin.abstractAdminSideBar">
     <children>
-        <Button layoutX="14.0" layoutY="122.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Home">
+        <Button fx:id="home" layoutX="14.0" layoutY="122.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Home" onAction="#handleHomeClick">
             <font>
                 <Font size="18.0" />
             </font></Button>
@@ -14,15 +15,15 @@
             <font>
                 <Font size="24.0" />
             </font></Label>
-        <Button layoutX="14.0" layoutY="184.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Personal">
+        <Button fx:id="student" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Student" onAction="#handleStudentClick">
             <font>
                 <Font size="18.0" />
             </font></Button>
-        <Button layoutX="14.0" layoutY="246.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="History">
+        <Button fx:id="book" layoutX="14.0" layoutY="246.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Book" onAction="#handleBookClick">
             <font>
                 <Font size="18.0" />
             </font></Button>
-        <Button layoutX="13.0" layoutY="308.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Log out">
+        <Button fx:id="logout" layoutX="13.0" layoutY="308.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Log out" onAction="#handleLogoutClick">
             <font>
                 <Font size="18.0" />
             </font></Button>

@@ -30,7 +30,7 @@ public class UserSideBarController {
 
     @FXML
     private void handleHomeClick(ActionEvent event) {
-        BookSessionManager.setPage(1);
+        BookSessionManager.setPage(0);
         switchScene(event, "/com/chocopi/fxml/user/UserHome.fxml");
     }
 

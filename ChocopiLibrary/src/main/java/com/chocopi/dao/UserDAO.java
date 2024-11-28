@@ -26,7 +26,7 @@ public class UserDAO {
                 user.setEmail(rs.getString("email"));
                 user.setPhone(rs.getString("phone"));
                 user.setRole(rs.getString("role"));
-                // Gán các thuộc tính khác của User
+                user.setTotalBorrowed(rs.getInt("totalBorrowed"));
                 users.add(user);
             }
         } catch (SQLException e) {
