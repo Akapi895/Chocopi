@@ -2,8 +2,6 @@ package com.chocopi.controller.admin;
 
 import com.chocopi.dao.BookManagementDAO;
 import com.chocopi.model.BookManagement;
-import com.chocopi.model.User;
-import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
