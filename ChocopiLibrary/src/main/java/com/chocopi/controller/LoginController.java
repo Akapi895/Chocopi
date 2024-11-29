@@ -31,7 +31,6 @@ public class LoginController {
     public void handleLogin() {
         String username = usernameField.getText().trim();
         String password = passwordField.getText().trim();
-//        System.out.printf("username = %s, password = %s\n", username, password);
 
         if (username.isEmpty() || password.isEmpty()) {
             showAlert("Error", "Please enter both username and password.");
@@ -71,6 +70,8 @@ public class LoginController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/register.fxml"));
             Scene registerScene = new Scene(loader.load());
+            registerScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/register.css").toExternalForm());
+
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(registerScene);
         } catch (Exception e) {

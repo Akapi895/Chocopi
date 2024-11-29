@@ -1,0 +1,44 @@
+.login {
+    -fx-text-fill: #c57690;
+}
+#login-pane {
+    -fx-background-color: #ffffff; /* Màu nền của khung */
+    -fx-border-color: #c57690;    /* Màu viền */
+    -fx-border-width: 4;          /* Độ dày viền */
+    -fx-border-radius: 20;        /* Bo góc viền */
+    -fx-background-radius: 20;    /* Bo góc nền (đồng bộ với viền) */
+}
+
+#login-click {
+    -fx-background-color: #c57690;
+    -fx-text-fill: #f8f8f8;
+    -fx-font-weight: bold;
+    -fx-font-family: System;
+    -fx-background-radius: 20;
+}
+
+#user-text {
+    -fx-border-color: #c57690;
+    -fx-border-radius: 0px 20px 20px 0px;
+    -fx-background-radius: 0px 20px 20px 0px;
+}
+
+#user-icon {
+    -fx-background-color: #c57690;
+    -fx-background-radius: 20px 0px 0px 20px;
+    -fx-border-color: #c57690;
+    -fx-border-radius: 20px 0px 0px 20px;
+}
+
+#pass {
+    -fx-border-color: #c57690;
+    -fx-border-radius: 0px 20px 20px 0px;
+    -fx-background-radius: 0px 20px 20px 0px;
+}
+
+#pass-icon {
+    -fx-background-color: #c57690;
+    -fx-background-radius: 20px 0px 0px 20px;
+    -fx-border-color: #c57690;
+    -fx-border-radius: 20px 0px 0px 20px;
+}

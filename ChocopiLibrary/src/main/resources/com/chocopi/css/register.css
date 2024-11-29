@@ -1,0 +1,81 @@
+#register-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #c57690;
+    -fx-border-width: 4; /* Độ dày viền */
+    -fx-border-radius: 20; /* Bo góc viền */
+    -fx-background-radius: 20; /* Bo góc nền (đồng bộ với viền) */
+}
+
+#submit {
+    -fx-background-color: #c57690;
+    -fx-text-fill: #f8f8f8;
+    -fx-font-weight: bold;
+    -fx-font-family: System;
+    -fx-background-radius: 20;
+}
+
+#email {
+    -fx-border-color: #c57690;
+    -fx-border-radius: 0px 20px 20px 0px;
+    -fx-background-radius: 0px 20px 20px 0px;
+}
+
+#e-icon {
+    -fx-border-width: 2;
+    -fx-background-color: #c57690;
+    -fx-background-radius: 20px 0px 0px 20px;
+    -fx-border-color: #c57690;
+    -fx-border-radius: 20px 0px 0px 20px;
+}
+
+#phone {
+    -fx-border-color: #c57690;
+    -fx-border-radius: 0px 20px 20px 0px;
+    -fx-background-radius: 0px 20px 20px 0px;
+}
+
+#p-icon {
+    -fx-background-color: #c57690;
+    -fx-background-radius: 20px 0px 0px 20px;
+    -fx-border-color: #c57690;
+    -fx-border-radius: 20px 0px 0px 20px;
+}
+
+#name {
+    -fx-border-color: #c57690;
+    -fx-border-radius: 0px 20px 20px 0px;
+    -fx-background-radius: 0px 20px 20px 0px;
+}
+
+#n-icon {
+    -fx-background-color: #c57690;
+    -fx-background-radius: 20px 0px 0px 20px;
+    -fx-border-color: #c57690;
+    -fx-border-radius: 20px 0px 0px 20px;
+}
+
+#pass {
+    -fx-border-color: #c57690;
+    -fx-border-radius: 0px 20px 20px 0px;
+    -fx-background-radius: 0px 20px 20px 0px;
+}
+
+#p-icon {
+    -fx-background-color: #c57690;
+    -fx-background-radius: 20px 0px 0px 20px;
+    -fx-border-color: #c57690;
+    -fx-border-radius: 20px 0px 0px 20px;
+}
+
+#cf {
+    -fx-border-color: #c57690;
+    -fx-border-radius: 0px 20px 20px 0px;
+    -fx-background-radius: 0px 20px 20px 0px;
+}
+
+#cf-icon {
+    -fx-background-color: #c57690;
+    -fx-background-radius: 20px 0px 0px 20px;
+    -fx-border-color: #c57690;
+    -fx-border-radius: 20px 0px 0px 20px;
+}

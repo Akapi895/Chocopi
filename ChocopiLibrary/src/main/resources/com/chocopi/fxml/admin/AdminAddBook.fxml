@@ -113,6 +113,6 @@
          </font>
       </Label>
       <Button fx:id="back" layoutX="12.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBookClick" prefHeight="38.0" prefWidth="40.0" text="Back" />
-      <ImageView fx:id="file" fitHeight="30.0" fitWidth="210.0" layoutX="371.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="30.0" fitWidth="210.0" layoutX="371.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

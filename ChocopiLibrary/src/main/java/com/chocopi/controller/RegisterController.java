@@ -40,6 +40,7 @@ public class RegisterController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/login.fxml"));
             Scene loginScene = new Scene(loader.load());
+            loginScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/login.css").toExternalForm());
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(loginScene);
         } catch (Exception e) {

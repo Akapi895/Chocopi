@@ -16,6 +16,9 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/Login.fxml"));
             Scene scene = new Scene(loader.load());
 
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/login.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/register.css").toExternalForm());
+
             // Cấu hình Stage
             primaryStage.setScene(scene);
             primaryStage.setTitle("Choco.Book");

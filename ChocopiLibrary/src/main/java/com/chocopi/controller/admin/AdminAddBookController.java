@@ -24,7 +24,7 @@ public class AdminAddBookController extends abstractAdminSideBar {
     private Button btnAddPhoto, btnSave, getBtnAddPhoto, btnBack, btnSelectFile;
 
     @FXML
-    private ImageView photo, file;
+    private ImageView photo;
 
     @FXML
     private void handleSaveClick(ActionEvent event) {
