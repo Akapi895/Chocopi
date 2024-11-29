@@ -16,7 +16,7 @@
             <font>
                 <Font size="18.0" />
             </font></Button>
-        <Button fx:id="personalBtn" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" onAction="#handlePersonalClick" text="Personal">
+        <Button fx:id="personalBtn" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" onAction="#handlePersonalClick" text="Profile">
             <font>
                 <Font size="18.0" />
             </font></Button>

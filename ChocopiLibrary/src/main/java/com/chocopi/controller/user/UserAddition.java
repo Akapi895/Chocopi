@@ -59,19 +59,18 @@ public class UserAddition extends UserSideBarController {
         previousButton.setDisable(currentPage == 0);
 
         searchField.setOnAction(this::handleSearch);
+        BookSessionManager.setPage(0);
 
         if (BookSessionManager.getLabelTitle().equals("Interest")) {
             additionLabel.setText("Interest");
             books = LikeDAO.getBooksByUser(SessionManager.getUserId());
-            BookSessionManager.setPage(0);
+
         } else if (BookSessionManager.getLabelTitle().equals("Borrowed Books")) {
             additionLabel.setText("Borrowed Books");
-            books = BookManagementDAO.getBookByUserId(SessionManager.getUserId());
-            BookSessionManager.setPage(0);
+            books = BookManagementDAO.getBorrowedBookByUserId(SessionManager.getUserId());
         } else {
             additionLabel.setText("Searching for: " + BookSessionManager.getSearch());
             books = BookDAO.searchBooks(BookSessionManager.getSearch());
-            BookSessionManager.setPage(0);
         }
 
         imageViewList = Arrays.asList(
@@ -115,7 +114,6 @@ public class UserAddition extends UserSideBarController {
 
         for (int i = 0; i < endIndex - startIndex; i++) {
             if (i >= currentItems.size()) {
-                System.out.println(i);
                 imageViewList.get(i).setVisible(false);
                 imageViewList.get(i).setDisable(true);
                 buttonList.get(i).setVisible(false);
@@ -127,7 +125,7 @@ public class UserAddition extends UserSideBarController {
                 buttonList.get(i).setDisable(false);
 
                 Book book = currentItems.get(i);
-                System.out.println(book.toString());
+//                System.out.println(book.toString());
 
                 if (book.getImage() != null && !book.getImage().isEmpty()) {
                     imageViewList.get(i).setImage(new Image(getClass().getResource(book.getImage()).toExternalForm()));

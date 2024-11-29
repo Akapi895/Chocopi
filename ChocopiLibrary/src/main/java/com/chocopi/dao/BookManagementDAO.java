@@ -3,6 +3,7 @@ package com.chocopi.dao;
 import com.chocopi.model.Book;
 import com.chocopi.model.BookManagement;
 import com.chocopi.util.DatabaseConnection;
+import com.chocopi.util.SessionManager;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -134,15 +135,17 @@ public class BookManagementDAO {
         return books;
     }
 
-    public static List<Book> getBookByUserId(int userId) {
+    public static List<Book> getBorrowedBookByUserId(int userId) {
         List<Integer> bookIds = new ArrayList<>();
-        String sql = "SELECT book_id FROM bookmanagement WHERE user_id = ?";
+
+        String sql = "SELECT book_id FROM bookmanagement WHERE user_id = ? AND return_date > ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.setDate(2, new java.sql.Date(System.currentTimeMillis()));
 
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int BookId = rs.getInt("book_id");
                 bookIds.add(BookId);
@@ -158,6 +161,27 @@ public class BookManagementDAO {
             }
         }
         return books;
+    }
+
+    public static int getTotalBorrow(int userId) {
+        String sql = "SELECT book_id FROM bookmanagement WHERE user_id = ? AND return_date > ?";
+
+        int cnt = 0;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setDate(2, new java.sql.Date(System.currentTimeMillis()));
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                cnt++;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return cnt;
     }
 
     public static boolean checkBorrowed(int userId, int bookId) {

@@ -13,6 +13,7 @@ module chocopi.example.chocopilibrary {
     requires okhttp3;
     requires org.json;
     requires java.desktop;
+    requires java.compiler;
 
     opens com.chocopi.util to javafx.fxml;
     exports com.chocopi.util to javafx.fxml;

@@ -7,7 +7,7 @@
 
 <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="715.0" prefWidth="245.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="com.chocopi.controller.admin.abstractAdminSideBar">
     <children>
-        <Button fx:id="home" layoutX="14.0" layoutY="122.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Home" onAction="#handleHomeClick">
+        <Button fx:id="home" layoutX="14.0" layoutY="122.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Dashboard" onAction="#handleHomeClick">
             <font>
                 <Font size="18.0" />
             </font></Button>

@@ -167,6 +167,7 @@ public class UserPersonalUI extends UserSideBarController {
         passwordLabel.setVisible(false);
 
         addPhotoButton.setVisible(false);
+        userImage.setOnMouseClicked(null);
 
         nameLabel.setVisible(true);
         userImage.setVisible(true);
@@ -271,10 +272,12 @@ public class UserPersonalUI extends UserSideBarController {
             cancelButton.setVisible(false);
             editButton.setVisible(true);
             saveButton.setVisible(false);
+
+            userImage.setOnMouseClicked(null);
         }
         // Cập nhật lại session
         SessionManager.update();
-        SessionManager.ssInfo();
+//        SessionManager.ssInfo();
         initialize();
 
     }
@@ -283,29 +286,37 @@ public class UserPersonalUI extends UserSideBarController {
     private void handleEditButtonClick() {
         fullNameField.setEditable(true);
         fullNameField.setVisible(true);
+        fullNameField.setText(SessionManager.getName());
 
         ageField.setEditable(true);
         ageField.setVisible(true);
+        ageField.setText(String.valueOf(SessionManager.getAge()));
 
         emailField.setEditable(true);
         emailField.setVisible(true);
+        emailField.setText(SessionManager.getEmail());
 
         phoneField.setEditable(true);
         phoneField.setVisible(true);
+        phoneField.setText(String.valueOf(SessionManager.getPhone()));
 
         favorField.setEditable(true);
         favorField.setVisible(true);
+        favorField.setText(String.valueOf(SessionManager.getFavor()));
 
         passwordLabel.setVisible(true);
         passwordField.setEditable(true);
         passwordField.setVisible(true);
+        passwordField.setText(String.valueOf(SessionManager.getPassword()));
+
         if (passwordField.getText() != "") {
             passwordLabel.setVisible(true);
         }
 
-        addPhotoButton.setVisible(true);
+        addPhotoButton.setVisible(false);
 
-        userImage.setVisible(false);
+        userImage.setVisible(true);
+        userImage.setOnMouseClicked(event -> handleAddPhotoButtonClick());
 
         ageLabel.setVisible(false);
         emailLabel.setVisible(false);

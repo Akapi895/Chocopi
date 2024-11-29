@@ -42,9 +42,9 @@ public class UserHomeUI {
     private void onPage1Clicked() {
         BookSessionManager.clearBookSession();
         BookSessionManager.setPage(0);
-        genre1.setText("Self - help");
-        genre2.setText("Fiction");
-        genre3.setText("Others");
+        genre1.setText("Computers");
+        genre2.setText("Business");
+        genre3.setText("Education");
 
         initialize();
     }
@@ -52,9 +52,9 @@ public class UserHomeUI {
     private void Page1() {
         BookSessionManager.clearBookSession();
         BookSessionManager.setPage(0);
-        genre1.setText("Self - help");
-        genre2.setText("Fiction");
-        genre3.setText("Others");
+        genre1.setText("Computers");
+        genre2.setText("Business");
+        genre3.setText("Education");
     }
 
     @FXML
@@ -88,19 +88,18 @@ public class UserHomeUI {
     private void onPage2Clicked() {
         BookSessionManager.clearBookSession();
         BookSessionManager.setPage(1);
-        genre1.setText("Computers");
-        genre2.setText("Business");
-        genre3.setText("Education");
+        genre1.setText("Self - help");
+        genre2.setText("Fiction");
+        genre3.setText("Others");
 
         initialize();
     }
 
     private void Page2() {
         BookSessionManager.clearBookSession();
-        BookSessionManager.setPage(1);
-        genre1.setText("Computers");
-        genre2.setText("Business");
-        genre3.setText("Education");
+        genre1.setText("Self - help");
+        genre2.setText("Fiction");
+        genre3.setText("Others");
     }
 
 
@@ -122,7 +121,7 @@ public class UserHomeUI {
 
     @FXML
     private void initialize() {
-        if (BookSessionManager.getPage() == 1) {
+        if (BookSessionManager.getPage() == 0) {
             Page1();
         } else {
             Page2();
@@ -143,25 +142,24 @@ public class UserHomeUI {
         if (genre2 != null) books.addAll(BookDAO.get6BookImagesByGenre(genre2.getText()));
         if (genre3 != null) books.addAll(BookDAO.get6BookImagesByGenre(genre3.getText()));
 
-        int cnt = 0;
-        for (Book book : books) {
+        for (int i = 0; i < books.size(); ++i) {
+            final int index = i;
             String imagePath;
             try {
-                if (book.getImage() != null && !book.getImage().isEmpty()) {
-                    imagePath = getClass().getResource(book.getImage()).toExternalForm();
+                if (books.get(i).getImage() != null && !books.get(i).getImage().isEmpty()) {
+                    imagePath = getClass().getResource(books.get(i).getImage()).toExternalForm();
                 } else {
                     imagePath = getClass().getResource("/com/chocopi/images/book/0.jpg").toExternalForm();
                 }
             } catch (Exception e) {
                 imagePath = getClass().getResource("/com/chocopi/images/book/0.jpg").toExternalForm();
             }
-            imageViewList.get(cnt).setImage(new Image(imagePath));
-            imageViewList.get(cnt).setOnMouseClicked(mouseEvent -> {
-                if (book != null) {
-                    showDetailBook(book);
+            imageViewList.get(i).setImage(new Image(imagePath));
+            imageViewList.get(i).setOnMouseClicked(mouseEvent -> {
+                if (books.get(index) != null) {
+                    showDetailBook(books.get(index));
                 }
             });
-            cnt++;
         }
     }
 

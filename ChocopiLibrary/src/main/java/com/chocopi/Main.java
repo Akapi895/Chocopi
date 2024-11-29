@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import static com.chocopi.dao.BookManagementDAO.getTotalBorrow;
+
 public class Main extends Application {
 
     @Override

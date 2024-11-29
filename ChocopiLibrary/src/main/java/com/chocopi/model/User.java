@@ -1,7 +1,9 @@
 package com.chocopi.model;
 
+import com.chocopi.dao.BookManagementDAO;
+
 public class User {
-    public static final int maxBorrowed = 30;
+    public static final int maxBorrowed = 20;
     private int userId;
     private String username;
     private String password;
@@ -153,6 +155,7 @@ public class User {
     }
 
     public int getTotalBorrowed() {
+        totalBorrowed = BookManagementDAO.getTotalBorrow(userId);
         return totalBorrowed;
     }
 
