@@ -102,8 +102,8 @@ public class SessionManager {
 
     public static void ssInfo() {
         System.out.println(SessionManager.getUserId() + " " + SessionManager.getUsername() + " " + SessionManager.getRole()
-        + " " + SessionManager.getAge() + " " + SessionManager.getPhone() + " " + SessionManager.getFavor()
-        + " " + SessionManager.getEmail() + " " + SessionManager.getTotalBorrowed());
+                + " " + SessionManager.getAge() + " " + SessionManager.getPhone() + " " + SessionManager.getFavor()
+                + " " + SessionManager.getEmail() + " " + SessionManager.getTotalBorrowed());
     }
 
     public static String getPassword() {

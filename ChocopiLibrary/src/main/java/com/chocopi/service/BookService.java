@@ -4,6 +4,7 @@ import com.chocopi.dao.BookDAO;
 import com.chocopi.model.Book;
 import com.chocopi.util.ApiConfig;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import okhttp3.*;
@@ -16,12 +17,15 @@ import java.net.URL;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class BookService {
     private static String GoogleBookApi = ApiConfig.getGoogleBooksApiKey();
@@ -89,8 +93,6 @@ public class BookService {
 
                         String description = volumeInfo.has("description") ? volumeInfo.get("description").getAsString() : "No Description";
 
-//                        System.out.println(bookTitle + ": " + image);
-
                         Book newBook = new Book(bookTitle, description, image, genre, rating, 1000000, author,
                                 year, volumeInfo.has("publisher") ? volumeInfo.get("publisher").getAsString() : "Unknown Publisher");
 
@@ -106,14 +108,128 @@ public class BookService {
         return books;
     }
 
-//    private static void downloadImage(String imageUrl, String destinationPath) {
-//        try (InputStream in = new URL(imageUrl).openStream()) {
-//            Files.copy(in, Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
-//        } catch (IOException e) {
-//            System.out.println("Lỗi khi tải ảnh từ URL: " + imageUrl);
-//            e.printStackTrace();
-//        }
-//    }
+    public static List<Book> fetchBooksAdmin(String query) {
+        Path imagesDirectory = Paths.get("src/main/resources/com/chocopi/images/book/genBook");
+        try (Stream<Path> paths = Files.walk(imagesDirectory)) {
+            paths.filter(Files::isRegularFile)
+                    .forEach(file -> {
+                        try {
+                            Files.delete(file);
+                        } catch (IOException e) {
+                            System.err.println("Failed to delete file: " + file);
+                            e.printStackTrace();
+                        }
+                    });
+        } catch (IOException e) {
+            System.err.println("Failed to clean up images directory.");
+            e.printStackTrace();
+        }
+
+        List<Book> books = new ArrayList<>();
+        int totalBooksToFetch = 18;
+        int maxResultsPerRequest = 10;
+        int startIndex = 0;
+
+        try {
+            BookDAO bookDAO = new BookDAO();
+            int lastBookId = bookDAO.lastBookId();
+
+            while (books.size() < totalBooksToFetch) {
+                int booksRemaining = totalBooksToFetch - books.size();
+                int currentMaxResults = Math.min(booksRemaining, maxResultsPerRequest);
+
+                if (query == null || query.trim().isEmpty()) {
+                    throw new IllegalArgumentException("Query string cannot be null or empty.");
+                }
+                String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
+                String urlString = GoogleBookURL + encodedQuery
+                        + "&key=" + GoogleBookApi
+                        + "&startIndex=" + startIndex
+                        + "&maxResults=" + currentMaxResults;
+
+                HttpURLConnection conn = (HttpURLConnection) new URL(urlString).openConnection();
+                conn.setRequestMethod("GET");
+
+                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
+                    StringBuilder response = new StringBuilder();
+                    String inputLine;
+
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+                    in.close();
+
+                    JsonObject jsonResponse = JsonParser.parseString(response.toString()).getAsJsonObject();
+                    JsonArray items = jsonResponse.has("items") ? jsonResponse.getAsJsonArray("items") : null;
+
+                    if (items == null || items.size() == 0) {
+                        System.out.println("No more books available for the query.");
+                        break;
+                    }
+
+                    for (JsonElement itemElement : items) {
+                        lastBookId++;
+                        JsonObject item = itemElement.getAsJsonObject();
+                        JsonObject volumeInfo = item.has("volumeInfo") ? item.getAsJsonObject("volumeInfo") : new JsonObject();
+
+                        // Lấy thông tin sách
+                        String bookTitle = volumeInfo.has("title") ? volumeInfo.get("title").getAsString() : "Unknown Title";
+                        String author = getJsonArrayFirstItem(volumeInfo, "authors", "Unknown Author");
+                        String genre = getJsonArrayFirstItem(volumeInfo, "categories", "Unknown Genre");
+                        String yearString = volumeInfo.has("publishedDate") ? volumeInfo.get("publishedDate").getAsString() : "2000";
+                        int year = yearString.matches("\\d{4}") ? Integer.parseInt(yearString) : 2000;
+                        int rating = 3 + new Random().nextInt(3);
+
+                        // Xử lý ảnh sách
+                        String image = extractImageUrl(volumeInfo);
+                        String destinationPath = "src/main/resources/com/chocopi/images/book/genBook/" + lastBookId + ".jpg";
+                        BookService.downloadImage(image, destinationPath);
+                        image = "/com/chocopi/images/book/genBook/" + lastBookId + ".jpg";
+
+
+                        // Thêm sách mới vào danh sách
+                        String description = volumeInfo.has("description") ? volumeInfo.get("description").getAsString() : "No Description";
+                        String publisher = volumeInfo.has("publisher") ? volumeInfo.get("publisher").getAsString() : "Unknown Publisher";
+
+                        Book newBook = new Book(bookTitle, description, image, genre, rating, 1000000, author, year, publisher);
+                        books.add(newBook);
+
+                        if (books.size() >= totalBooksToFetch) {
+                            break;
+                        }
+                    }
+                } else {
+                    System.err.println("GET request failed. Response Code: " + conn.getResponseCode());
+                    break;
+                }
+                startIndex += currentMaxResults;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
+
+    private static String getJsonArrayFirstItem(JsonObject obj, String key, String defaultValue) {
+        if (obj.has(key) && obj.getAsJsonArray(key).size() > 0) {
+            return obj.getAsJsonArray(key).get(0).getAsString();
+        }
+        return defaultValue;
+    }
+
+    private static String extractImageUrl(JsonObject volumeInfo) {
+        if (volumeInfo.has("imageLinks")) {
+            JsonObject imageLinks = volumeInfo.getAsJsonObject("imageLinks");
+            if (imageLinks.has("thumbnail")) {
+                return imageLinks.get("thumbnail").getAsString();
+            } else if (imageLinks.has("smallThumbnail")) {
+                return imageLinks.get("smallThumbnail").getAsString();
+            }
+        }
+        return "http://books.google.com/books/content?id=uIO2DgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api";
+    }
+
 
     public static String searchImageUrl(String keyword) {
         String apiKey = "la2IM83kwlxbo4wh06CgZGuinVBm3JwqLCtYvjyHztk";
@@ -160,7 +276,7 @@ public class BookService {
             while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
             }
-            System.out.println("Image downloaded to " + destinationPath);
+//            System.out.println("Image downloaded to " + destinationPath);
         } catch (IOException e) {
             e.printStackTrace();
         }

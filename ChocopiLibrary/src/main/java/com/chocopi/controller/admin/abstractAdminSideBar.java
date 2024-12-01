@@ -28,6 +28,9 @@ public class abstractAdminSideBar {
     protected Button logout;
 
     @FXML
+    protected Button issuedBook;
+
+    @FXML
     protected void handleHomeClick(ActionEvent event) {
         switchScene(event, "/com/chocopi/fxml/admin/AdminHum.fxml");
     }
@@ -40,6 +43,11 @@ public class abstractAdminSideBar {
     @FXML
     protected void handleBookClick(ActionEvent event) {
         switchScene(event, "/com/chocopi/fxml/admin/AdminBook.fxml");
+    }
+
+    @FXML
+    protected void handleIssuedBookClick(ActionEvent event) {
+        switchScene(event, "/com/chocopi/fxml/admin/AdminIssuedBook.fxml");
     }
 
     @FXML

@@ -127,7 +127,7 @@ public class UserPersonalUI extends UserSideBarController {
 
         if (selectedFile != null) {
             selectedAvatarPath = selectedFile.getAbsolutePath();
-            System.out.println("Selected file: " + selectedAvatarPath);
+            System.out.println(selectedAvatarPath);
         } else {
             System.out.println("No file selected!");
         }

@@ -63,7 +63,7 @@ public class BookDAO {
         String books = "";
 
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 String book = rs.getInt("book_id") + ". " + rs.getString("title");
@@ -75,7 +75,8 @@ public class BookDAO {
         }
         return books;
     }
-    public int lastBookId() {
+
+    public static int lastBookId() {
         String query = "SELECT MAX(book_id) FROM books";
         try (Connection connection = DatabaseConnection.getConnection();
              Statement statement = connection.createStatement();
@@ -121,20 +122,22 @@ public class BookDAO {
     }
 
     public boolean addBook(Book book) {
-        String sql = "INSERT INTO Books (title, description, author, publisher, publishYear," +
-                " genre, rating, available_quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Books (book_id, title, description, author, publisher, publishYear," +
+                " genre, rating, available_quantity, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, book.getTitle());
-            pstmt.setString(2, book.getDescription());
-            pstmt.setString(3, book.getAuthor());
-            pstmt.setString(4, book.getPublisher());
-            pstmt.setInt(5, book.getPublishYear());
-            pstmt.setString(6, book.getGenre());
-            pstmt.setInt(7, book.getRating());
-            pstmt.setInt(8, book.getAvailableQuantity());
+            pstmt.setInt(1, book.getBookId());
+            pstmt.setString(2, book.getTitle());
+            pstmt.setString(3, book.getDescription());
+            pstmt.setString(4, book.getAuthor());
+            pstmt.setString(5, book.getPublisher());
+            pstmt.setInt(6, book.getPublishYear());
+            pstmt.setString(7, book.getGenre());
+            pstmt.setInt(8, book.getRating());
+            pstmt.setInt(9, book.getAvailableQuantity());
+            pstmt.setString(10, book.getImage());
             // Set các thuộc tính khác nếu cần
 
             int rowsAffected = pstmt.executeUpdate();

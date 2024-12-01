@@ -7,6 +7,7 @@ import com.chocopi.model.Book;
 import com.chocopi.service.OpenAIChatClient;
 import com.chocopi.util.BookSessionManager;
 import com.chocopi.util.SessionManager;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -52,17 +53,35 @@ public class UserHistoryUI extends UserSideBarController {
     //TODO
     @FXML
     private void handleSendRequest() {
-        questionOutput.setText("Loading...");
-
         String question = questionInput.getText().trim();
         if (!question.isEmpty()) {
-            String response = OpenAIChatClient.handleUserQuestion(question);
-            questionOutput.setText(response);
-//            questionInput.clear();
+            questionOutput.setText("Loading...");
+
+            // Tạo một Task để gọi OpenAI API trong luồng riêng
+            Task<String> task = new Task<>() {
+                @Override
+                protected String call() throws Exception {
+                    return OpenAIChatClient.handleUserQuestion(question);
+                }
+            };
+
+            task.setOnSucceeded(event -> {
+                questionOutput.setText(task.getValue());
+            });
+
+            task.setOnFailed(event -> {
+                questionOutput.setText("An error occurred while processing the request.");
+                task.getException().printStackTrace();
+            });
+
+            Thread thread = new Thread(task);
+            thread.setDaemon(true);
+            thread.start();
         } else {
             questionOutput.setText("Please type a question before sending.");
         }
     }
+
 
     @FXML
     private void handleBorrowMore() {

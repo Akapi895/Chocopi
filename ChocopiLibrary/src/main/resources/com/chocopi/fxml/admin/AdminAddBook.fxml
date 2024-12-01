@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminAddBookController">
+<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminAddBookController">
    <children>
       <ImageView fx:id="photo" fitHeight="280.0" fitWidth="210.0" layoutX="161.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btnAddPhoto" layoutX="214.0" layoutY="186.0" mnemonicParsing="false" onAction="#addPhoto" text="+Add photo">
@@ -51,27 +51,45 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="bookname" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="148.0" GridPane.columnIndex="1" />
-            <TextField fx:id="author" maxHeight="30.0" maxWidth="279.0" minHeight="20.0" prefHeight="30.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="gerne" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Publish year:" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="publishyear" maxHeight="30.0" maxWidth="287.0" minHeight="20.0" prefHeight="30.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Publisher:" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="publisher" maxHeight="30.0" maxWidth="275.0" minHeight="20.0" prefHeight="30.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="rating" maxHeight="30.0" maxWidth="288.0" minHeight="20.0" prefHeight="30.0" prefWidth="288.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="Publish year:" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
             <Label text="Rating:" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
+            <TextField fx:id="bookname" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="148.0" GridPane.columnIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="author" maxHeight="30.0" maxWidth="279.0" minHeight="20.0" prefHeight="30.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="gerne" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="publisher" maxHeight="30.0" maxWidth="275.0" minHeight="20.0" prefHeight="30.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="publishyear" maxHeight="30.0" maxWidth="287.0" minHeight="20.0" prefHeight="30.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="rating" maxHeight="30.0" maxWidth="288.0" minHeight="20.0" prefHeight="30.0" prefWidth="288.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
          </children>
       </GridPane>
       <VBox layoutX="161.0" layoutY="370.0" prefHeight="200.0" prefWidth="702.0">
@@ -81,7 +99,10 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextArea fx:id="description" prefHeight="175.0" prefWidth="697.0" />
+            <TextArea fx:id="description" prefHeight="175.0" prefWidth="697.0" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
          </children>
       </VBox>
       <HBox layoutX="161.0" layoutY="601.0" prefHeight="37.0" prefWidth="200.0">
@@ -112,7 +133,20 @@
             <Font size="40.0" />
          </font>
       </Label>
-      <Button fx:id="back" layoutX="12.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBookClick" prefHeight="38.0" prefWidth="40.0" text="Back" />
+      <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackClick" prefHeight="38.0" prefWidth="40.0" text="⬅">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
       <ImageView fitHeight="30.0" fitWidth="210.0" layoutX="371.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="add2" layoutX="14.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#handleMethod2" prefHeight="70.0" prefWidth="40.0" text="2">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="add1" layoutX="14.0" layoutY="132.0" mnemonicParsing="false" onMouseClicked="#handleMethod1" prefHeight="70.0" prefWidth="40.0" text="1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -1,19 +1,32 @@
 package com.chocopi.controller.admin;
 
 import com.chocopi.model.Book;
+import com.chocopi.util.BookSessionManager;
+import com.chocopi.util.SessionManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import com.chocopi.dao.BookDAO;
-import java.io.File;
+import javafx.stage.Stage;
 
-public class AdminAddBookController extends abstractAdminSideBar {
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
+
+public class AdminAddBookController {
     @FXML
     private TextField bookname, author, gerne, publisher, publishyear, rating;
 
@@ -25,6 +38,33 @@ public class AdminAddBookController extends abstractAdminSideBar {
 
     @FXML
     private ImageView photo;
+
+    private String selectedImage;
+
+    @FXML
+    private void initialize() {
+        Book book = BookSessionManager.getBook();
+
+        if (book != null) {
+            bookname.setText(book.getTitle());
+            author.setText(book.getAuthor());
+            gerne.setText(book.getGenre());
+            publisher.setText(book.getPublisher());
+            publishyear.setText(String.valueOf(book.getPublishYear()));
+            rating.setText(String.valueOf(book.getRating()));
+            description.setText(book.getDescription());
+
+            selectedImage = getClass().getResource(book.getImage()).toExternalForm();
+            selectedImage = selectedImage.substring(6);
+
+            Image image = new Image(getClass().getResource(book.getImage()).toExternalForm());
+            photo.setImage(image);
+            btnAddPhoto.setDisable(true);
+            btnAddPhoto.setVisible(false);
+            photo.setOnMouseClicked(event -> addPhoto());
+        }
+
+    }
 
     @FXML
     private void handleSaveClick(ActionEvent event) {
@@ -44,11 +84,11 @@ public class AdminAddBookController extends abstractAdminSideBar {
             alert.showAndWait();
             return;
         }
-
+        photo.setOnMouseClicked(null);
         try {
-            int book_id = 0;
-            String book_image = photo.getImage().getUrl();
-            int book_availableQuantity = 1000;
+            int book_id = BookDAO.lastBookId() + 1;
+            String book_image = "/com/chocopi/images/book/" + book_id + ".jpg";
+            int book_availableQuantity = 1000000;
             String book_title = bookname.getText();
             String book_author = author.getText();
             String book_description = description.getText();
@@ -61,6 +101,29 @@ public class AdminAddBookController extends abstractAdminSideBar {
 
             BookDAO bookDao = new BookDAO();
             if (!bookDao.isBookExists(book.getTitle())) {
+                if (selectedImage != null) {
+                    String fileName = book_id + ".jpg";
+                    String directoryPath = "src/main/resources/com/chocopi/images/book";
+                    File directory = new File(directoryPath);
+                    if (!directory.exists() && !directory.mkdirs()) {
+                        return;
+                    }
+                    Path targetPath = Path.of(directoryPath, fileName);
+
+                    try {
+                        File sourceFile = new File(selectedImage);
+                        BufferedImage originalImage = ImageIO.read(sourceFile);
+
+                        if (originalImage != null) {
+                            ImageIO.write(originalImage, "jpg", targetPath.toFile());
+                        } else {
+                            System.err.println("Unable to read the selected image file.");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    selectedImage = null;
+                }
                 bookDao.addBook(book);
 
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -68,6 +131,15 @@ public class AdminAddBookController extends abstractAdminSideBar {
                 successAlert.setHeaderText("Book Added");
                 successAlert.setContentText("The book has been successfully added to the library.");
                 successAlert.showAndWait();
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminBook.fxml"));
+                try {
+                    Scene scene = new Scene(loader.load());
+                    Stage stage = (Stage) bookname.getScene().getWindow();
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } else {
                 Alert existsAlert = new Alert(Alert.AlertType.WARNING);
                 existsAlert.setTitle("Duplicate Book");
@@ -90,7 +162,7 @@ public class AdminAddBookController extends abstractAdminSideBar {
     }
 
     @FXML
-    private void addPhoto(ActionEvent event) {
+    private void addPhoto() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Photo");
 
@@ -102,7 +174,47 @@ public class AdminAddBookController extends abstractAdminSideBar {
 
         if (selectedFile != null) {
             Image image = new Image(selectedFile.toURI().toString());
+            selectedImage = selectedFile.toURI().toString();
+            if (selectedImage.charAt(0) == 'f') {
+                selectedImage = selectedImage.substring(6);
+            }
+
             photo.setImage(image);
+            btnAddPhoto.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void handleMethod1() {
+//        BookSessionManager.setPage(0);
+    }
+
+    @FXML
+    private void handleMethod2() {
+//        BookSessionManager.setPage(1);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminAddBookAPI.fxml"));
+
+        try {
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) bookname.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void handleBackClick() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminBook.fxml"));
+        BookSessionManager.clearBookSession();
+        try {
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) bookname.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

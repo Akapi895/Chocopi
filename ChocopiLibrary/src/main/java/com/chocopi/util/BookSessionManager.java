@@ -1,5 +1,7 @@
 package com.chocopi.util;
 
+import com.chocopi.model.Book;
+
 public class BookSessionManager {
     private static int bookId;
     private static String genre;
@@ -7,6 +9,7 @@ public class BookSessionManager {
     private static String lastPage; // lưu fxml path
     private static String search;
     private static String labelTitle;
+    private static Book book; // lưu sách tạm thời của admin
 
     public static void setLabelTitle(String labelTitle) {
         BookSessionManager.labelTitle = labelTitle;
@@ -62,9 +65,19 @@ public class BookSessionManager {
         page = 1;
         lastPage = null;
         search = null;
+        labelTitle = null;
+        book = null;
     }
 
     public static boolean hasBookSession() {
         return bookId > 0;
+    }
+
+    public static Book getBook() {
+        return book;
+    }
+
+    public static void setBook(Book book) {
+        BookSessionManager.book = book;
     }
 }

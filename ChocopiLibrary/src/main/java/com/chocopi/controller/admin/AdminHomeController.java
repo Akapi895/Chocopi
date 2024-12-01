@@ -71,24 +71,28 @@ public class AdminHomeController implements Initializable {
                 .collect(Collectors.toSet());
         int uniqueGenresSize = uniqueGenres.size();
 
-        Map<String, Long> genreBorrowCountMap = bookManagementList.stream()
-                .map(record -> bookListTemp.stream()
-                        .filter(book -> book.getBookId() == record.getBookId())
-                        .findFirst()
-                        .orElse(null))
-                .filter(book -> book != null && book.getGenre() != null)
-                .collect(Collectors.groupingBy(Book::getGenre, Collectors.counting()));
+        Map<Integer, Long> borrowCountMap = bookManagementList.stream()
+                .collect(Collectors.groupingBy(BookManagement::getBookId, Collectors.counting()));
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                genreBorrowCountMap.entrySet().stream()
-                        .map(entry -> new PieChart.Data(entry.getKey(), entry.getValue()))
+                borrowCountMap.entrySet().stream()
+                        .map(entry -> {
+                            int bookId = entry.getKey();
+                            long borrowCount = entry.getValue();
+                            String bookTitle = bookListTemp.stream()
+                                    .filter(book -> book.getBookId() == bookId)
+                                    .map(Book::getTitle)
+                                    .findFirst()
+                                    .orElse("Unknown");
+                            return new PieChart.Data(bookTitle, borrowCount);
+                        })
                         .collect(Collectors.toList())
         );
         pieChart.setData(pieChartData);
-        pieChartDetails.setText("");
         pieChartData.forEach(data -> {
             data.getNode().setOnMouseEntered(event -> {
-                pieChartDetails.setText(String.format("Gerne: %s, Borrowed: %.0f", data.getName(), data.getPieValue()));
+                pieChartDetails.setText(String.format("%s, %.0f Times", data.getName(), data.getPieValue()));
             });
+
             data.getNode().setOnMouseExited(event -> {
                 pieChartDetails.setText("");
             });

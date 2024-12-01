@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="715.0" prefWidth="245.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="com.chocopi.controller.admin.abstractAdminSideBar">
+<AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="715.0" prefWidth="245.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.abstractAdminSideBar">
     <children>
-        <Button fx:id="home" layoutX="14.0" layoutY="122.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Dashboard" onAction="#handleHomeClick">
+        <Button fx:id="home" layoutX="14.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleHomeClick" prefHeight="42.0" prefWidth="220.0" text="Dashboard">
             <font>
                 <Font size="18.0" />
             </font></Button>
@@ -15,17 +15,22 @@
             <font>
                 <Font size="24.0" />
             </font></Label>
-        <Button fx:id="student" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Student" onAction="#handleStudentClick">
+        <Button fx:id="student" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleStudentClick" prefHeight="42.0" prefWidth="220.0" text="Student">
             <font>
                 <Font size="18.0" />
             </font></Button>
-        <Button fx:id="book" layoutX="14.0" layoutY="246.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Book" onAction="#handleBookClick">
+        <Button fx:id="book" layoutX="14.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleBookClick" prefHeight="42.0" prefWidth="220.0" text="Book">
             <font>
                 <Font size="18.0" />
             </font></Button>
-        <Button fx:id="logout" layoutX="13.0" layoutY="308.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="220.0" text="Log out" onAction="#handleLogoutClick">
+        <Button fx:id="logout" layoutX="14.0" layoutY="368.0" mnemonicParsing="false" onAction="#handleLogoutClick" prefHeight="42.0" prefWidth="220.0" text="Log out">
             <font>
                 <Font size="18.0" />
             </font></Button>
+      <Button fx:id="issuedBook" layoutX="14.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleIssuedBookClick" prefHeight="42.0" prefWidth="220.0" text="Issued Book">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

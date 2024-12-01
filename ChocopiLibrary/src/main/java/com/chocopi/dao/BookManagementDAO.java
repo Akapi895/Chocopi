@@ -121,7 +121,7 @@ public class BookManagementDAO {
         String sql = "SELECT * FROM bookmanagement WHERE user_id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             ResultSet rs = pstmt.executeQuery();
 
@@ -187,7 +187,7 @@ public class BookManagementDAO {
     public static boolean checkBorrowed(int userId, int bookId) {
         String sql = "SELECT * FROM BookManagement WHERE user_id = ? AND book_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             pstmt.setInt(2, bookId);
 

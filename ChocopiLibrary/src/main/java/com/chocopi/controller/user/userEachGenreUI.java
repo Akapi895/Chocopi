@@ -41,11 +41,11 @@ public class userEachGenreUI extends UserSideBarController {
     @FXML
     private ImageView image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15;
     private List<ImageView> images;
-    
+
     @FXML
     private Button nameBtn1, nameBtn2, nameBtn3, nameBtn4, nameBtn5, nameBtn6, nameBtn7, nameBtn8, nameBtn9, nameBtn10, nameBtn11, nameBtn12, nameBtn13, nameBtn14, nameBtn15;
     private List<Button> buttons;
-    
+
     private List<Book> books;
     private int currentPage = 0;
     private final int ITEMS_PER_PAGE = 15;
@@ -60,15 +60,15 @@ public class userEachGenreUI extends UserSideBarController {
         searchField.setOnAction(this::handleSearch);
 
         books = BookDAO.getBooksByGenre(currentGenre);
-        
+
         images = Arrays.asList(
-                image1, image2, image3, image4, image5, image6, image7, image8, 
+                image1, image2, image3, image4, image5, image6, image7, image8,
                 image9, image10, image11, image12, image13, image14, image15
         );
-        
+
         buttons = Arrays.asList(
-            nameBtn1, nameBtn2, nameBtn3, nameBtn4, nameBtn5, nameBtn6, nameBtn7, 
-            nameBtn8, nameBtn9, nameBtn10, nameBtn11, nameBtn12, nameBtn13, nameBtn14, nameBtn15
+                nameBtn1, nameBtn2, nameBtn3, nameBtn4, nameBtn5, nameBtn6, nameBtn7,
+                nameBtn8, nameBtn9, nameBtn10, nameBtn11, nameBtn12, nameBtn13, nameBtn14, nameBtn15
         );
 
         updatePage();
