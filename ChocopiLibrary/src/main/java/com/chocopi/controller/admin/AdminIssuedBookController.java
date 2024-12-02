@@ -4,8 +4,6 @@ import com.chocopi.dao.BookManagementDAO;
 import com.chocopi.dao.UserDAO;
 import com.chocopi.model.BookManagement;
 import com.chocopi.model.User;
-import javafx.beans.Observable;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,18 +15,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import com.chocopi.dao.BookDAO;
-import com.chocopi.model.Book;
-import java.io.IOException;
+
 import java.net.URL;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AdminIssuedBook implements Initializable {
+public class AdminIssuedBookController implements Initializable {
     @FXML
     private TextField userId;
 

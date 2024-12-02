@@ -35,7 +35,7 @@ public class abstractAdminSideBar {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminHum.fxml"));
         try {
             Scene newScene = new Scene(loader.load());
-            String cssLoad = "/com/chocopi/css/admin/AdminHum.css";
+            String cssLoad = "/com/chocopi/css/admin/SideBar.css";
 
             newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminHum.css").toExternalForm());
             newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
@@ -54,7 +54,7 @@ public class abstractAdminSideBar {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminStudent.fxml"));
         try {
             Scene newScene = new Scene(loader.load());
-            String cssLoad = "/com/chocopi/css/admin/AdminStudent.css";
+            String cssLoad = "/com/chocopi/css/admin/SideBar.css";
 
             newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminStudent.css").toExternalForm());
             newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
@@ -73,7 +73,7 @@ public class abstractAdminSideBar {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminBook.fxml"));
         try {
             Scene newScene = new Scene(loader.load());
-            String cssLoad = "/com/chocopi/css/admin/AdminBook.css";
+            String cssLoad = "/com/chocopi/css/admin/SideBar.css";
 
             newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminBook.css").toExternalForm());
             newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
@@ -92,7 +92,7 @@ public class abstractAdminSideBar {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminIssuedBook.fxml"));
         try {
             Scene newScene = new Scene(loader.load());
-            String cssLoad = "/com/chocopi/css/admin/AdminIssuedBook.css";
+            String cssLoad = "/com/chocopi/css/admin/SideBar.css";
 
             newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminIssuedBook.css").toExternalForm());
             newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
