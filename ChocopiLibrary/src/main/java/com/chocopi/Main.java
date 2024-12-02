@@ -1,23 +1,19 @@
 package com.chocopi;
 
+import com.chocopi.dao.UserDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import static com.chocopi.dao.BookManagementDAO.getTotalBorrow;
-
 public class Main extends Application {
-
     @Override
     public void start(Stage primaryStage) {
         try {
             // Load file FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/Login.fxml"));
             Scene scene = new Scene(loader.load());
-
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/login.css").toExternalForm());
-            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/register.css").toExternalForm());
 
             // Cấu hình Stage
             primaryStage.setScene(scene);

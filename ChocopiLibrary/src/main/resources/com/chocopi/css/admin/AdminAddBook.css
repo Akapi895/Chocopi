@@ -1,0 +1,23 @@
+#image {
+    -fx-border-color: #b95274;
+    -fx-border-width: 3;
+}
+
+#file {
+    -fx-text-fill: #00b7ff;
+    -fx-font-weight: bold;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-border-radius: 10;
+}
+
+#save {
+    -fx-font-weight: bold;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-border-radius: 10;
+}

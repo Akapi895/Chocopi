@@ -14,6 +14,7 @@ module chocopi.example.chocopilibrary {
     requires org.json;
     requires java.desktop;
     requires java.compiler;
+    requires javax.mail.api;
 
     opens com.chocopi.util to javafx.fxml;
     exports com.chocopi.util to javafx.fxml;

@@ -79,6 +79,20 @@ public class LoginController {
         }
     }
 
+    @FXML
+    private void ForgetPass() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/ForgetPassword.fxml"));
+            Scene registerScene = new Scene(loader.load());
+            registerScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/ForgetPassword.css").toExternalForm());
+
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            stage.setScene(registerScene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

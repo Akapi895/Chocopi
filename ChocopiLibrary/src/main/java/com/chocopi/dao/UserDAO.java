@@ -1,6 +1,7 @@
 package com.chocopi.dao;
 
 import com.chocopi.model.User;
+import com.chocopi.service.EmailService;
 import com.chocopi.util.DatabaseConnection;
 
 import java.sql.*;
@@ -8,6 +9,64 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
+    public static boolean checkValidEmail(String email) {
+        String query = "SELECT COUNT(user_id) AS user_count FROM users WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, email);
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int userCount = rs.getInt("user_count");
+                if (userCount > 0) {
+                    return true;
+                } else {
+                    System.out.println("Không tìm thấy người dùng với email: " + email);
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi truy vấn cơ sở dữ liệu", e);
+        }
+        return false;
+    }
+
+
+    public static boolean updateUserPassword(int userId, String newPassword) {
+        String query = "UPDATE users SET password = ? WHERE user_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, newPassword);
+            pstmt.setInt(2, userId);
+
+            int rowsAffected = pstmt.executeUpdate();
+
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error updating password: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static int getUserIdByEmail(String email) {
+        String query = "SELECT * FROM users WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("user_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM Users";

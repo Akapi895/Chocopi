@@ -1,0 +1,109 @@
+#send {
+    -fx-background-radius: 20;
+    -fx-background-color: #ffff;
+    -fx-border-color: #b95274;
+    -fx-border-radius: 20;
+    -fx-text-fill: #b95274;
+}
+
+#ask {
+    -fx-border-color: #b95274;
+    -fx-background-color: #ffffff;
+}
+
+#ans {
+    -fx-border-color: #b95274;
+    -fx-background-color: #ffffff;
+}
+
+#1 {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+#2 {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+
+#3 {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+
+#4 {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+
+#5 {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+
+#i1 {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+#i2 {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+
+#i3 {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+
+#i4 {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+
+#i5 {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+
+#im {
+    border-radius: 20;
+}

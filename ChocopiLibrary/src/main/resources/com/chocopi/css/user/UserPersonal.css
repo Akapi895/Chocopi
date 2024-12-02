@@ -1,0 +1,58 @@
+#edit {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #b95274;
+}
+
+#avt {
+    -fx-border-width: 3;
+    -fx-border-color: #b95274;
+}
+
+#cancel {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #b95274;
+    -fx-text-fill: #15498e;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-font-size: 16;
+}
+
+#cancel:hover {
+    -fx-font-size: 16;
+}
+
+#save {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #b95274;
+    -fx-text-fill: #2d8e15;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-font-size: 16;
+}
+
+#save:hover {
+    -fx-font-size: 16;
+}
+
+#person {
+    -fx-background-radius: 30;
+    -fx-background-color: #fff4f8;
+    -fx-border-radius: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 5);
+}
+
+#document {
+    -fx-background-radius: 30;
+    -fx-background-color: #fff4f8;
+    -fx-border-radius: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 5);
+}

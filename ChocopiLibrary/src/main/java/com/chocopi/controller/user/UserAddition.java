@@ -163,9 +163,11 @@ public class UserAddition extends UserSideBarController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserAddition.fxml"));
             Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/.css").toExternalForm());
 
-            Stage stage = (Stage) mainPane.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Stage stage = new Stage();
+            stage.setScene(scene);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

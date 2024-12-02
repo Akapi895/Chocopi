@@ -1,0 +1,63 @@
+#search {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-border-color: #b95274;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+}
+
+#pre {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-text-fill: #b95274;
+    -fx-font-weight: bold;
+}
+
+#next {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-text-fill: #b95274;
+    -fx-font-weight: bold;
+}
+
+.h1 > .v1 {
+    -fx-pref-width: 120;
+    -fx-min-width: 120;
+    -fx-max-width: 120;
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+
+.h2 > .v2 {
+    -fx-pref-width: 120;
+    -fx-min-width: 120;
+    -fx-max-width: 120;
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}
+
+.h3 > .v3 {
+    -fx-pref-width: 120;
+    -fx-min-width: 120;
+    -fx-max-width: 120;
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-alignment: center;
+}

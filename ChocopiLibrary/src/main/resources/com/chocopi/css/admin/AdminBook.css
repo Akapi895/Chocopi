@@ -1,0 +1,45 @@
+.table {
+    -fx-border-color: #3e72a7;
+    -fx-border-width: 2;
+}
+
+.table-view. column-header-background {
+    -fx-background-color: #e78aa9;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #ffc7d6;
+    -fx-text-fill: black;
+}
+
+#bookid {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #3e72a7;
+}
+
+#addbook {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #3e72a7;
+    -fx-text-fill: #2bb6d5;
+}
+
+#delete {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #d53a3f;
+    -fx-text-fill: #d53a3f;
+    -fx-font-weight: bold;
+}

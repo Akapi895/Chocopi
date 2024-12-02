@@ -1,0 +1,41 @@
+#n-book {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 20 20;
+    -fx-border-color: #72c9f7;
+    -fx-border-radius: 0 0 20 20;
+    -fx-border-width: 2;
+}
+
+#stu {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 20 20;
+    -fx-border-color: #72c9f7;
+    -fx-border-radius: 0 0 20 20;
+    -fx-border-width: 2;
+}
+
+#genre {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 20 20;
+    -fx-border-color: #e787a7;
+    -fx-border-radius: 0 0 20 20;
+    -fx-border-width: 2;
+}
+
+#i-book {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 20 20;
+    -fx-border-color: #e787a7;
+    -fx-border-radius: 0 0 20 20;
+    -fx-border-width: 2;
+}
+
+.stu-table {
+        -fx-border-color: #e787a7;
+        -fx-border-width: 2;
+}
+
+.book-table {
+    -fx-border-color: #72c9f7;
+    -fx-border-width: 2;
+}

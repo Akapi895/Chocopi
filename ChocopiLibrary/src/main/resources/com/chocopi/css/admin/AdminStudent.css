@@ -1,0 +1,22 @@
+.table {
+    -fx-border-color: #b95274;
+    -fx-border-width: 2;
+}
+
+#userid {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #b95274;
+}
+
+#delete {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #d53a3f;
+    -fx-text-fill: #d53a3f;
+    -fx-font-weight: bold;
+}
