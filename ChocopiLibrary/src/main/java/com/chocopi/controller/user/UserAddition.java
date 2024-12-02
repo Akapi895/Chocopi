@@ -166,7 +166,7 @@ public class UserAddition extends UserSideBarController {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserAddition.css").toExternalForm());
 
-            Stage stage = new Stage();
+            Stage stage = (Stage) mainPane.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
             throw new RuntimeException(e);

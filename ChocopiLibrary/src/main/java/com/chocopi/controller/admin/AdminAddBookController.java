@@ -135,6 +135,7 @@ public class AdminAddBookController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminBook.fxml"));
                 try {
                     Scene scene = new Scene(loader.load());
+                    scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminBook.css").toExternalForm());
                     Stage stage = (Stage) bookname.getScene().getWindow();
                     stage.setScene(scene);
                 } catch (IOException e) {
@@ -196,6 +197,7 @@ public class AdminAddBookController {
 
         try {
             Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminAddBookAPI.css").toExternalForm());
 
             Stage stage = (Stage) bookname.getScene().getWindow();
             stage.setScene(scene);
@@ -210,6 +212,7 @@ public class AdminAddBookController {
         BookSessionManager.clearBookSession();
         try {
             Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminBook.css").toExternalForm());
 
             Stage stage = (Stage) bookname.getScene().getWindow();
             stage.setScene(scene);

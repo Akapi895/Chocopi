@@ -153,7 +153,6 @@ public class userEachGenreUI extends UserSideBarController {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserAddition.css").toExternalForm());
 
-
             Stage stage = (Stage) mainPane.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
@@ -172,7 +171,6 @@ public class userEachGenreUI extends UserSideBarController {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserBook.css").toExternalForm());
-
 
             Stage stage = (Stage) mainPane.getScene().getWindow();
             stage.setScene(scene);

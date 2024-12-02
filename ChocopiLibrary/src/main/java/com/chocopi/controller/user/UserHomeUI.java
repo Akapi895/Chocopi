@@ -79,7 +79,7 @@ public class UserHomeUI {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserAddition.css").toExternalForm());
 
-            Stage stage = new Stage();
+            Stage stage = (Stage) searchField.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -117,7 +117,7 @@ public class UserHomeUI {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/userEachGenre.css").toExternalForm());
 
-            Stage stage = new Stage();
+            Stage stage = (Stage) detailGenre1.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -179,7 +179,7 @@ public class UserHomeUI {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserBook.css").toExternalForm());
 
-            Stage stage = new Stage();
+            Stage stage = (Stage) searchField.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

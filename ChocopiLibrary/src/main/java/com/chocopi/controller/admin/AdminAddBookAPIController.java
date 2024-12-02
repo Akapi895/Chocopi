@@ -177,6 +177,7 @@ public class AdminAddBookAPIController {
 
         try {
             Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminAddBook.css").toExternalForm());
 
             Stage stage = (Stage) titleLabel.getScene().getWindow();
             stage.setScene(scene);

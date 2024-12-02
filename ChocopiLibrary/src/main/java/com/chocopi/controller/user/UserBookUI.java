@@ -204,11 +204,14 @@ public class UserBookUI {
             BookSessionManager.setLastPage(null);
 
             String lastPagePath = getPathAfterKeyword(lastPage, "fxml/");
+            lastPagePath = lastPagePath.substring(0, lastPagePath.indexOf(".fxml")) + ".css";
             lastPagePath = "/com/chocopi/css/" + lastPagePath;
+            System.out.println(lastPagePath);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(lastPage));
             Scene scene = new Scene(loader.load());
             scene.getStylesheets().add(getClass().getResource(lastPagePath).toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
 
             Stage stage = (Stage) image.getScene().getWindow();
             stage.setScene(scene);

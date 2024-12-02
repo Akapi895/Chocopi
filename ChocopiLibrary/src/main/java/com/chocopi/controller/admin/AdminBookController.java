@@ -104,6 +104,8 @@ public class AdminBookController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminAddBook.fxml"));
         try {
             Scene newScene = new Scene(loader.load());
+            newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminAddBook.css").toExternalForm());
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(newScene);
             stage.show();
