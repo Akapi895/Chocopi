@@ -152,6 +152,7 @@ public class userEachGenreUI extends UserSideBarController {
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserAddition.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
 
             Stage stage = (Stage) mainPane.getScene().getWindow();
             stage.setScene(scene);

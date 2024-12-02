@@ -26,67 +26,52 @@ public class AdminStudentController implements Initializable{
     private TextField userId;
 
     @FXML
-    private TableColumn<BookManagement, Integer> userIdColumn;
+    private TableColumn<User, Integer> userIdColumn;
 
     @FXML
-    private TableColumn<BookManagement, Integer> bookIdColumn;
+    private TableColumn<User, Integer> ageColumn, totalBorrowedColumn;
 
     @FXML
-    private TableColumn<BookManagement, String> nameColumn;
+    private TableColumn<User, String> nameColumn, phoneColumn, emailColumn;
 
     @FXML
-    private TableColumn<BookManagement, Date> borrowDateColumn;
+    private TableView<User> userTableView;
 
-    @FXML
-    private TableColumn<BookManagement, Date> returnDateColumn;
-
-    @FXML
-    private TableView<BookManagement> recordTableView;
-
-    private ObservableList<BookManagement> bookManagementsList;
-    private BookManagementDAO bookManagementDao = new BookManagementDAO();
+    private ObservableList<User> userObservableList;
     private UserDAO userDao = new UserDAO();
 
     public void initialize(URL location, ResourceBundle resources) {
-        List<BookManagement> records = bookManagementDao.getAllRecords();
-        List<User> userList = userDao.getAllUsers();
-        bookManagementsList = FXCollections.observableList(records);
-
-        FilteredList<BookManagement> filteredList = new FilteredList<>(bookManagementsList, b -> true);
-
         userIdColumn.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        bookIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
-        borrowDateColumn.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
-        returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
-        nameColumn.setCellValueFactory(cellData -> {
-            BookManagement record = cellData.getValue();
-            int userId = record.getUserId();
+        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+        totalBorrowedColumn.setCellValueFactory(new PropertyValueFactory<>("totalBorrowed"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-            User user = userList.stream()
-                    .filter(u -> u.getUserId() == userId)
-                    .findFirst()
-                    .orElse(null);
-
-            return new SimpleStringProperty(user != null ? user.getName() : "");
-        });
-
-        recordTableView.setItems(filteredList);
+        List<User> users = userDao.getAllUsers();
+        userObservableList = FXCollections.observableArrayList(users);
+        FilteredList<User> filteredUsers = new FilteredList<>(userObservableList, user -> "user".equals(user.getRole()));
 
         userId.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(record -> {
+            filteredUsers.setPredicate(user -> {
                 if (newValue == null || newValue.isEmpty()) {
-                    return true;
+                    return "user".equals(user.getRole());
                 }
-
-                String filter = newValue.toLowerCase();
-                return Integer.toString(record.getUserId()).contains(filter);
+                try {
+                    int inputId = Integer.parseInt(newValue);
+                    return "user".equals(user.getRole()) && user.getUserId() == inputId;
+                } catch (NumberFormatException e) {
+                    return false;
+                }
             });
         });
+
+        userTableView.setItems(filteredUsers);
     }
 
     public void handleDeleteClick(ActionEvent e) {
-        BookManagement selected = recordTableView.getSelectionModel().getSelectedItem();
-        bookManagementsList.remove(selected);
-        bookManagementDao.deleteRecord(selected.getRecordId());
+        User selected = userTableView.getSelectionModel().getSelectedItem();
+        userObservableList.remove(selected);
+        userDao.deleteUser(selected.getUserId());
     }
 }

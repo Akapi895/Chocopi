@@ -66,7 +66,6 @@ public class UserDAO {
         return 0;
     }
 
-
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM Users";
@@ -82,6 +81,7 @@ public class UserDAO {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setName(rs.getString("name"));
+                user.setAge(rs.getInt("age"));
                 user.setEmail(rs.getString("email"));
                 user.setPhone(rs.getString("phone"));
                 user.setRole(rs.getString("role"));

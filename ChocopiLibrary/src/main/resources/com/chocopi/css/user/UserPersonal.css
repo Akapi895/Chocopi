@@ -56,3 +56,15 @@
     -fx-border-radius: 30;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 5);
 }
+
+#type {
+    -fx-background-radius: 15;
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+    -fx-border-radius: 15;
+}
+
+#type-fav {
+    -fx-border-width: 2;
+    -fx-border-color: #b95274;
+}

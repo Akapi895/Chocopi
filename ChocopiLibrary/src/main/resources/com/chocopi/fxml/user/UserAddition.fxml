@@ -21,7 +21,7 @@
               <Font size="14.0" />
           </font>
       </TextField>
-    <GridPane layoutX="300.0" layoutY="85.0" prefHeight="608.0" prefWidth="688.0" vgap="13.0">
+    <GridPane fx:id="gridPane" layoutX="300.0" layoutY="85.0" prefHeight="608.0" prefWidth="688.0" vgap="13.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>

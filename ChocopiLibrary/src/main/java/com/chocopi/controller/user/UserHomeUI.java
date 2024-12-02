@@ -78,6 +78,7 @@ public class UserHomeUI {
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserAddition.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
 
             Stage stage = (Stage) searchField.getScene().getWindow();
             stage.setScene(scene);
@@ -116,6 +117,7 @@ public class UserHomeUI {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/userEachGenre.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
 
             Stage stage = (Stage) detailGenre1.getScene().getWindow();
             stage.setScene(scene);

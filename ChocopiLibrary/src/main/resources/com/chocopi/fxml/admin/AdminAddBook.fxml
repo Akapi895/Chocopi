@@ -16,16 +16,18 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminAddBookController">
    <children>
-      <ImageView fx:id="photo" fitHeight="280.0" fitWidth="210.0" layoutX="161.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnAddPhoto" layoutX="214.0" layoutY="186.0" mnemonicParsing="false" onAction="#addPhoto" text="+Add photo">
+      <AnchorPane id="main" layoutX="117.0" layoutY="35.0" prefHeight="621.0" prefWidth="790.0" />
+      <AnchorPane id="image" layoutX="161.0" layoutY="63.0" prefHeight="280.0" prefWidth="210.0" />
+      <ImageView id="image" fx:id="photo" fitHeight="280.0" fitWidth="210.0" layoutX="161.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+      <Button id="addbook" fx:id="btnAddPhoto" layoutX="216.0" layoutY="188.0" mnemonicParsing="false" onAction="#addPhoto" style="-fx-background-color: transparent;" text="+Add photo" textFill="#00b7ff">
          <font>
-            <Font size="14.0" />
+            <Font name="System Italic" size="14.0" />
          </font>
       </Button>
-      <GridPane layoutX="422.0" layoutY="88.0" prefHeight="240.0" prefWidth="435.0">
+      <GridPane layoutX="432.0" layoutY="88.0" prefHeight="240.0" prefWidth="404.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.400048828125" minWidth="10.0" prefWidth="168.53338623046875" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.66668701171875" minWidth="10.0" prefWidth="266.66661376953124" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.400048828125" minWidth="10.0" prefWidth="131.19996337890626" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.66668701171875" minWidth="10.0" prefWidth="273.60003662109375" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
@@ -36,78 +38,84 @@
             <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label prefHeight="26.0" prefWidth="114.0" text="Book Name:">
+            <Label prefHeight="26.0" prefWidth="114.0" text="Book Name:" textFill="#3e72a7">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label text="Author:" GridPane.rowIndex="1">
+            <Label text="Author:" textFill="#3e72a7" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label text="Genre:" GridPane.rowIndex="2">
+            <Label text="Genre:" textFill="#3e72a7" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label text="Publisher:" GridPane.rowIndex="3">
+            <Label text="Publisher:" textFill="#3e72a7" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label text="Publish year:" GridPane.rowIndex="4">
+            <Label text="Publish year:" textFill="#3e72a7" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label text="Rating:" GridPane.rowIndex="5">
+            <Label text="Rating:" textFill="#3e72a7" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="bookname" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="148.0" GridPane.columnIndex="1">
+            <TextField id="type" fx:id="bookname" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="148.0" GridPane.columnIndex="1">
                <font>
                   <Font size="14.0" />
-               </font></TextField>
-            <TextField fx:id="author" maxHeight="30.0" maxWidth="279.0" minHeight="20.0" prefHeight="30.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               </font>
+            </TextField>
+            <TextField id="type" fx:id="author" maxHeight="30.0" maxWidth="279.0" minHeight="20.0" prefHeight="30.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
-               </font></TextField>
-            <TextField fx:id="gerne" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               </font>
+            </TextField>
+            <TextField id="type" fx:id="gerne" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="14.0" />
-               </font></TextField>
-            <TextField fx:id="publisher" maxHeight="30.0" maxWidth="275.0" minHeight="20.0" prefHeight="30.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               </font>
+            </TextField>
+            <TextField id="type" fx:id="publisher" maxHeight="30.0" maxWidth="275.0" minHeight="20.0" prefHeight="30.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="14.0" />
-               </font></TextField>
-            <TextField fx:id="publishyear" maxHeight="30.0" maxWidth="287.0" minHeight="20.0" prefHeight="30.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               </font>
+            </TextField>
+            <TextField id="type" fx:id="publishyear" maxHeight="30.0" maxWidth="287.0" minHeight="20.0" prefHeight="30.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
-               </font></TextField>
-            <TextField fx:id="rating" maxHeight="30.0" maxWidth="288.0" minHeight="20.0" prefHeight="30.0" prefWidth="288.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               </font>
+            </TextField>
+            <TextField id="type" fx:id="rating" maxHeight="30.0" maxWidth="288.0" minHeight="20.0" prefHeight="30.0" prefWidth="288.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
-               </font></TextField>
+               </font>
+            </TextField>
          </children>
       </GridPane>
       <VBox layoutX="161.0" layoutY="370.0" prefHeight="200.0" prefWidth="702.0">
          <children>
-            <Label text="Description:">
+            <Label text="Description:" textFill="#3e72a7">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextArea fx:id="description" prefHeight="175.0" prefWidth="697.0" wrapText="true">
+            <TextArea id="typearea" fx:id="description" prefHeight="175.0" prefWidth="697.0" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font></TextArea>
          </children>
       </VBox>
-      <HBox layoutX="161.0" layoutY="601.0" prefHeight="37.0" prefWidth="200.0">
+      <HBox layoutX="161.0" layoutY="601.0" prefHeight="38.0" prefWidth="210.0">
          <children>
-            <Label text="Upload file:">
+            <Label prefHeight="29.0" prefWidth="123.0" text="Upload file:" textFill="#3e72a7">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -116,37 +124,41 @@
                </padding>
             </Label>
             <Label />
-            <Button fx:id="btnSelectFile" mnemonicParsing="false" onAction="#selectFile" text="+ Select file">
+            <Button id="select" fx:id="btnSelectFile" mnemonicParsing="false" onAction="#selectFile" prefHeight="33.0" prefWidth="118.0" text="+ Select file">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </Button>
          </children>
       </HBox>
-      <Button fx:id="btnSave" layoutX="781.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleSaveClick" prefWidth="81.0" text="Save">
+      <Button id="save" fx:id="btnSave" layoutX="766.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="33.0" prefWidth="97.0" text="Save" textFill="#3e72a7">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="12.0" text="⬅">
+      <Button fx:id="back" layoutX="7.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleBackClick" prefHeight="38.0" prefWidth="40.0" style="-fx-background-color: transparent;" text="⬅" textFill="#622e23">
          <font>
             <Font size="40.0" />
          </font>
-      </Label>
-      <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBackClick" prefHeight="38.0" prefWidth="40.0" text="⬅">
-         <font>
-            <Font size="16.0" />
-         </font></Button>
+         <padding>
+            <Insets bottom="-40.0" left="-5.0" top="-40.0" />
+         </padding></Button>
       <ImageView fitHeight="30.0" fitWidth="210.0" layoutX="371.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="add2" layoutX="14.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#handleMethod2" prefHeight="70.0" prefWidth="40.0" text="2">
+      <Button id="c2" fx:id="add2" layoutX="79.0" layoutY="196.0" mnemonicParsing="false" onMouseClicked="#handleMethod2" prefHeight="98.0" prefWidth="40.0" styleClass="rotate" text="Mode 2" textFill="#3e72a7">
          <font>
             <Font size="16.0" />
          </font>
+         <padding>
+            <Insets left="-15.0" right="-12.0" />
+         </padding>
       </Button>
-      <Button fx:id="add1" layoutX="14.0" layoutY="132.0" mnemonicParsing="false" onMouseClicked="#handleMethod1" prefHeight="70.0" prefWidth="40.0" text="1">
+      <Button id="c1" fx:id="add1" layoutX="79.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#handleMethod1" prefHeight="98.0" prefWidth="40.0" styleClass="rotate" text="Mode 1" textFill="#3e72a7">
          <font>
             <Font size="16.0" />
          </font>
+         <padding>
+            <Insets left="-15.0" right="-12.0" />
+         </padding>
       </Button>
    </children>
 </AnchorPane>

@@ -30,6 +30,9 @@ public class UserAddition extends UserSideBarController {
     private TextField searchField;
 
     @FXML
+    private GridPane gridPane;
+
+    @FXML
     private AnchorPane mainPane;
 
     @FXML
@@ -88,11 +91,14 @@ public class UserAddition extends UserSideBarController {
     }
 
     private void updatePage() {
-        for (int i = 0 ; i < ITEMS_PER_PAGE; ++i) {
+        for (int i = 0; i < ITEMS_PER_PAGE; ++i) {
             imageViewList.get(i).setVisible(false);
             imageViewList.get(i).setDisable(true);
+            imageViewList.get(i).setManaged(false); // Đảm bảo không chiếm không gian khi ẩn
+
             buttonList.get(i).setVisible(false);
             buttonList.get(i).setDisable(true);
+            buttonList.get(i).setManaged(false); // Đảm bảo không chiếm không gian khi ẩn
         }
 
         if (books == null || books.isEmpty()) {
@@ -116,17 +122,20 @@ public class UserAddition extends UserSideBarController {
             if (i >= currentItems.size()) {
                 imageViewList.get(i).setVisible(false);
                 imageViewList.get(i).setDisable(true);
+                imageViewList.get(i).setManaged(false);
                 buttonList.get(i).setVisible(false);
                 buttonList.get(i).setDisable(true);
+                buttonList.get(i).setManaged(false);
             } else {
                 imageViewList.get(i).setVisible(true);
                 imageViewList.get(i).setDisable(false);
+                imageViewList.get(i).setManaged(true);
+
                 buttonList.get(i).setVisible(true);
                 buttonList.get(i).setDisable(false);
+                buttonList.get(i).setManaged(true);
 
                 Book book = currentItems.get(i);
-//                System.out.println(book.toString());
-
                 if (book.getImage() != null && !book.getImage().isEmpty()) {
                     imageViewList.get(i).setImage(new Image(getClass().getResource(book.getImage()).toExternalForm()));
                 } else {
@@ -139,6 +148,7 @@ public class UserAddition extends UserSideBarController {
             }
         }
 
+        // Cập nhật trạng thái các nút phân trang
         previousButton.setVisible(true);
         nextButton.setVisible(true);
         previousButton.setDisable(currentPage == 0);
@@ -165,6 +175,7 @@ public class UserAddition extends UserSideBarController {
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserAddition.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
 
             Stage stage = (Stage) mainPane.getScene().getWindow();
             stage.setScene(scene);

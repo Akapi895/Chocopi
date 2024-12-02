@@ -15,9 +15,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -70,6 +70,16 @@ public class AdminIssuedBookController implements Initializable {
             return new SimpleStringProperty(user != null ? user.getName() : "");
         });
 
+
+        filteredList.setPredicate(record -> {
+            LocalDate currentDate = LocalDate.now();
+            Date returnDate = record.getReturnDate();
+            if (returnDate != null) {
+                return !returnDate.toLocalDate().isBefore(currentDate);
+            }
+            return true;
+        });
+
         recordTableView.setItems(filteredList);
 
         userId.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -77,7 +87,6 @@ public class AdminIssuedBookController implements Initializable {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-
                 String filter = newValue.toLowerCase();
                 return Integer.toString(record.getUserId()).contains(filter);
             });

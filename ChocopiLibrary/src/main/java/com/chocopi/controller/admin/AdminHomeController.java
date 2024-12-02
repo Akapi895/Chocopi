@@ -8,13 +8,21 @@ import com.chocopi.model.BookManagement;
 import com.chocopi.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +32,7 @@ import java.util.stream.Collectors;
 
 public class AdminHomeController implements Initializable {
     @FXML
-    private Label noBooks, noGenres, noStudents, noIssuedBooks, pieChartDetails;
+    private Label noBooks, noGenres, noStudents, noIssuedBooks, pieChartDetails, detailsStudent, detailsBook;
 
     @FXML
     private TableView<Book> bookTableView;
@@ -71,33 +79,6 @@ public class AdminHomeController implements Initializable {
                 .collect(Collectors.toSet());
         int uniqueGenresSize = uniqueGenres.size();
 
-        Map<Integer, Long> borrowCountMap = bookManagementList.stream()
-                .collect(Collectors.groupingBy(BookManagement::getBookId, Collectors.counting()));
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                borrowCountMap.entrySet().stream()
-                        .map(entry -> {
-                            int bookId = entry.getKey();
-                            long borrowCount = entry.getValue();
-                            String bookTitle = bookListTemp.stream()
-                                    .filter(book -> book.getBookId() == bookId)
-                                    .map(Book::getTitle)
-                                    .findFirst()
-                                    .orElse("Unknown");
-                            return new PieChart.Data(bookTitle, borrowCount);
-                        })
-                        .collect(Collectors.toList())
-        );
-        pieChart.setData(pieChartData);
-        pieChartData.forEach(data -> {
-            data.getNode().setOnMouseEntered(event -> {
-                pieChartDetails.setText(String.format("%s, %.0f Times", data.getName(), data.getPieValue()));
-            });
-
-            data.getNode().setOnMouseExited(event -> {
-                pieChartDetails.setText("");
-            });
-        });
-
         noBooks.setText(String.valueOf(bookListTemp.size()));
         noGenres.setText(String.valueOf(uniqueGenresSize));
         noStudents.setText(String.valueOf(studentList.size()));
@@ -118,5 +99,64 @@ public class AdminHomeController implements Initializable {
 
         bookTableView.setItems(bookList);
         studentTableView.setItems(userList);
+
+        Map<String, Long> genreBorrowCountMap = bookManagementList.stream()
+                .map(record -> bookListTemp.stream()
+                        .filter(book -> book.getBookId() == record.getBookId())
+                        .findFirst()
+                        .orElse(null))
+                .filter(book -> book != null && book.getGenre() != null)
+                .collect(Collectors.groupingBy(Book::getGenre, Collectors.counting()));
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                genreBorrowCountMap.entrySet().stream()
+                        .map(entry -> new PieChart.Data(entry.getKey(), entry.getValue()))
+                        .collect(Collectors.toList())
+        );
+        pieChart.setData(pieChartData);
+        pieChartDetails.setText("");
+        pieChartData.forEach(data -> {
+            data.getNode().setOnMouseEntered(event -> {
+                pieChartDetails.setText(String.format("Gerne: %s, Borrowed: %.0f", data.getName(), data.getPieValue()));
+            });
+            data.getNode().setOnMouseExited(event -> {
+                pieChartDetails.setText("");
+            });
+        });
+    }
+
+    public void handleBookDetails(javafx.scene.input.MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminBook.fxml"));
+        try {
+            Scene newScene = new Scene(loader.load());
+            String cssLoad = "/com/chocopi/css/admin/AdminBook.css";
+
+            newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminBook.css").toExternalForm());
+            newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + "/com/chocopi/fxml/admin/AdminBook.fxml");
+            e.printStackTrace();
+        }
+    }
+
+    public void handleStudentDetails(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminStudent.fxml"));
+        try {
+            Scene newScene = new Scene(loader.load());
+            String cssLoad = "/com/chocopi/css/admin/AdminStudent.css";
+
+            newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminStudent.css").toExternalForm());
+            newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + "/com/chocopi/fxml/admin/AdminStudent.fxml");
+            e.printStackTrace();
+        }
     }
 }

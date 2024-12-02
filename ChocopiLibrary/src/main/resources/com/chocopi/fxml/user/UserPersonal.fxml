@@ -122,7 +122,7 @@
                                  <Font name="System Bold" size="16.0" />
                               </font>
                            </Label>
-                           <TextField fx:id="fullNameField" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="148.0" visible="false" GridPane.columnIndex="1">
+                           <TextField id="type" fx:id="fullNameField" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" prefWidth="148.0" visible="false" GridPane.columnIndex="1">
                               <font>
                                  <Font size="16.0" />
                               </font>
@@ -132,10 +132,13 @@
                                  <Font size="16.0" />
                               </font>
                               <GridPane.margin>
-                                 <Insets left="10.0" />
+                                 <Insets />
                               </GridPane.margin>
+                              <padding>
+                                 <Insets left="10.0" />
+                              </padding>
                            </Label>
-                           <TextField fx:id="ageField" maxHeight="30.0" maxWidth="120.0" minHeight="20.0" prefHeight="30.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <TextField id="type" fx:id="ageField" maxHeight="30.0" maxWidth="120.0" minHeight="20.0" prefHeight="30.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                               <font>
                                  <Font size="16.0" />
                               </font>
@@ -150,15 +153,18 @@
                                  <Font size="16.0" />
                               </font>
                               <GridPane.margin>
-                                 <Insets left="10.0" />
+                                 <Insets />
                               </GridPane.margin>
+                              <padding>
+                                 <Insets left="10.0" />
+                              </padding>
                            </Label>
                            <Label text="Email: " textFill="#b95274" GridPane.rowIndex="2">
                               <font>
                                  <Font name="System Bold" size="16.0" />
                               </font>
                            </Label>
-                           <TextField fx:id="emailField" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <TextField id="type" fx:id="emailField" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                               <font>
                                  <Font size="16.0" />
                               </font>
@@ -168,15 +174,18 @@
                                  <Font size="16.0" />
                               </font>
                               <GridPane.margin>
-                                 <Insets left="10.0" />
+                                 <Insets />
                               </GridPane.margin>
+                              <padding>
+                                 <Insets left="10.0" />
+                              </padding>
                            </Label>
                            <Label text="Phone:" textFill="#b95274" GridPane.rowIndex="3">
                               <font>
                                  <Font name="System Bold" size="16.0" />
                               </font>
                            </Label>
-                           <TextField fx:id="phoneField" maxHeight="30.0" maxWidth="165.0" minHeight="20.0" prefHeight="30.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <TextField id="type" fx:id="phoneField" maxHeight="30.0" maxWidth="165.0" minHeight="20.0" prefHeight="30.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                               <font>
                                  <Font size="16.0" />
                               </font>
@@ -189,7 +198,7 @@
                                  <Insets top="-50.0" />
                               </GridPane.margin>
                            </Label>
-                           <TextArea fx:id="favorField" maxHeight="80.0" prefHeight="80.0" prefWidth="294.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <TextArea id="type-fav" fx:id="favorField" maxHeight="80.0" prefHeight="80.0" prefWidth="294.0" styleClass="round" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
                               <font>
                                  <Font size="16.0" />
                               </font>
@@ -199,24 +208,27 @@
                                  <Font name="System Bold" size="16.0" />
                               </font>
                            </Label>
-                           <TextField fx:id="passwordField" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                           <TextField id="type" fx:id="passwordField" maxHeight="30.0" minHeight="20.0" prefHeight="30.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                            <Label fx:id="phoneLabel" prefHeight="25.0" prefWidth="165.0" text="phone" textFill="#622e23" GridPane.columnIndex="1" GridPane.rowIndex="3">
                               <font>
                                  <Font size="16.0" />
                               </font>
                               <GridPane.margin>
-                                 <Insets left="10.0" />
+                                 <Insets />
                               </GridPane.margin>
+                              <padding>
+                                 <Insets left="10.0" />
+                              </padding>
                            </Label>
-                           <Label fx:id="favorLabel" prefHeight="81.0" prefWidth="327.0" text="favor" textFill="#622e23" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <Label fx:id="favorLabel" prefHeight="81.0" prefWidth="327.0" styleClass="round" text="favor" textFill="#622e23" GridPane.columnIndex="1" GridPane.rowIndex="4">
                               <font>
                                  <Font size="16.0" />
                               </font>
                               <GridPane.margin>
-                                 <Insets left="10.0" />
+                                 <Insets />
                               </GridPane.margin>
                               <padding>
-                                 <Insets top="-50.0" />
+                                 <Insets left="10.0" top="-50.0" />
                               </padding>
                            </Label>
                         </children>
