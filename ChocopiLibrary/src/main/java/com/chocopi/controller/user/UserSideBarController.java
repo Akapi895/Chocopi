@@ -31,17 +31,48 @@ public class UserSideBarController {
     @FXML
     private void handleHomeClick(ActionEvent event) {
         BookSessionManager.setPage(0);
-        switchScene(event, "/com/chocopi/fxml/user/UserHome.fxml");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserHome.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserHome.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML
     private void handlePersonalClick(ActionEvent event) {
-        switchScene(event, "/com/chocopi/fxml/user/UserPersonal.fxml");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserPersonal.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserPersonal.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML
     private void handleHistoryClick(ActionEvent event) {
-        switchScene(event, "/com/chocopi/fxml/user/UserHistory.fxml");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserHistory.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserHistory.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
     }
 
     @FXML
@@ -54,20 +85,16 @@ public class UserSideBarController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             SessionManager.clearSession();
-            switchScene(event, "/com/chocopi/fxml/login.fxml");
-        }
-    }
-
-    protected void switchScene(ActionEvent event, String fxmlPath) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-        try {
-            Scene newScene = new Scene(loader.load());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/login.fxml"));
+            Scene scene = null;
+            try {
+                scene = new Scene(loader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/login.css").toExternalForm());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(newScene);
-            stage.show();
-        } catch (IOException e) {
-            System.err.println("Error loading FXML file: " + fxmlPath);
-            e.printStackTrace();
+            stage.setScene(scene);
         }
     }
 }

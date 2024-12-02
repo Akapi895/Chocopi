@@ -32,22 +32,78 @@ public class abstractAdminSideBar {
 
     @FXML
     protected void handleHomeClick(ActionEvent event) {
-        switchScene(event, "/com/chocopi/fxml/admin/AdminHum.fxml");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminHum.fxml"));
+        try {
+            Scene newScene = new Scene(loader.load());
+            String cssLoad = "/com/chocopi/css/admin/AdminHum.css";
+
+            newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminHum.css").toExternalForm());
+            newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + "/com/chocopi/fxml/admin/AdminHum.fxml");
+            e.printStackTrace();
+        }
     }
 
     @FXML
     protected void handleStudentClick(ActionEvent event) {
-        switchScene(event, "/com/chocopi/fxml/admin/AdminStudent.fxml");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminStudent.fxml"));
+        try {
+            Scene newScene = new Scene(loader.load());
+            String cssLoad = "/com/chocopi/css/admin/AdminStudent.css";
+
+            newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminStudent.css").toExternalForm());
+            newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + "/com/chocopi/fxml/admin/AdminStudent.fxml");
+            e.printStackTrace();
+        }
     }
 
     @FXML
     protected void handleBookClick(ActionEvent event) {
-        switchScene(event, "/com/chocopi/fxml/admin/AdminBook.fxml");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminBook.fxml"));
+        try {
+            Scene newScene = new Scene(loader.load());
+            String cssLoad = "/com/chocopi/css/admin/AdminBook.css";
+
+            newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminBook.css").toExternalForm());
+            newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + "/com/chocopi/fxml/admin/AdminBook.fxml");
+            e.printStackTrace();
+        }
     }
 
     @FXML
     protected void handleIssuedBookClick(ActionEvent event) {
-        switchScene(event, "/com/chocopi/fxml/admin/AdminIssuedBook.fxml");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminIssuedBook.fxml"));
+        try {
+            Scene newScene = new Scene(loader.load());
+            String cssLoad = "/com/chocopi/css/admin/AdminIssuedBook.css";
+
+            newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminIssuedBook.css").toExternalForm());
+            newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + "/com/chocopi/fxml/admin/AdminIssuedBook.fxml");
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -60,20 +116,21 @@ public class abstractAdminSideBar {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             SessionManager.clearSession();
-            switchScene(event, "/com/chocopi/fxml/login.fxml");
-        }
-    }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/login.fxml"));
+            try {
+                Scene newScene = new Scene(loader.load());
+                String cssLoad = "/com/chocopi/css/login.css";
 
-    protected void switchScene(ActionEvent event, String fxmlPath) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-        try {
-            Scene newScene = new Scene(loader.load());
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(newScene);
-            stage.show();
-        } catch (IOException e) {
-            System.err.println("Error loading FXML file: " + fxmlPath);
-            e.printStackTrace();
+                newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
+                newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(newScene);
+                stage.show();
+            } catch (IOException e) {
+                System.err.println("Error loading FXML file: " + "/com/chocopi/fxml/login.fxml");
+                e.printStackTrace();
+            }
         }
     }
 }

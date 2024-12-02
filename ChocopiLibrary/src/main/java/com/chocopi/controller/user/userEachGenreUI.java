@@ -150,9 +150,12 @@ public class userEachGenreUI extends UserSideBarController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserAddition.fxml"));
             Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserAddition.css").toExternalForm());
+
 
             Stage stage = (Stage) mainPane.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -167,9 +170,12 @@ public class userEachGenreUI extends UserSideBarController {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserBook.fxml"));
             Parent root = loader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserBook.css").toExternalForm());
+
 
             Stage stage = (Stage) mainPane.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }

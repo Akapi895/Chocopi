@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -182,6 +181,19 @@ public class UserBookUI {
         dislikeButton.setVisible(!handleDislike);
     }
 
+    public static String getPathAfterKeyword(String path, String keyword) {
+        if (path == null || keyword == null || path.isEmpty() || keyword.isEmpty()) {
+            return null;
+        }
+
+        int keywordIndex = path.indexOf(keyword);
+        if (keywordIndex == -1) {
+            return null;
+        }
+
+        return path.substring(keywordIndex + keyword.length());
+    }
+
     @FXML
     private void handleBackClick() {
         try {
@@ -191,8 +203,12 @@ public class UserBookUI {
             }
             BookSessionManager.setLastPage(null);
 
+            String lastPagePath = getPathAfterKeyword(lastPage, "fxml/");
+            lastPagePath = "/com/chocopi/css/" + lastPagePath;
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource(lastPage));
             Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource(lastPagePath).toExternalForm());
 
             Stage stage = (Stage) image.getScene().getWindow();
             stage.setScene(scene);
