@@ -13,7 +13,9 @@ import java.util.List;
 public class ChatHistoryDAO {
     public static void saveChatHistory(ChatHistory chatHistory) {
         String sql = "INSERT INTO chathistory (user_id, message, response, timestamp) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, chatHistory.getUserId());
@@ -30,8 +32,9 @@ public class ChatHistoryDAO {
     public static List<ChatHistory> getChatHistoryByUserId(int userId) {
         String sql = "SELECT * FROM chathistory WHERE user_id = ? ORDER BY timestamp DESC";
         List<ChatHistory> chatHistoryList = new ArrayList<>();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, userId);
@@ -55,7 +58,10 @@ public class ChatHistoryDAO {
 
     public static void deleteChatHistoryByUserId(int userId) {
         String sql = "DELETE FROM chathistory WHERE user_id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, userId);

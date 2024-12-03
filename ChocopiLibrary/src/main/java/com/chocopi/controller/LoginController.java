@@ -44,6 +44,7 @@ public class LoginController {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminHum.fxml"));
                     Scene adminHomeScene = new Scene(loader.load());
                     adminHomeScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/SideBar.css").toExternalForm());
+                    adminHomeScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminHum.css").toExternalForm());
                     Stage stage = (Stage) usernameField.getScene().getWindow();
                     stage.setScene(adminHomeScene);
                 } catch (Exception e) {

@@ -14,7 +14,9 @@ public class BookManagementDAO {
         List<BookManagement> records = new ArrayList<>();
         String sql = "SELECT * FROM BookManagement";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -36,7 +38,9 @@ public class BookManagementDAO {
     public boolean addRecord(BookManagement record) {
         String sql = "INSERT INTO BookManagement (user_id, book_id, borrow_date, return_date) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, record.getUserId());
@@ -57,7 +61,9 @@ public class BookManagementDAO {
     public static boolean deleteRecord(int recordId) {
         String sql = "DELETE FROM BookManagement WHERE record_id = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, recordId);
@@ -81,7 +87,9 @@ public class BookManagementDAO {
                 "ORDER BY genre_count DESC " +
                 "LIMIT 5";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, userId);
@@ -98,8 +106,11 @@ public class BookManagementDAO {
 
     public static int getRecordIdByUserIdAndBookId(int userId, int bookId) {
         String sql = "SELECT * FROM BookManagement WHERE user_id = ? AND book_id = ?";
+
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
         int record = 0;
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, userId);
@@ -120,7 +131,9 @@ public class BookManagementDAO {
         List<Integer> books = new ArrayList<>();
         String sql = "SELECT * FROM bookmanagement WHERE user_id = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             ResultSet rs = pstmt.executeQuery();
@@ -140,7 +153,9 @@ public class BookManagementDAO {
 
         String sql = "SELECT book_id FROM bookmanagement WHERE user_id = ? AND return_date > ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             pstmt.setDate(2, new java.sql.Date(System.currentTimeMillis()));
@@ -168,7 +183,9 @@ public class BookManagementDAO {
 
         int cnt = 0;
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             pstmt.setDate(2, new java.sql.Date(System.currentTimeMillis()));
@@ -186,7 +203,10 @@ public class BookManagementDAO {
 
     public static boolean checkBorrowed(int userId, int bookId) {
         String sql = "SELECT * FROM BookManagement WHERE user_id = ? AND book_id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             pstmt.setInt(2, bookId);

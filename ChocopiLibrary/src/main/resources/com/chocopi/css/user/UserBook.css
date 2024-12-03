@@ -1,0 +1,46 @@
+#back {
+        -fx-background-radius: 30;
+        -fx-background-color: #fff4f8;
+        -fx-border-radius: 30;
+        -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 5);
+}
+
+#image {
+        -fx-border-width: 3;
+        -fx-border-color: #b95274;
+}
+
+.borrow {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #3e72a7;
+}
+
+.like {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #b95274;
+}
+
+#des {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #622e23;
+}
+
+#type {
+    -fx-border-color: #b95274;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
+
+#cmt {
+    -fx-border-color: #3e72a7;
+    -fx-border-width: 2;
+}

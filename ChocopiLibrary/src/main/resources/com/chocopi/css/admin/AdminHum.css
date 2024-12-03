@@ -1,3 +1,6 @@
+#bgr {
+    -fx-background-color: #ffffff;
+}
 #n-book {
     -fx-background-color: transparent;
     -fx-background-radius: 0 0 20 20;
@@ -31,11 +34,77 @@
 }
 
 .stu-table {
-        -fx-border-color: #e787a7;
-        -fx-border-width: 2;
+    -fx-border-radius: 7;
+    -fx-background-radius: 7;
 }
 
 .book-table {
-    -fx-border-color: #72c9f7;
-    -fx-border-width: 2;
+    -fx-border-radius: 7;
+    -fx-background-radius: 7;
+}
+
+.table-row-cell {
+    -fx-background-color: #ebf6ff; /* Nền hàng màu tím nhạt */
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #d1eaff; /* Viền tím nhạt */
+    -fx-cell-size: 24px; /* Chiều cao mỗi hàng (mặc định là 24px) */
+    -fx-alignment: center;
+}
+
+/* Hàng chẵn */
+.table-row-cell:odd {
+    -fx-background-color: #ebf6ff; /* Tím nhạt */
+}
+
+/* Hàng lẻ */
+.table-row-cell:even {
+    -fx-background-color: #d1eaff; /* Tím đậm hơn */
+}
+
+.table-view .table-cell {
+    -fx-alignment: center; /* Căn giữa chữ cả theo chiều ngang và dọc */
+    -fx-font-size: 12px; /* Cỡ chữ */
+}
+
+/* Khi hover vào hàng */
+.table-row-cell:hover {
+    -fx-background-color: #7ba6d2; /* Màu tím sáng khi hover */
+    -fx-text-fill: white; /* Màu chữ trắng */
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #648fbc; /* Nền màu tím đậm khi chọn */
+    -fx-text-fill: white; /* Màu chữ trắng */
+}
+
+/* Hover hàng */
+.table-row-cell:hover {
+    -fx-background-color: #7ba6d2; /* Tím nhạt hơn */
+    -fx-text-fill: #648fbc;
+}
+
+/* Header bảng với gradient tím và hiệu ứng bóng */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(#3e72a7, #bfdeff); /* Gradient tím */
+    -fx-padding: 5px;
+    -fx-border-radius: 7 7px 0 0; /* Bo tròn góc trên */
+    -fx-background-radius: 7px 7px 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 4); /* Bóng mờ */
+}
+
+/* Chữ trong header */
+.table-view .column-header-background .label {
+    -fx-text-fill: #ffffff; /* Chữ trắng */
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+}
+
+/* Hiệu ứng hover khi di chuột vào header */
+.table-view .column-header-background:hover {
+    -fx-background-color: linear-gradient(#7ba6d2, #e0f1ff); /* Gradient tím sáng hơn khi hover */
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
 }

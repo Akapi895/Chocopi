@@ -15,33 +15,39 @@ public class BookDAO {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM Books";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 Book book = new Book();
-                book.setBookId(rs.getInt("book_id"));
+                book.setBookId(rs.getInt("book_id")); // Cột trong DB: book_id
                 book.setTitle(rs.getString("title"));
                 book.setDescription(rs.getString("description"));
                 book.setAuthor(rs.getString("author"));
                 book.setPublisher(rs.getString("publisher"));
-                book.setPublishYear(rs.getInt("publishYear"));
+                book.setPublishYear(rs.getInt("publishYear")); // Cột trong DB: publish_year
                 book.setGenre(rs.getString("genre"));
                 book.setRating(rs.getInt("rating"));
-                book.setAvailableQuantity(rs.getInt("available_quantity"));
-                // Gán các thuộc tính khác của Book
+                book.setAvailableQuantity(rs.getInt("available_quantity")); // Cột trong DB: available_quantity
+
                 books.add(book);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return books;
     }
 
     public boolean isBookExists(String bookTitle) {
         String sql = "SELECT COUNT(*) FROM books WHERE title = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, bookTitle);
@@ -52,52 +58,61 @@ public class BookDAO {
                     return count > 0;
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException("Error while checking if book exists.", e);
         }
         return false;
     }
 
     public static String getAllBookIdandTitle() {
         String sql = "SELECT book_id, title FROM Books";
-        String books = "";
+        StringBuilder books = new StringBuilder();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
 
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            ResultSet rs = pstmt.executeQuery();
+        try (Connection conn = dbConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
             while (rs.next()) {
                 String book = rs.getInt("book_id") + ". " + rs.getString("title");
-                if (!books.isEmpty()) books += "; ";
-                books += book;
+                if (books.length() > 0) books.append("; ");
+                books.append(book);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            throw new RuntimeException("Error while fetching book IDs and titles.", e);
         }
-        return books;
+
+        return books.toString();
     }
 
     public static int lastBookId() {
         String query = "SELECT MAX(book_id) FROM books";
-        try (Connection connection = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection connection = dbConnection.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
             if (resultSet.next()) {
                 return resultSet.getInt(1);
-            } else {
-                return 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
+            throw new RuntimeException("Error while fetching the last book ID.", e);
         }
+        return 0; // Trường hợp không tìm thấy giá trị
     }
 
     public static Book getBookById(int bookId) {
         String sql = "SELECT * FROM Books WHERE book_id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, String.valueOf(bookId));
+
+            pstmt.setInt(1, bookId);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -122,10 +137,11 @@ public class BookDAO {
     }
 
     public boolean addBook(Book book) {
-        String sql = "INSERT INTO Books (book_id, title, description, author, publisher, publishYear," +
-                " genre, rating, available_quantity, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Books (book_id, title, description, author, publisher, publishYear, " +
+                "genre, rating, available_quantity, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, book.getBookId());
@@ -138,22 +154,23 @@ public class BookDAO {
             pstmt.setInt(8, book.getRating());
             pstmt.setInt(9, book.getAvailableQuantity());
             pstmt.setString(10, book.getImage());
-            // Set các thuộc tính khác nếu cần
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     public boolean updateBook(Book book) {
         String sql = "UPDATE Books SET title = ?, description = ?, author = ?, publisher = ?," +
                 " publishYear = ?, genre = ?, rating = ?, available_quantity = ? WHERE book_id = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, book.getTitle());
@@ -178,7 +195,9 @@ public class BookDAO {
     public boolean deleteBook(int bookId) {
         String sql = "DELETE FROM Books WHERE book_id = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, bookId);
@@ -192,12 +211,13 @@ public class BookDAO {
         }
     }
 
-    //TODO: check conflict
     public static List<Book> searchBooks(String keyword) {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM Books";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -238,7 +258,9 @@ public class BookDAO {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM Books WHERE genre = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, genre);
             ResultSet rs = pstmt.executeQuery();
@@ -267,7 +289,9 @@ public class BookDAO {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT * FROM Books WHERE genre = ? LIMIT 6";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, genre);
             ResultSet resultSet = pstmt.executeQuery();
@@ -312,7 +336,9 @@ public class BookDAO {
         String query = "SELECT book_id, title, description, image, genre, rating, available_quantity, author, publishYear, publisher " +
                 "FROM Books WHERE image IS NULL OR image = ''";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
@@ -341,7 +367,9 @@ public class BookDAO {
     public void updateBookImage(Book book) throws Exception {
         String query = "UPDATE Books SET image = ? WHERE book_id = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, book.getImage());
@@ -356,8 +384,10 @@ public class BookDAO {
     public static JSONArray getBooksJson() {
         JSONArray booksJsonArray = new JSONArray(); // Mảng JSON để chứa các sách
 
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
         // Kết nối tới cơ sở dữ liệu
-        try (Connection conn = DatabaseConnection.getConnection()) {
+        try (Connection conn = dbConnection.getConnection()) {
             // Truy vấn SQL lấy ID và tên sách
             String query = "SELECT book_id, title FROM books"; // Giả sử bảng sách có tên là "books"
             PreparedStatement stmt = conn.prepareStatement(query);

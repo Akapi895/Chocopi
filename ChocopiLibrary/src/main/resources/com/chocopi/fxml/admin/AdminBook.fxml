@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminBookController">
+<AnchorPane id="bgr" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminBookController">
     <fx:include source="SideBar.fxml" />
-    <TableView fx:id="bookTableView" layoutX="314.0" layoutY="124.0" prefHeight="462.0" prefWidth="650.0" styleClass="table">
+    <TableView id="table" fx:id="bookTableView" layoutX="314.0" layoutY="124.0" prefHeight="462.0" prefWidth="650.0" styleClass="table">
         <columns>
             <TableColumn fx:id="bookIdColumn" prefWidth="90.0" style="-fx-font-size: 16;" styleClass="head" text="Book ID" />
             <TableColumn fx:id="nameColumn" prefWidth="187.0" style="-fx-font-size: 16;" styleClass="head" text="Name" />
@@ -18,13 +18,13 @@
             <TableColumn fx:id="timesBorrowedColumn" prefWidth="184.79996337890623" style="-fx-font-size: 16; -fx-text-fill: #ffffff;" styleClass="head" text="Times borrowed" />
         </columns>
     </TableView>
-    <Label layoutX="314.0" layoutY="61.0" text="Book ID:" textFill="#3e72a7" underline="true">
+    <Label layoutX="314.0" layoutY="71.0" text="Book ID:" textFill="#3e72a7" underline="true">
         <font>
             <Font name="System Bold" size="18.0" />
         </font>
     </Label>
-    <TextField id="bookid" fx:id="bookId" layoutX="398.0" layoutY="59.0" />
-    <Button id="addbook" fx:id="btnAddBook" layoutX="854.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleAddBookClick" prefHeight="37.0" prefWidth="114.0" text="+ Add Book">
+    <TextField id="bookid" fx:id="bookId" layoutX="398.0" layoutY="65.0" />
+    <Button id="addbook" fx:id="btnAddBook" layoutX="847.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleAddBookClick" prefHeight="37.0" prefWidth="114.0" text="+ Add Book">
         <font>
             <Font size="14.0" />
         </font>

@@ -5,16 +5,42 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
+    // Khai báo các thuộc tính cấu hình cơ sở dữ liệu
     private static final String URL = "jdbc:mysql://localhost:3306/chocopi";
     private static final String USER = "root";
     private static final String PASSWORD = "123123";
-    private static Connection connection = null;
 
-    private DatabaseConnection() {}
+    // Biến giữ instance Singleton
+    private static volatile DatabaseConnection instance = null;
 
-    public static Connection getConnection() {
+    // Biến kết nối
+    private Connection connection;
+
+    // Constructor private để ngăn tạo instance từ bên ngoài
+    private DatabaseConnection() {
         try {
-            // Kiểm tra nếu kết nối đã bị đóng hoặc chưa được tạo, mở kết nối mới
+            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error initializing database connection.", e);
+        }
+    }
+
+    // Phương thức để lấy instance Singleton
+    public static DatabaseConnection getInstance() {
+        if (instance == null) {
+            synchronized (DatabaseConnection.class) {
+                if (instance == null) {
+                    instance = new DatabaseConnection();
+                }
+            }
+        }
+        return instance;
+    }
+
+    // Phương thức để lấy Connection
+    public Connection getConnection() {
+        try {
             if (connection == null || connection.isClosed()) {
                 synchronized (DatabaseConnection.class) {
                     if (connection == null || connection.isClosed()) {
@@ -24,16 +50,15 @@ public class DatabaseConnection {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Có thể ném lại ngoại lệ nếu cần hoặc thông báo lỗi.
+            throw new RuntimeException("Error getting database connection.", e);
         }
         return connection;
     }
 
-    public static void closeConnection() {
+    public void closeConnection() {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                connection = null; // Đảm bảo kết nối được khởi tạo lại khi cần thiết
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,6 +1,10 @@
 #image {
     -fx-border-color: #3e72a7;
     -fx-border-width: 3;
+    -fx-pref-height: 280;
+    -fx-max-height: 280;
+    -fx-pref-width: 210;
+    -fx-max-width: 210;
 }
 
 #select {

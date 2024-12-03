@@ -128,7 +128,7 @@ public class AdminHomeController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminBook.fxml"));
         try {
             Scene newScene = new Scene(loader.load());
-            String cssLoad = "/com/chocopi/css/admin/AdminBook.css";
+            String cssLoad = "/com/chocopi/css/admin/SideBar.css";
 
             newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminBook.css").toExternalForm());
             newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());
@@ -146,7 +146,7 @@ public class AdminHomeController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminStudent.fxml"));
         try {
             Scene newScene = new Scene(loader.load());
-            String cssLoad = "/com/chocopi/css/admin/AdminStudent.css";
+            String cssLoad = "/com/chocopi/css/admin/SideBar.css";
 
             newScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminStudent.css").toExternalForm());
             newScene.getStylesheets().add(getClass().getResource(cssLoad).toExternalForm());

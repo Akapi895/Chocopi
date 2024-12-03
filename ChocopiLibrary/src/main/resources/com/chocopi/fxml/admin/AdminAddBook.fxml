@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminAddBookController">
+<AnchorPane prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminAddBookController">
    <children>
       <AnchorPane id="main" layoutX="117.0" layoutY="35.0" prefHeight="621.0" prefWidth="790.0" />
-      <AnchorPane id="image" layoutX="161.0" layoutY="63.0" prefHeight="280.0" prefWidth="210.0" />
-      <ImageView id="image" fx:id="photo" fitHeight="280.0" fitWidth="210.0" layoutX="161.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox id="image" layoutX="161.0" layoutY="63.0" prefHeight="200.0" prefWidth="100.0" />
+      <ImageView id="image" fx:id="photo" fitHeight="280.0" fitWidth="210.0" layoutX="161.0" layoutY="63.0" pickOnBounds="true" />
       <Button id="addbook" fx:id="btnAddPhoto" layoutX="216.0" layoutY="188.0" mnemonicParsing="false" onAction="#addPhoto" style="-fx-background-color: transparent;" text="+Add photo" textFill="#00b7ff">
          <font>
             <Font name="System Italic" size="14.0" />
@@ -152,9 +152,9 @@
             <Insets left="-15.0" right="-12.0" />
          </padding>
       </Button>
-      <Button id="c1" fx:id="add1" layoutX="79.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#handleMethod1" prefHeight="98.0" prefWidth="40.0" styleClass="rotate" text="Mode 1" textFill="#3e72a7">
+      <Button id="c1" fx:id="add1" layoutX="69.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#handleMethod1" prefHeight="98.0" prefWidth="50.0" styleClass="rotate" text="Mode 1" textFill="#3e72a7">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
          <padding>
             <Insets left="-15.0" right="-12.0" />

@@ -92,6 +92,7 @@ public class UserHistoryUI extends UserSideBarController {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserAddition.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
 
             Stage stage = (Stage) moreBrw.getScene().getWindow();
             stage.setScene(scene);
@@ -109,6 +110,7 @@ public class UserHistoryUI extends UserSideBarController {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserAddition.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
 
             Stage stage = (Stage) moreInterest.getScene().getWindow();
             stage.setScene(scene);

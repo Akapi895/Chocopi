@@ -255,15 +255,15 @@ public class UserBookUI {
             String username = user.getUsername();
 
             Label usernameLabel = new Label(username);
-            usernameLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #333333;");
+            usernameLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: #622e23; -fx-padding: 10 0 0 10");
 
             Label commentLabel = new Label(comment.getComment());
             commentLabel.setWrapText(true);
-            commentLabel.setStyle("-fx-background-color: #f0f0f0; -fx-padding: 10px; -fx-border-color: #cccccc; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+            commentLabel.setStyle("-fx-background-color: #ffffff; -fx-padding: 5 10 5 10; -fx-border-color: #3e72a7; -fx-border-radius: 20px; -fx-background-radius: 20px;");
 
             // Tạo HBox chứa cả tên người dùng và bình luận
             HBox commentBox = new HBox(10, usernameLabel, commentLabel);
-            commentBox.setStyle("-fx-alignment: top-left; -fx-spacing: 5px;");
+            commentBox.setStyle("-fx-alignment: top-left; -fx-spacing: 10px;");
 
             // Thêm HBox vào VBox
             commentsContainer.getChildren().add(commentBox);

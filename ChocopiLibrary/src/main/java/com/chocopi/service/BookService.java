@@ -28,8 +28,8 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class BookService {
-    private static String GoogleBookApi = ApiConfig.getGoogleBooksApiKey();
-    private static String GoogleBookURL = ApiConfig.getGoogleBooksURL();
+    private static final String GoogleBookApi = ApiConfig.getInstance().getGoogleBooksApiKey();
+    private static final String GoogleBookURL = ApiConfig.getInstance().getGoogleBooksURL();
     public static final String basePath = System.getProperty("user.dir") + "/src/main/resources/com/chocopi/images/book";
 
     public static List<Book> fetchBooksInfo(String query) {
@@ -195,106 +195,44 @@ public class BookService {
                         Book newBook = new Book(bookTitle, description, image, genre, rating, 1000000, author, year, publisher);
                         books.add(newBook);
 
-                        if (books.size() >= totalBooksToFetch) {
-                            break;
-                        }
                     }
-                } else {
-                    System.err.println("GET request failed. Response Code: " + conn.getResponseCode());
-                    break;
                 }
-                startIndex += currentMaxResults;
+                startIndex += maxResultsPerRequest;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return books;
     }
 
-    private static String getJsonArrayFirstItem(JsonObject obj, String key, String defaultValue) {
-        if (obj.has(key) && obj.getAsJsonArray(key).size() > 0) {
-            return obj.getAsJsonArray(key).get(0).getAsString();
+    private static String extractImageUrl(JsonObject volumeInfo) {
+        String image = null;
+        if (volumeInfo.has("imageLinks")) {
+            JsonObject imageLinks = volumeInfo.getAsJsonObject("imageLinks");
+            if (imageLinks != null && imageLinks.has("thumbnail")) {
+                image = imageLinks.get("thumbnail").getAsString();
+            }
+        }
+        return image == null ? "http://books.google.com/books/content?id=uIO2DgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" : image;
+    }
+
+    private static String getJsonArrayFirstItem(JsonObject volumeInfo, String key, String defaultValue) {
+        if (volumeInfo.has(key) && volumeInfo.getAsJsonArray(key).size() > 0) {
+            return volumeInfo.getAsJsonArray(key).get(0).getAsString();
         }
         return defaultValue;
     }
 
-    private static String extractImageUrl(JsonObject volumeInfo) {
-        if (volumeInfo.has("imageLinks")) {
-            JsonObject imageLinks = volumeInfo.getAsJsonObject("imageLinks");
-            if (imageLinks.has("thumbnail")) {
-                return imageLinks.get("thumbnail").getAsString();
-            } else if (imageLinks.has("smallThumbnail")) {
-                return imageLinks.get("smallThumbnail").getAsString();
-            }
-        }
-        return "http://books.google.com/books/content?id=uIO2DgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api";
-    }
-
-
-    public static String searchImageUrl(String keyword) {
-        String apiKey = "la2IM83kwlxbo4wh06CgZGuinVBm3JwqLCtYvjyHztk";
-        String apiUrl = "https://api.unsplash.com/search/photos?query=" + keyword + "&client_id=" + apiKey;
-
-        try {
-            URL url = new URL(apiUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            // Parse JSON để lấy URL của ảnh
-            String jsonResponse = response.toString();
-            // Dùng thư viện như Gson hoặc Jackson để parse JSON.
-            return parseImageUrlFromJson(jsonResponse);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static void ensureDirectoryExists(String directoryPath) {
-        File directory = new File(directoryPath);
-        if (!directory.exists()) {
-            directory.mkdirs(); // Tạo thư mục nếu chưa tồn tại
-        }
-    }
-
     public static void downloadImage(String imageUrl, String destinationPath) {
-        ensureDirectoryExists(new File(destinationPath).getParent());
-        try (BufferedInputStream in = new BufferedInputStream(new URL(imageUrl).openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream(destinationPath)) {
-
-            byte dataBuffer[] = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
-                fileOutputStream.write(dataBuffer, 0, bytesRead);
-            }
-//            System.out.println("Image downloaded to " + destinationPath);
+        try {
+            URL url = new URL(imageUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            InputStream inputStream = connection.getInputStream();
+            Files.copy(inputStream, Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static String parseImageUrlFromJson(String jsonResponse) {
-        try {
-            JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
-            JsonArray resultsArray = jsonObject.getAsJsonArray("results");
-
-            if (resultsArray.size() > 0) {
-                JsonObject firstResult = resultsArray.get(0).getAsJsonObject();
-                JsonObject urlsObject = firstResult.getAsJsonObject("urls");
-                return urlsObject.get("regular").getAsString(); // Lấy URL kích thước thường
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

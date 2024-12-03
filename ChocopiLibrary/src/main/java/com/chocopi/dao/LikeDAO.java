@@ -10,7 +10,10 @@ import java.util.List;
 public class LikeDAO {
     public static boolean addLike(int userId, int bookId) {
         String sql = "INSERT INTO likes (user_id, book_id) VALUES (?, ?)";
-        try (Connection connection = DatabaseConnection.getConnection();
+
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection connection = dbConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, userId);
@@ -26,7 +29,10 @@ public class LikeDAO {
     // Phương thức để xóa một bản ghi "like" khỏi bảng likes
     public static boolean removeLike(int userId, int bookId) {
         String sql = "DELETE FROM likes WHERE user_id = ? AND book_id = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
+
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection connection = dbConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, userId);
@@ -42,7 +48,10 @@ public class LikeDAO {
     public static List<Integer> getLikedBooksByUser(int userId) {
         List<Integer> likedBooks = new ArrayList<>();
         String sql = "SELECT book_id FROM likes WHERE user_id = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
+
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection connection = dbConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, userId);
@@ -62,8 +71,10 @@ public class LikeDAO {
         List<Book> books = new ArrayList<>();
         String sql = "SELECT book_id FROM likes WHERE user_id = ?";
 
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
         List<Integer> bookIds = new ArrayList<>();
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, userId);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -87,7 +98,9 @@ public class LikeDAO {
 
     public static boolean isBookLikedByUser(int userId, int bookId) {
         String sql = "SELECT COUNT(*) AS count FROM likes WHERE user_id = ? AND book_id = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection connection = dbConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, userId);
@@ -107,7 +120,8 @@ public class LikeDAO {
     public List<String> getAllLikes() {
         List<String> likes = new ArrayList<>();
         String sql = "SELECT like_id, user_id, book_id FROM likes";
-        try (Connection connection = DatabaseConnection.getConnection();
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+        try (Connection connection = dbConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
              ResultSet resultSet = preparedStatement.executeQuery()) {
 

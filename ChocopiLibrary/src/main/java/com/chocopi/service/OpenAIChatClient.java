@@ -13,11 +13,12 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class OpenAIChatClient {
-    private static final String API_URL = ApiConfig.getOpenaiApiUrl();
+    private static final ApiConfig apiConfig = ApiConfig.getInstance();
+    private static final String API_URL = apiConfig.getOpenaiApiUrl();
     private final String apiKey;
 
-    public OpenAIChatClient(String apiKey) {
-        this.apiKey = apiKey;
+    public OpenAIChatClient() {
+        this.apiKey = apiConfig.getOpenaiApiKey();
     }
 
     public String sendMessage(String query) throws IOException {
@@ -66,12 +67,11 @@ public class OpenAIChatClient {
     }
 
     public static String handleUserQuestion(String query) {
-        OpenAIChatClient chatClient = new OpenAIChatClient(ApiConfig.getOpenaiApiKey());
+        OpenAIChatClient chatClient = new OpenAIChatClient();
 
         String responseContent = null;
         try {
             responseContent = chatClient.sendMessage(query);
-//            System.out.println("Response Content: " + responseContent);
         } catch (IOException e) {
             System.err.println("Error occurred: " + e.getMessage());
         }

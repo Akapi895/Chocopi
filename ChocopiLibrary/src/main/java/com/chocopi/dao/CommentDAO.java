@@ -11,7 +11,10 @@ public class CommentDAO {
     public static List<UserComment> getCommentsByBookId(int bookId) {
         List<UserComment> comments = new ArrayList<>();
         String query = "SELECT * FROM comments WHERE book_id = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
+
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection connection = dbConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, bookId);
@@ -35,7 +38,10 @@ public class CommentDAO {
 
     public static boolean addComment(UserComment comment) {
         String query = "INSERT INTO comments (book_id, user_id, comment, created_at) VALUES (?, ?, ?, ?)";
-        try (Connection connection = DatabaseConnection.getConnection();
+
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection connection = dbConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, comment.getBookId());
@@ -53,7 +59,10 @@ public class CommentDAO {
     // Xóa bình luận
     public boolean deleteComment(int commentId) {
         String query = "DELETE FROM comments WHERE comment_id = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
+
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection connection = dbConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, commentId);
