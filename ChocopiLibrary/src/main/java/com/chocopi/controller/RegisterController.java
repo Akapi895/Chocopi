@@ -92,6 +92,7 @@ public class RegisterController {
 
         boolean isRegistered = userDAO.addUser(user);
         SessionManager.setUser(user);
+        SessionManager.setUserId(userId);
 
         if (isRegistered) {
             SessionManager.setUser(user);
@@ -116,6 +117,8 @@ public class RegisterController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/user/UserPersonal.fxml"));
             Scene loginScene = new Scene(loader.load());
+            loginScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/UserPersonal.css").toExternalForm());
+            loginScene.getStylesheets().add(getClass().getResource("/com/chocopi/css/user/SideBar.css").toExternalForm());
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(loginScene);
         } catch (Exception e) {

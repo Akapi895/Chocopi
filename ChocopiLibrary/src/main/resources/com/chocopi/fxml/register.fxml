@@ -198,7 +198,7 @@
                         <Insets left="38.0" />
                     </VBox.margin>
                 </HBox>
-                <Button id="submit" maxWidth="100.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="38.0" prefWidth="100.0" text="Submit">
+                <Button id="submit" maxWidth="100.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="38.0" prefWidth="100.0" style="-fx-cursor: hand;" text="Submit">
                     <font>
                         <Font size="16.0" />
                     </font>

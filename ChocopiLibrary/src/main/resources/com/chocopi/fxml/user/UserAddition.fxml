@@ -158,10 +158,10 @@
                      </HBox>
                      <HBox prefHeight="100.0" prefWidth="200.0" spacing="55.0">
                         <children>
-                                <Button fx:id="nameBtn7" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
                                 <Button fx:id="nameBtn6" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                                <Button fx:id="nameBtn9" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                <Button fx:id="nameBtn7" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
                                 <Button fx:id="nameBtn8" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                <Button fx:id="nameBtn9" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
                                 <Button fx:id="nameBtn10" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
                         </children>
                         <VBox.margin>

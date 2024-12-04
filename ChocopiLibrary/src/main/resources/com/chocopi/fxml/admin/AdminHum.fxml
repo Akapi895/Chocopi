@@ -19,10 +19,10 @@
     <fx:include source="SideBar.fxml" />
     <TableView fx:id="studentTableView" layoutX="285.0" layoutY="223.0" prefHeight="200.0" prefWidth="400.0" styleClass="stu-table">
         <columns>
-            <TableColumn fx:id="userIdColumn" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" style="-fx-font-size: 14;" text="User ID" />
-            <TableColumn fx:id="userNameColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" style="-fx-font-size: 14;" text="Name" />
+            <TableColumn fx:id="userIdColumn" maxWidth="70.0" minWidth="62.0" prefWidth="62.6666259765625" style="-fx-font-size: 14;" text="User ID" />
+            <TableColumn fx:id="userNameColumn" maxWidth="108.0" minWidth="100.0" prefWidth="107.3333740234375" style="-fx-font-size: 14;" text="Name" />
             <TableColumn fx:id="emailColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" style="-fx-font-size: 14;" text="Email" />
-            <TableColumn fx:id="borrowedBooksColumn" maxWidth="120.0" minWidth="140.0" prefWidth="120.0" style="-fx-font-size: 14;" text="Borrowed Books" />
+            <TableColumn fx:id="borrowedBooksColumn" maxWidth="128.0" minWidth="112.666748046875" prefWidth="128.0" style="-fx-font-size: 14;" text="Borrowed Books" />
         </columns>
     </TableView>
     <Label layoutX="285.0" layoutY="194.0" text="Student" textFill="#3e72a7">
@@ -83,7 +83,7 @@
                     <Font name="System Bold" size="16.0" />
                 </font>
             </Label>
-            <Label text="No. Of Students" textFill="#622e23" GridPane.columnIndex="2">
+            <Label text="No. Of Users" textFill="#622e23" GridPane.columnIndex="2">
                 <font>
                     <Font name="System Bold" size="16.0" />
                 </font>
@@ -185,10 +185,13 @@
             <TableColumn fx:id="bookIdColumn" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" style="-fx-font-size: 14;" text="Book ID" />
             <TableColumn fx:id="bookNameColumn" maxWidth="120.0" minWidth="100.0" prefWidth="120.0" style="-fx-font-size: 14;" text="Name" />
             <TableColumn fx:id="authorColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" style="-fx-font-size: 14;" text="Author" />
-            <TableColumn fx:id="genreColumn" maxWidth="120.0" minWidth="110.0" style="-fx-font-size: 14;" text="Genre" />
+            <TableColumn fx:id="genreColumn" maxWidth="120.0" minWidth="101.333251953125" prefWidth="106.66656494140625" style="-fx-font-size: 14;" text="Genre" />
         </columns>
     </TableView>
-    <Label fx:id="pieChartDetails" layoutX="706.0" layoutY="554.0" prefHeight="90.0" prefWidth="300.0" text="Label" />
+    <Label fx:id="pieChartDetails" layoutX="706.0" layoutY="554.0" prefHeight="90.0" prefWidth="300.0" text="Label">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
     <Text fill="#622e23" layoutX="779.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Issued Books Details">
         <font>
             <Font name="System Bold" size="16.0" />

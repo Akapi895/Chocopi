@@ -87,7 +87,7 @@
                         <Insets left="11.0" />
                     </VBox.margin>
                 </HBox>
-                <Label onMouseClicked="#ForgetPass" prefHeight="20.0" prefWidth="154.0" text="Forget your password?" textFill="#622e23">
+                <Label onMouseClicked="#ForgetPass" prefHeight="20.0" prefWidth="154.0" style="-fx-cursor: hand;" text="Forget your password?" textFill="#622e23">
                     <padding>
                         <Insets left="15.0" />
                     </padding>
@@ -98,7 +98,7 @@
                         <Insets left="150.0" top="5.0" />
                     </VBox.margin>
                 </Label>
-                <Button id="login-click" mnemonicParsing="false" onAction="#handleLogin" prefHeight="38.0" prefWidth="290.0" text="Login">
+                <Button id="login-click" mnemonicParsing="false" onAction="#handleLogin" prefHeight="38.0" prefWidth="290.0" style="-fx-cursor: hand;" text="Login">
                     <font>
                         <Font name="Arial" size="16.0" />
                     </font>
@@ -113,7 +113,7 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Button layoutX="569.0" layoutY="544.0" mnemonicParsing="false" onAction="#goToRegister" style="-fx-background-color: transparent;" text="Register" textFill="#c57690" underline="true">
+        <Button layoutX="569.0" layoutY="544.0" mnemonicParsing="false" onAction="#goToRegister" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Register" textFill="#c57690" underline="true">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
