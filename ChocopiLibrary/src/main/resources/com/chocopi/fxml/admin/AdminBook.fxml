@@ -34,4 +34,9 @@
             <Font size="16.0" />
         </font>
     </Button>
+   <Button id="delete" fx:id="btnEdit" layoutX="814.0" layoutY="611.0" mnemonicParsing="false" onAction="#handleEditClick" text="Edit">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Button>
 </AnchorPane>

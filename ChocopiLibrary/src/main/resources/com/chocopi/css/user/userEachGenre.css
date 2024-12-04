@@ -27,37 +27,40 @@
 }
 
 .h1 > .v1 {
-    -fx-pref-width: 120;
-    -fx-min-width: 120;
-    -fx-max-width: 120;
     -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
     -fx-border-width: 2;
     -fx-border-color: #b95274;
     -fx-alignment: center;
+    -fx-pref-height: 149;
+    -fx-max-height: 149;
+    -fx-min-height: 149;
+    -fx-pref-width: 109;
+    -fx-max-width: 109;
+    -fx-min-width: 109;
 }
 
 .h2 > .v2 {
-    -fx-pref-width: 120;
-    -fx-min-width: 120;
-    -fx-max-width: 120;
     -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
     -fx-border-width: 2;
     -fx-border-color: #b95274;
     -fx-alignment: center;
+    -fx-pref-height: 149;
+    -fx-max-height: 149;
+    -fx-min-height: 149;
+    -fx-pref-width: 109;
+    -fx-max-width: 109;
+    -fx-min-width: 109;
 }
 
 .h3 > .v3 {
-    -fx-pref-width: 120;
-    -fx-min-width: 120;
-    -fx-max-width: 120;
     -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
     -fx-border-width: 2;
     -fx-border-color: #b95274;
     -fx-alignment: center;
+    -fx-pref-height: 149;
+    -fx-max-height: 149;
+    -fx-min-height: 149;
+    -fx-pref-width: 109;
+    -fx-max-width: 109;
+    -fx-min-width: 109;
 }

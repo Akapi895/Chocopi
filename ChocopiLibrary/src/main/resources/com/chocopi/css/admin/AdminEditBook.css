@@ -1,0 +1,69 @@
+#image {
+    -fx-border-color: #3e72a7;
+    -fx-border-width: 3;
+    -fx-pref-height: 280;
+    -fx-max-height: 280;
+    -fx-pref-width: 210;
+    -fx-max-width: 210;
+}
+
+#select {
+    -fx-text-fill: #00b7ff;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-width: 2;
+    -fx-border-color: #3e72a7;
+    -fx-border-radius: 10;
+}
+
+#save {
+    -fx-font-weight: bold;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-width: 2;
+    -fx-border-color: #3e72a7;
+    -fx-border-radius: 10;
+}
+
+#c1 {
+    -fx-background-radius: 10 0 0 10;
+    -fx-background-color: #e0f1ff;
+    -fx-border-width: 2;
+    -fx-border-color: #3e72a7;
+    -fx-border-radius: 10 0 0 10;
+}
+
+.rotate .text {
+    -fx-rotate: -90;
+}
+
+#c2 {
+    -fx-background-radius: 10 0 0 10;
+    -fx-background-color: #e0f1ff;
+    -fx-border-width: 2;
+    -fx-border-color: #3e72a7;
+    -fx-border-radius: 10 0 0 10;
+}
+
+#main {
+    -fx-background-radius: 30;
+    -fx-background-color: #e0f1ff;
+    -fx-border-radius: 30;
+    -fx-border-color: #3e72a7;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 5);
+}
+
+#type {
+    -fx-background-radius: 15;
+    -fx-border-width: 2;
+    -fx-border-color: #3e72a7;
+    -fx-border-radius: 15;
+}
+
+#typearea {
+    -fx-background-radius: #3e72a7;
+    -fx-border-width: 2;
+    -fx-border-color: #3e72a7;
+    -fx-border-radius: 0;
+}

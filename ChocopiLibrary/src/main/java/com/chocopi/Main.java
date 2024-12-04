@@ -1,6 +1,8 @@
 package com.chocopi;
 
+import com.chocopi.dao.BookDAO;
 import com.chocopi.dao.UserDAO;
+import com.chocopi.model.Book;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

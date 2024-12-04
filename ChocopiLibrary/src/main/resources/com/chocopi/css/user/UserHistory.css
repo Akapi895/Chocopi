@@ -16,94 +16,28 @@
     -fx-background-color: #ffffff;
 }
 
-#1 {
+.h1 > .v1 {
     -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
     -fx-border-width: 2;
     -fx-border-color: #b95274;
     -fx-alignment: center;
-}
-#2 {
-    -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-    -fx-border-width: 2;
-    -fx-border-color: #b95274;
-    -fx-alignment: center;
+    -fx-pref-height: 149;
+    -fx-max-height: 149;
+    -fx-min-height: 149;
+    -fx-pref-width: 109;
+    -fx-max-width: 109;
+    -fx-min-width: 109;
 }
 
-#3 {
+.h2 > .v2 {
     -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
     -fx-border-width: 2;
     -fx-border-color: #b95274;
     -fx-alignment: center;
-}
-
-#4 {
-    -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-    -fx-border-width: 2;
-    -fx-border-color: #b95274;
-    -fx-alignment: center;
-}
-
-#5 {
-    -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-    -fx-border-width: 2;
-    -fx-border-color: #b95274;
-    -fx-alignment: center;
-}
-
-#i1 {
-    -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-    -fx-border-width: 2;
-    -fx-border-color: #b95274;
-    -fx-alignment: center;
-}
-#i2 {
-    -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-    -fx-border-width: 2;
-    -fx-border-color: #b95274;
-    -fx-alignment: center;
-}
-
-#i3 {
-    -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-    -fx-border-width: 2;
-    -fx-border-color: #b95274;
-    -fx-alignment: center;
-}
-
-#i4 {
-    -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-    -fx-border-width: 2;
-    -fx-border-color: #b95274;
-    -fx-alignment: center;
-}
-
-#i5 {
-    -fx-background-color: transparent;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-    -fx-border-width: 2;
-    -fx-border-color: #b95274;
-    -fx-alignment: center;
-}
-
-#im {
-    border-radius: 20;
+    -fx-pref-height: 149;
+    -fx-max-height: 149;
+    -fx-min-height: 149;
+    -fx-pref-width: 109;
+    -fx-max-width: 109;
+    -fx-min-width: 109;
 }

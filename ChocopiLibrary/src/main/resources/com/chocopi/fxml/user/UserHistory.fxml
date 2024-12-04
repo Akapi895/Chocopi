@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,59 +14,78 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserHistoryUI">
+   <ImageView fitHeight="713.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../images/identify/bgr.png" />
+      </image>
+   </ImageView>
     <fx:include source="SideBar.fxml" />
     <AnchorPane layoutX="290.0" layoutY="29.0" prefHeight="195.0" prefWidth="652.0">
         <children>
-         <HBox layoutY="32.0" prefHeight="178.0" prefWidth="690.0">
+         <VBox prefHeight="178.0" prefWidth="632.0">
             <children>
-               <VBox id="1" prefHeight="186.0" prefWidth="122.0">
+               <HBox prefHeight="126.0" prefWidth="632.0" spacing="15.0" styleClass="h1">
                   <children>
-                          <ImageView id="im" fx:id="borrow1" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
-                        <VBox.margin>
-                           <Insets top="5.0" />
-                        </VBox.margin>
-                     </ImageView>
+                     <VBox id="1" prefHeight="186.0" prefWidth="122.0" styleClass="v1">
+                        <children>
+                                <ImageView id="im" fx:id="borrow1" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                           </ImageView>
+                        </children>
+                     </VBox>
+                     <VBox id="2" prefHeight="186.0" prefWidth="122.0" styleClass="v1">
+                        <children>
+                                <ImageView fx:id="borrow2" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" />
+                        </children>
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </VBox>
+                     <VBox id="3" prefHeight="186.0" prefWidth="122.0" styleClass="v1">
+                        <children>
+                                <ImageView fx:id="borrow3" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" styleClass="imageview" />
+                        </children>
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </VBox>
+                     <VBox id="4" prefHeight="186.0" prefWidth="122.0" styleClass="v1">
+                        <children>
+                                <ImageView fx:id="borrow4" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" styleClass="imageview" />
+                        </children>
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </VBox>
+                     <VBox id="5" prefHeight="186.0" prefWidth="122.0" styleClass="v1">
+                        <children>
+                                <ImageView fx:id="borrow5" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" styleClass="imageview" />
+                        </children>
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </VBox>
+                  </children>
+               </HBox>
+               <HBox prefHeight="100.0" prefWidth="200.0" spacing="63.0">
+                  <children>
                           <Button fx:id="brwBtn1" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
-                  </children>
-               </VBox>
-               <VBox id="2" prefHeight="186.0" prefWidth="122.0">
-                  <children>
-                          <ImageView fx:id="borrow2" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
                      <Button fx:id="brwBtn2" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
-                  </children>
-                  <HBox.margin>
-                     <Insets left="20.0" />
-                  </HBox.margin>
-               </VBox>
-               <VBox id="3" prefHeight="186.0" prefWidth="122.0">
-                  <children>
-                          <ImageView fx:id="borrow3" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" styleClass="imageview" />
                      <Button fx:id="brwBtn3" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
-                  </children>
-                  <HBox.margin>
-                     <Insets left="20.0" />
-                  </HBox.margin>
-               </VBox>
-               <VBox id="4" prefHeight="186.0" prefWidth="122.0">
-                  <children>
-                          <ImageView fx:id="borrow4" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" styleClass="imageview" />
                      <Button fx:id="brwBtn4" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
-                  </children>
-                  <HBox.margin>
-                     <Insets left="20.0" />
-                  </HBox.margin>
-               </VBox>
-               <VBox id="5" prefHeight="186.0" prefWidth="122.0">
-                  <children>
-                          <ImageView fx:id="borrow5" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" styleClass="imageview" />
                      <Button fx:id="brwBtn5" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
                   </children>
-                  <HBox.margin>
-                     <Insets left="20.0" />
-                  </HBox.margin>
-               </VBox>
+                  <VBox.margin>
+                     <Insets left="7.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
             </children>
-         </HBox>
+            <padding>
+               <Insets top="35.0" />
+            </padding>
+         </VBox>
             <Label layoutY="-1.0" prefHeight="27.0" prefWidth="147.0" text="Borrowed books" textFill="#b95274">
                 <font>
                     <Font name="System Bold" size="18.0" />
@@ -102,52 +122,66 @@
     </AnchorPane>
     <AnchorPane layoutX="290.0" layoutY="251.0" prefHeight="195.0" prefWidth="652.0">
         <children>
-         <HBox layoutX="-1.0" layoutY="35.0" prefHeight="168.0" prefWidth="690.0">
+         <VBox prefHeight="200.0" prefWidth="100.0">
             <children>
-               <VBox id="i1" prefHeight="186.0" prefWidth="122.0">
+               <HBox prefHeight="168.0" prefWidth="690.0" spacing="15.0" styleClass="h2">
                   <children>
-                          <ImageView fx:id="interest1" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
+                     <VBox id="i1" prefHeight="186.0" prefWidth="122.0" styleClass="v2">
+                        <children>
+                                <ImageView fx:id="interest1" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" />
+                        </children>
+                     </VBox>
+                     <VBox id="i2" prefHeight="186.0" prefWidth="122.0" styleClass="v2">
+                        <children>
+                                <ImageView fx:id="interest2" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" />
+                        </children>
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </VBox>
+                     <VBox id="i3" prefHeight="186.0" prefWidth="122.0" styleClass="v2">
+                        <children>
+                                <ImageView fx:id="interest3" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" />
+                        </children>
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </VBox>
+                     <VBox id="i4" prefHeight="186.0" prefWidth="122.0" styleClass="v2">
+                        <children>
+                                <ImageView fx:id="interest4" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" />
+                        </children>
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </VBox>
+                     <VBox id="i5" prefHeight="186.0" prefWidth="122.0" styleClass="v2">
+                        <children>
+                                <ImageView fx:id="interest5" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" />
+                        </children>
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </VBox>
+                  </children>
+               </HBox>
+               <HBox prefHeight="100.0" prefWidth="200.0" spacing="63.0">
+                  <children>
+                     <Button fx:id="favor5" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
                      <Button fx:id="favor1" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
-                  </children>
-               </VBox>
-               <VBox id="i2" prefHeight="186.0" prefWidth="122.0">
-                  <children>
-                          <ImageView fx:id="interest2" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
                      <Button fx:id="favor2" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
-                  </children>
-                  <HBox.margin>
-                     <Insets left="20.0" />
-                  </HBox.margin>
-               </VBox>
-               <VBox id="i3" prefHeight="186.0" prefWidth="122.0">
-                  <children>
-                          <ImageView fx:id="interest3" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
                      <Button fx:id="favor3" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
-                  </children>
-                  <HBox.margin>
-                     <Insets left="20.0" />
-                  </HBox.margin>
-               </VBox>
-               <VBox id="i4" prefHeight="186.0" prefWidth="122.0">
-                  <children>
-                          <ImageView fx:id="interest4" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
                      <Button fx:id="favor4" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
                   </children>
-                  <HBox.margin>
-                     <Insets left="20.0" />
-                  </HBox.margin>
-               </VBox>
-               <VBox id="i5" prefHeight="186.0" prefWidth="122.0">
-                  <children>
-                          <ImageView fx:id="interest5" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true" />
-                     <Button fx:id="favor5" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
-                  </children>
-                  <HBox.margin>
-                     <Insets left="20.0" />
-                  </HBox.margin>
-               </VBox>
+                  <VBox.margin>
+                     <Insets left="7.0" />
+                  </VBox.margin>
+               </HBox>
             </children>
-         </HBox>
+            <padding>
+               <Insets top="35.0" />
+            </padding>
+         </VBox>
             <Label prefHeight="27.0" prefWidth="147.0" text="Interest" textFill="#b95274">
                 <font>
                     <Font name="System Bold" size="18.0" />

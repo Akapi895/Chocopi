@@ -43,6 +43,39 @@ public class BookDAO {
         return books;
     }
 
+    public static Book getBookByTitle(String bookTitle) {
+        String sql = "SELECT * FROM books WHERE title = ?";
+        DatabaseConnection dbConnection = DatabaseConnection.getInstance();
+
+        try (Connection conn = dbConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, bookTitle);
+
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                if (resultSet.next()) {
+                    Book book = new Book();
+                    book.setBookId(resultSet.getInt("book_id"));
+                    book.setTitle(resultSet.getString("title"));
+                    book.setDescription(resultSet.getString("description"));
+                    book.setAuthor(resultSet.getString("author"));
+                    book.setPublisher(resultSet.getString("publisher"));
+                    book.setPublishYear(resultSet.getInt("publishYear"));
+                    book.setGenre(resultSet.getString("genre"));
+                    book.setRating(resultSet.getInt("rating"));
+                    book.setAvailableQuantity(resultSet.getInt("available_quantity"));
+                    book.setImage(resultSet.getString("image"));
+
+                    return book;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error while checking if book exists.", e);
+        }
+        return null;
+    }
+
     public boolean isBookExists(String bookTitle) {
         String sql = "SELECT COUNT(*) FROM books WHERE title = ?";
         DatabaseConnection dbConnection = DatabaseConnection.getInstance();
@@ -164,7 +197,7 @@ public class BookDAO {
         return false;
     }
 
-    public boolean updateBook(Book book) {
+    public static boolean updateBook(Book book) {
         String sql = "UPDATE Books SET title = ?, description = ?, author = ?, publisher = ?," +
                 " publishYear = ?, genre = ?, rating = ?, available_quantity = ? WHERE book_id = ?";
 

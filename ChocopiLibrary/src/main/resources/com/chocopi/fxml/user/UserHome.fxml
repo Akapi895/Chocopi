@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,6 +15,11 @@
 
 <StackPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserHomeUI">
    <children>
+      <ImageView fitHeight="718.0" fitWidth="1027.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/identify/bgr.png" />
+         </image>
+      </ImageView>
 <!--      <fx:include source="SideBar.fxml" />-->
       <AnchorPane id="page1" prefHeight="700.0" prefWidth="1024.0">
          <fx:include source="SideBar.fxml" />
@@ -42,11 +48,11 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <HBox layoutY="35.0" prefHeight="122.0" prefWidth="606.0" spacing="15.0" styleClass="h1">
+                  <HBox layoutY="35.0" prefHeight="122.0" prefWidth="606.0" spacing="26.0" styleClass="h1">
                      <children>
                         <VBox id="v1" prefHeight="122.0" prefWidth="107.0" styleClass="v1">
                            <children>
-                              <ImageView fx:id="imageView1" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView1" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                            <HBox.margin>
                               <Insets />
@@ -54,22 +60,22 @@
                         </VBox>
                         <VBox id="v2" prefHeight="200.0" prefWidth="100.0" styleClass="v1">
                            <children>
-                              <ImageView fx:id="imageView2" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView2" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v3" prefHeight="200.0" prefWidth="100.0" styleClass="v1">
                            <children>
-                              <ImageView fx:id="imageView3" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView3" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v4" prefHeight="200.0" prefWidth="100.0" styleClass="v1">
                            <children>
-                              <ImageView fx:id="imageView4" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView4" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v5" prefHeight="200.0" prefWidth="100.0" styleClass="v1">
                            <children>
-                              <ImageView fx:id="imageView5" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView5" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                            <HBox.margin>
                               <Insets />
@@ -77,7 +83,7 @@
                         </VBox>
                         <VBox id="v6" prefHeight="200.0" prefWidth="100.0" styleClass="v1">
                            <children>
-                              <ImageView fx:id="imageView6" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView6" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                      </children>
@@ -97,36 +103,36 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <HBox layoutY="35.0" prefHeight="122.0" prefWidth="606.0" spacing="15.0" styleClass="h2">
+                  <HBox layoutY="35.0" prefHeight="122.0" prefWidth="606.0" spacing="26.0" styleClass="h2">
                      <children>
                         <VBox id="v7" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
                            <children>
-                              <ImageView fx:id="imageView7" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView7" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v8" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
                            <children>
-                              <ImageView fx:id="imageView8" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView8" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v9" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
                            <children>
-                              <ImageView fx:id="imageView9" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView9" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v10" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
                            <children>
-                              <ImageView fx:id="imageView10" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView10" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v11" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
                            <children>
-                              <ImageView id="v11" fx:id="imageView11" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView id="v11" fx:id="imageView11" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v12" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
                            <children>
-                              <ImageView fx:id="imageView12" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView12" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                      </children>
@@ -146,36 +152,36 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <HBox layoutY="35.0" prefHeight="122.0" prefWidth="606.0" spacing="15.0" styleClass="h3">
+                  <HBox layoutY="35.0" prefHeight="122.0" prefWidth="606.0" spacing="26.0" styleClass="h3">
                      <children>
                         <VBox id="v13" prefHeight="200.0" prefWidth="100.0" styleClass="v3">
                            <children>
-                              <ImageView fx:id="imageView13" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView13" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v14" prefHeight="200.0" prefWidth="100.0" styleClass="v3">
                            <children>
-                              <ImageView fx:id="imageView14" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView14" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v15" prefHeight="200.0" prefWidth="100.0" styleClass="v3">
                            <children>
-                              <ImageView fx:id="imageView15" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView15" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v16" prefHeight="200.0" prefWidth="100.0" styleClass="v3">
                            <children>
-                              <ImageView fx:id="imageView16" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView16" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v17" prefHeight="200.0" prefWidth="100.0" styleClass="v3">
                            <children>
-                              <ImageView fx:id="imageView17" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView17" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                         <VBox id="v18" prefHeight="200.0" prefWidth="100.0" styleClass="v3">
                            <children>
-                              <ImageView fx:id="imageView18" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView18" fitHeight="105.0" fitWidth="75.0" pickOnBounds="true" />
                            </children>
                         </VBox>
                      </children>

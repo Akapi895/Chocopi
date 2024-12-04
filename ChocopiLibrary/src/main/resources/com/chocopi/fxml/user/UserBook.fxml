@@ -159,22 +159,22 @@
                                 <Font name="System Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Button id="borrow" fx:id="borrowBtn" layoutX="422.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleBorrowClick" prefWidth="75.0" styleClass="borrow" text="Borrow" textFill="#3e72a7">
+                        <Button id="borrow" fx:id="borrowBtn" layoutX="422.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleBorrowClick" prefWidth="75.0" text="Borrow" textFill="#3e72a7">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button id="borrow" fx:id="returnBtn" layoutX="422.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleReturnClick" prefWidth="75.0" styleClass="borrow" text="Return" textFill="#3e72a7" visible="false">
+                        <Button id="like" fx:id="likeButton" layoutX="519.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleLikeClick" prefHeight="33.0" prefWidth="75.0" text="Like" textFill="#b95274">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button id="like" fx:id="likeButton" layoutX="519.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleLikeClick" prefHeight="33.0" prefWidth="75.0" styleClass="like" text="Like" textFill="#b95274">
+                        <Button id="dis" fx:id="dislikeButton" layoutX="519.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleDislikeClick" prefHeight="33.0" prefWidth="75.0" text="Dislike" visible="false">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button fx:id="dislikeButton" layoutX="519.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleDislikeClick" prefHeight="33.0" prefWidth="75.0" styleClass="like" text="Dislike" textFill="#b95274" visible="false">
+                        <Button id="return" fx:id="returnBtn" disable="true" layoutX="422.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleReturnClick" prefHeight="29.0" prefWidth="75.0" text="Return" visible="false">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>

@@ -3,6 +3,8 @@ package com.chocopi.controller.admin;
 import com.chocopi.dao.BookManagementDAO;
 import com.chocopi.model.BookManagement;
 import com.chocopi.model.User;
+import com.chocopi.util.BookSessionManager;
+import com.chocopi.util.SessionManager;
 import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -13,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -52,6 +55,7 @@ public class AdminBookController implements Initializable {
     LocalDate localDate = LocalDate.now();
 
     public void initialize(URL location, ResourceBundle resources) {
+        BookSessionManager.clearBookSession();
         bookList = FXCollections.observableList(bookDao.getAllBooks());
         List<BookManagement> bookManagementList = new ArrayList<>();
         bookManagementList = bookManagementDao.getAllRecords();
@@ -120,5 +124,35 @@ public class AdminBookController implements Initializable {
         Book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
         bookList.remove(selectedBook);
         bookDao.deleteBook(selectedBook.getBookId());
+    }
+
+
+    @FXML
+    public void handleEditClick(ActionEvent e) {
+        Book selected = bookTableView.getSelectionModel().getSelectedItem();
+        selected = BookDAO.getBookByTitle(selected.getTitle());
+
+        if (selected != null) {
+            bookList.remove(selected);
+            BookSessionManager.setBook(selected);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/chocopi/fxml/admin/AdminEditBook.fxml"));
+            try {
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/AdminEditBook.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("/com/chocopi/css/admin/SideBar.css").toExternalForm());
+
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                throw new RuntimeException("Error loading the edit book page", ex);
+            }
+        } else {
+            System.out.println("No book selected for editing.");
+        }
     }
 }
