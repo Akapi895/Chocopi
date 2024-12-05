@@ -17,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -133,6 +134,8 @@ public class UserHistoryUI extends UserSideBarController {
                 brwImages.get(i).setVisible(false);
                 brwBtns.get(i).setVisible(false);
                 brwBtns.get(i).setDisable(true);
+                VBox imageBox = (VBox) brwImages.get(i).getParent();
+                imageBox.setVisible(false);
             } else {
                 Integer bookId = brwBookId.get(i);
                 Book book = BookDAO.getBookById(bookId);
@@ -144,6 +147,10 @@ public class UserHistoryUI extends UserSideBarController {
                 }
                 brwBtns.get(i).setDisable(false);
                 brwBtns.get(i).setVisible(true);
+
+                VBox imageBox = (VBox) brwImages.get(i).getParent();
+                imageBox.setVisible(true);
+
                 brwBtns.get(i).setText(book.getTitle());
                 brwImages.get(i).setOnMouseClicked(event -> showBookDetails(book));
                 brwBtns.get(i).setOnMouseClicked(event -> showBookDetails(book));
@@ -163,6 +170,8 @@ public class UserHistoryUI extends UserSideBarController {
                 interestBtns.get(i).setVisible(false);
                 favors.get(i).setVisible(false);
                 favors.get(i).setDisable(true);
+                VBox imageBox = (VBox) interestBtns.get(i).getParent();
+                imageBox.setVisible(false);
             } else {
                 Integer bookId = likeBookId.get(i);
                 Book book = BookDAO.getBookById(bookId);
@@ -170,10 +179,14 @@ public class UserHistoryUI extends UserSideBarController {
                 try {
                     interestBtns.get(i).setImage(new Image(getClass().getResource(imagePath).toExternalForm()));
                 } catch (Exception e) {
-                    interestBtns.get(i).setImage(new Image(getClass().getResource("/com/chocopi/images/book/1.jpg").toExternalForm()));
+                    interestBtns.get(i).setImage(new Image(getClass().getResource("/com/chocopi/images/book/0.jpg").toExternalForm()));
                 }
                 interestBtns.get(i).setDisable(false);
                 interestBtns.get(i).setVisible(true);
+
+                VBox imageBox = (VBox) interestBtns.get(i).getParent();
+                imageBox.setVisible(true);
+
                 favors.get(i).setDisable(false);
                 favors.get(i).setVisible(true);
                 favors.get(i).setText(book.getTitle());

@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,11 +77,14 @@ public class userEachGenreUI extends UserSideBarController {
 
 
     private void updatePage() {
-        for (int i = 0 ; i < ITEMS_PER_PAGE; ++i) {
+        for (int i = 0; i < ITEMS_PER_PAGE; ++i) {
             images.get(i).setVisible(false);
             images.get(i).setDisable(true);
             buttons.get(i).setVisible(false);
             buttons.get(i).setDisable(true);
+
+            VBox imageBox = (VBox) images.get(i).getParent();
+            imageBox.setVisible(false);
         }
 
         if (books == null || books.isEmpty()) {
@@ -106,6 +110,9 @@ public class userEachGenreUI extends UserSideBarController {
                 images.get(i).setDisable(true);
                 buttons.get(i).setVisible(false);
                 buttons.get(i).setDisable(true);
+
+                VBox imageBox = (VBox) images.get(i).getParent();
+                imageBox.setVisible(false);
             } else {
                 images.get(i).setVisible(true);
                 images.get(i).setDisable(false);
@@ -114,11 +121,19 @@ public class userEachGenreUI extends UserSideBarController {
 
                 Book book = currentItems.get(i);
 
+                // Kiểm tra nếu ảnh có tồn tại hay không
                 if (book.getImage() != null && !book.getImage().isEmpty()) {
                     images.get(i).setImage(new Image(getClass().getResource(book.getImage()).toExternalForm()));
+                    VBox imageBox = (VBox) images.get(i).getParent();
+                    imageBox.setVisible(true);
                 } else {
-                    images.get(i).setImage(new Image(getClass().getResource("/com/chocopi/images/book/0.jpg").toExternalForm()));
+                    images.get(i).setVisible(false);
+                    buttons.get(i).setVisible(false);
+
+                    VBox imageBox = (VBox) images.get(i).getParent();
+                    imageBox.setVisible(false);
                 }
+
                 buttons.get(i).setText(book.getTitle());
 
                 buttons.get(i).setOnMouseClicked(event -> showBookDetails(book));
@@ -131,6 +146,7 @@ public class userEachGenreUI extends UserSideBarController {
         previousButton.setDisable(currentPage == 0);
         nextButton.setDisable(endIndex >= books.size());
     }
+
 
     public void handleSearch(ActionEvent event) {
         String searchText = searchField.getText();

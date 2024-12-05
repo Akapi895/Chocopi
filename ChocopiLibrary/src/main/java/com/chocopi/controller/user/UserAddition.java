@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -99,6 +100,9 @@ public class UserAddition extends UserSideBarController {
             buttonList.get(i).setVisible(false);
             buttonList.get(i).setDisable(true);
             buttonList.get(i).setManaged(false); // Đảm bảo không chiếm không gian khi ẩn
+
+            VBox imageBox = (VBox) imageViewList.get(i).getParent();
+            imageBox.setVisible(false);
         }
 
         if (books == null || books.isEmpty()) {
@@ -126,6 +130,8 @@ public class UserAddition extends UserSideBarController {
                 buttonList.get(i).setVisible(false);
                 buttonList.get(i).setDisable(true);
                 buttonList.get(i).setManaged(false);
+                VBox imageBox = (VBox) imageViewList.get(i).getParent();
+                imageBox.setVisible(false);
             } else {
                 imageViewList.get(i).setVisible(true);
                 imageViewList.get(i).setDisable(false);
@@ -141,6 +147,9 @@ public class UserAddition extends UserSideBarController {
                 } else {
                     imageViewList.get(i).setImage(new Image(getClass().getResource("/com/chocopi/images/book/0.jpg").toExternalForm()));
                 }
+                VBox imageBox = (VBox) imageViewList.get(i).getParent();
+                imageBox.setVisible(true);
+
                 buttonList.get(i).setText(book.getTitle());
 
                 buttonList.get(i).setOnMouseClicked(event -> showBookDetails(book));

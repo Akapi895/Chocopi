@@ -167,11 +167,11 @@
                </HBox>
                <HBox prefHeight="100.0" prefWidth="200.0" spacing="63.0">
                   <children>
-                     <Button fx:id="favor5" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
                      <Button fx:id="favor1" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
                      <Button fx:id="favor2" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
                      <Button fx:id="favor3" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
                      <Button fx:id="favor4" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
+                     <Button fx:id="favor5" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" />
                   </children>
                   <VBox.margin>
                      <Insets left="7.0" />

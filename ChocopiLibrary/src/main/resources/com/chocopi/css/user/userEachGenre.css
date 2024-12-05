@@ -6,17 +6,7 @@
     -fx-border-width: 2;
 }
 
-#pre {
-    -fx-background-color: #ffffff;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
-    -fx-border-width: 2;
-    -fx-border-color: #b95274;
-    -fx-text-fill: #b95274;
-    -fx-font-weight: bold;
-}
-
-#next {
+#pre, #next {
     -fx-background-color: #ffffff;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
