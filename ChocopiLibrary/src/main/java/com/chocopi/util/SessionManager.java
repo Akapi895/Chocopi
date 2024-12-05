@@ -113,5 +113,45 @@ public class SessionManager {
     public static void setUserId(int userId) {
         SessionManager.userId = userId;
     }
+
+    public static void setUsername(String username) {
+        SessionManager.username = username;
+    }
+
+    public static void setPassword(String password) {
+        SessionManager.password = password;
+    }
+
+    public static void setName(String name) {
+        SessionManager.name = name;
+    }
+
+    public static void setAvatar(String avatar) {
+        SessionManager.avatar = avatar;
+    }
+
+    public static void setAge(int age) {
+        SessionManager.age = age;
+    }
+
+    public static void setPhone(String phone) {
+        SessionManager.phone = phone;
+    }
+
+    public static void setFavor(String favor) {
+        SessionManager.favor = favor;
+    }
+
+    public static void setEmail(String email) {
+        SessionManager.email = email;
+    }
+
+    public static void setRole(String role) {
+        SessionManager.role = role;
+    }
+
+    public static void setTotalBorrowed(int totalBorrowed) {
+        SessionManager.totalBorrowed = totalBorrowed;
+    }
 }
 

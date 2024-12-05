@@ -298,6 +298,11 @@
                </GridPane>
             </children>
          </VBox>
+         <ImageView fitHeight="118.0" fitWidth="212.0" layoutX="796.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../images/identify/element1.png" />
+            </image>
+         </ImageView>
       </children>
    </AnchorPane>
 </AnchorPane>

@@ -13,10 +13,14 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,85 +32,78 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class BookService {
-    private static final String GoogleBookApi = ApiConfig.getInstance().getGoogleBooksApiKey();
-    private static final String GoogleBookURL = ApiConfig.getInstance().getGoogleBooksURL();
-    public static final String basePath = System.getProperty("user.dir") + "/src/main/resources/com/chocopi/images/book";
+    private static String GoogleBookApi = ApiConfig.getInstance().getGoogleBooksApiKey();
+    public static String GoogleBookURL = ApiConfig.getInstance().getGoogleBooksURL();
+    private static HttpClient httpClient = null;
+
+    public BookService(HttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
 
     public static List<Book> fetchBooksInfo(String query) {
-        List<Book> books = new ArrayList<>();
-        try {
-            String encodedQuery = URLEncoder.encode(query, "UTF-8");
-            String urlString = GoogleBookURL + encodedQuery + "&key=" + GoogleBookApi;
+            List<Book> books = new ArrayList<>();
 
-            URL url = new URL(urlString);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
+            try {
+                // Tạo HTTP request
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(GoogleBookURL + query + "&key=" + GoogleBookApi))
+                        .GET()
+                        .build();
 
-            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String inputLine;
+                // Gửi request và nhận phản hồi
+                HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
+                if (response.statusCode() == 200) {
+                    // Parse JSON từ phản hồi
+                    JsonObject jsonResponse = JsonParser.parseString(response.body()).getAsJsonObject();
+                    JsonArray items = jsonResponse.has("items") ? jsonResponse.getAsJsonArray("items") : null;
 
-                JsonObject jsonResponse = JsonParser.parseString(response.toString()).getAsJsonObject();
-                JsonArray items = jsonResponse.getAsJsonArray("items");
+                    if (items != null) {
+                        for (int i = 0; i < items.size(); i++) {
+                            JsonObject item = items.get(i).getAsJsonObject();
+                            JsonObject volumeInfo = item.getAsJsonObject("volumeInfo");
 
-                BookDAO bookDAO = new BookDAO();
-                int lastBookId = bookDAO.lastBookId();
+                            // Lấy thông tin sách
+                            String title = volumeInfo.has("title") ? volumeInfo.get("title").getAsString() : "Unknown Title";
+                            String author = volumeInfo.has("authors") && volumeInfo.getAsJsonArray("authors").size() > 0
+                                    ? volumeInfo.getAsJsonArray("authors").get(0).getAsString()
+                                    : "Unknown Author";
+                            String genre = volumeInfo.has("categories") && volumeInfo.getAsJsonArray("categories").size() > 0
+                                    ? volumeInfo.getAsJsonArray("categories").get(0).getAsString()
+                                    : "Unknown Genre";
+                            String yearString = volumeInfo.has("publishedDate") ? volumeInfo.get("publishedDate").getAsString() : "2000";
+                            int year = yearString.matches("\\d{4}") ? Integer.parseInt(yearString) : 2000;
+                            int rating = 3 + new Random().nextInt(3);
 
-                if (items != null && items.size() > 0) {
-                    for (int i = 0; i < items.size(); i++) {
-                        lastBookId++;
-                        JsonObject item = items.get(i).getAsJsonObject();
-                        JsonObject volumeInfo = item.getAsJsonObject("volumeInfo");
+                            String description = volumeInfo.has("description") ? volumeInfo.get("description").getAsString() : "No Description";
+                            String publisher = volumeInfo.has("publisher") ? volumeInfo.get("publisher").getAsString() : "Unknown Publisher";
 
-                        String bookTitle = volumeInfo.has("title") ? volumeInfo.get("title").getAsString() : "Unknown Title";
-                        String author = volumeInfo.has("authors") && volumeInfo.getAsJsonArray("authors").size() > 0
-                                ? volumeInfo.getAsJsonArray("authors").get(0).getAsString()
-                                : "Unknown Author";
-                        String genre = volumeInfo.has("categories") && volumeInfo.getAsJsonArray("categories").size() > 0
-                                ? volumeInfo.getAsJsonArray("categories").get(0).getAsString()
-                                : "Unknown Genre";
-                        String yearString = volumeInfo.has("publishedDate") ? volumeInfo.get("publishedDate").getAsString() : "0";
-                        int year = (yearString.matches("\\d{4}")) ? Integer.parseInt(yearString) : 2000 + new Random().nextInt(24);
-                        int rating = 3 + new Random().nextInt(3);
-
-                        String image = null;
-                        if (volumeInfo.has("imageLinks")) {
-                            JsonObject imageLinks = volumeInfo.getAsJsonObject("imageLinks");
-                            if (imageLinks != null && imageLinks.has("thumbnail")) {
-                                image = imageLinks.get("thumbnail").getAsString();
-                            } else if (imageLinks != null && imageLinks.has("smallThumbnail")) {
-                                image = imageLinks.get("smallThumbnail").getAsString();
+                            String image = null;
+                            if (volumeInfo.has("imageLinks")) {
+                                JsonObject imageLinks = volumeInfo.getAsJsonObject("imageLinks");
+                                image = imageLinks.has("thumbnail") ? imageLinks.get("thumbnail").getAsString() : null;
                             }
-                        } else {
-                            image = "http://books.google.com/books/content?id=uIO2DgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api";
+
+                            if (image == null) {
+                                image = "http://books.google.com/books/content?id=uIO2DgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api";
+                            }
+
+                            // Tạo đối tượng Book và thêm vào danh sách
+                            Book book = new Book(title, description, image, genre, rating, 1000000, author, year, publisher);
+                            books.add(book);
                         }
-
-                        String destinationPath = "src/main/resources/com/chocopi/images/book/" + lastBookId + ".jpg";
-
-                        BookService.downloadImage(image, destinationPath);
-
-                        String description = volumeInfo.has("description") ? volumeInfo.get("description").getAsString() : "No Description";
-
-                        Book newBook = new Book(bookTitle, description, image, genre, rating, 1000000, author,
-                                year, volumeInfo.has("publisher") ? volumeInfo.get("publisher").getAsString() : "Unknown Publisher");
-
-                        books.add(newBook);
                     }
+                } else {
+//                    System.err.println("Failed to fetch books. HTTP Status Code: " + response.statusCode());
+                    System.out.println();
                 }
-            } else {
-                System.err.println("GET request failed. Response Code: " + conn.getResponseCode());
+            } catch (Exception e) {
+                System.err.println("Error fetching books: " + e.getMessage());
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            return books;
         }
-        return books;
-    }
 
     public static List<Book> fetchBooksAdmin(String query) {
         Path imagesDirectory = Paths.get("src/main/resources/com/chocopi/images/book/genBook");
@@ -206,7 +203,7 @@ public class BookService {
         return books;
     }
 
-    private static String extractImageUrl(JsonObject volumeInfo) {
+    public static String extractImageUrl(JsonObject volumeInfo) {
         String image = null;
         if (volumeInfo.has("imageLinks")) {
             JsonObject imageLinks = volumeInfo.getAsJsonObject("imageLinks");
@@ -217,7 +214,7 @@ public class BookService {
         return image == null ? "http://books.google.com/books/content?id=uIO2DgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" : image;
     }
 
-    private static String getJsonArrayFirstItem(JsonObject volumeInfo, String key, String defaultValue) {
+    public static String getJsonArrayFirstItem(JsonObject volumeInfo, String key, String defaultValue) {
         if (volumeInfo.has(key) && volumeInfo.getAsJsonArray(key).size() > 0) {
             return volumeInfo.getAsJsonArray(key).get(0).getAsString();
         }

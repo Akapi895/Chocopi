@@ -10,44 +10,64 @@
 
 <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="700.0" prefWidth="245.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserSideBarController">
     <children>
-      <AnchorPane id="back" prefHeight="710.0" prefWidth="245.0" />
-      <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="62.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/identify/logo.png" />
-         </image>
-      </ImageView>
-      <VBox layoutX="12.0" layoutY="181.0" prefHeight="234.0" prefWidth="220.0" spacing="3.0">
-         <children>
-              <Button id="home" fx:id="homeBtn" mnemonicParsing="false" onAction="#handleHomeClick" prefHeight="42.0" prefWidth="220.0" text="Home">
-                  <font>
-                      <Font size="18.0" />
-                  </font>
-            </Button>
-              <Button id="profile" fx:id="personalBtn" mnemonicParsing="false" onAction="#handlePersonalClick" prefHeight="42.0" prefWidth="220.0" text="Profile">
-                  <font>
-                      <Font size="18.0" />
-                  </font>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </Button>
-              <Button id="history" fx:id="historyBtn" mnemonicParsing="false" onAction="#handleHistoryClick" prefHeight="42.0" prefWidth="220.0" text="History">
-                  <font>
-                      <Font size="18.0" />
-                  </font>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </Button>
-              <Button id="logout" fx:id="logoutBtn" mnemonicParsing="false" onAction="#handleLogoutClick" prefHeight="42.0" prefWidth="220.0" text="Log out">
-                  <font>
-                      <Font size="18.0" />
-                  </font>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
+        <AnchorPane id="back" prefHeight="710.0" prefWidth="245.0" />
+        <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="62.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/identify/logo.png" />
+            </image>
+        </ImageView>
+        <VBox layoutX="12.0" layoutY="181.0" prefHeight="234.0" prefWidth="220.0" spacing="3.0">
+            <children>
+                <Button id="home" fx:id="homeBtn" mnemonicParsing="false" onAction="#handleHomeClick" prefHeight="42.0" prefWidth="220.0" text="Home">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button id="profile" fx:id="personalBtn" mnemonicParsing="false" onAction="#handlePersonalClick" prefHeight="42.0" prefWidth="220.0" text="Profile">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </Button>
+                <Button id="history" fx:id="historyBtn" mnemonicParsing="false" onAction="#handleHistoryClick" prefHeight="42.0" prefWidth="220.0" text="History">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </Button>
+                <Button id="logout" fx:id="logoutBtn" mnemonicParsing="false" onAction="#handleLogoutClick" prefHeight="42.0" prefWidth="220.0" text="Log out">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+        <ImageView fitHeight="22.0" fitWidth="34.0" layoutX="20.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/identify/home2.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="22.0" fitWidth="34.0" layoutX="21.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/identify/pr5.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="22.0" fitWidth="34.0" layoutX="22.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/identify/history.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="22.0" fitWidth="34.0" layoutX="20.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/identify/out2.png" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>

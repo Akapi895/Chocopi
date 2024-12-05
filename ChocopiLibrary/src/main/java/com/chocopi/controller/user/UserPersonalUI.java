@@ -3,27 +3,14 @@ package com.chocopi.controller.user;
 import com.chocopi.dao.UserDAO;
 import com.chocopi.model.User;
 import com.chocopi.util.SessionManager;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import javafx.stage.FileChooser;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
-import javax.imageio.ImageIO;
-
-public class UserPersonalUI extends UserSideBarController {
-//    @FXML
-//    private UserSideBarController sideBar;
-
+public class UserPersonalUI {
     @FXML
     private ImageView userImage;
 
@@ -87,6 +74,8 @@ public class UserPersonalUI extends UserSideBarController {
     @FXML
     private Button addPhotoButton;
 
+    private String avatarPath;
+
     @FXML
     public void initialize() {
         User user = UserDAO.getUserById(SessionManager.getUserId());
@@ -101,7 +90,7 @@ public class UserPersonalUI extends UserSideBarController {
         ageLabel.setText(String.valueOf(user.getAge()));
         favorLabel.setText(String.valueOf(user.getFavor()));
 
-        String avatarPath = user.getAvatar();
+        avatarPath = user.getAvatar();
 
         try {
             if (avatarPath != null && !avatarPath.isEmpty()) {
@@ -113,21 +102,30 @@ public class UserPersonalUI extends UserSideBarController {
         } catch (Exception e) {
             userImage.setImage(new Image(getClass().getResource("/com/chocopi/images/avatar/0.png").toExternalForm()));
         }
-    }
 
-    private String selectedAvatarPath = null;  // Biến lưu tạm thời đường dẫn ảnh
+        userImage.setOnMouseClicked(null);
+    }
 
     @FXML
     private void handleAddPhotoButtonClick() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        fileChooser.setTitle("Choose an Image");
 
-        // Hiển thị hộp thoại chọn tệp và lấy tệp đã chọn
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile != null) {
-            selectedAvatarPath = selectedFile.getAbsolutePath();
-            System.out.println(selectedAvatarPath);
+            try {
+                avatarPath = selectedFile.getAbsolutePath();
+
+                Image newImage = new Image("file:" + avatarPath, true);
+                userImage.setImage(newImage);
+            } catch (Exception e) {
+                System.err.println("Error loading image: " + e.getMessage());
+            }
         } else {
             System.out.println("No file selected!");
         }
@@ -180,110 +178,75 @@ public class UserPersonalUI extends UserSideBarController {
         cancelButton.setVisible(false);
         editButton.setVisible(true);
         saveButton.setVisible(false);
+        userImage.setOnMouseClicked(null);
     }
 
     @FXML
     private void handleSaveButtonClick() {
-        int userId = SessionManager.getUserId();
-        User user = UserDAO.getUserById(SessionManager.getUserId());
-
-        String fullName = (fullNameField.getText() != "") ? String.valueOf(fullNameField.getText()) : SessionManager.getName();
-        int age;
         try {
-            age = !ageField.getText().isBlank() ? Integer.parseInt(ageField.getText()) : SessionManager.getAge();
-        } catch (NumberFormatException e) {
-            age = SessionManager.getAge();
-        }
-        String email = (emailField.getText() != "") ? String.valueOf(emailField.getText()) : SessionManager.getEmail();
-        String phone = (phoneField.getText() != "") ? String.valueOf(phoneField.getText()) : SessionManager.getPhone();
-        String favor = !favorField.getText().isBlank() ? favorField.getText() : SessionManager.getFavor();
-        String password = (passwordField.getText() != "") ? passwordField.getText() : SessionManager.getPassword();
+            int userId = SessionManager.getUserId();
+            String fullName = fullNameField.getText();
+            String email = emailField.getText();
+            String phone = phoneField.getText();
+            int age = Integer.parseInt(ageField.getText());
+            String favor = favorField.getText();
+            String password = passwordField.getText();
 
-        user.setAge(age);
-        user.setEmail(email);
-        user.setPhone(phone);
-        user.setFavor(favor);
-        user.setPassword(password);
-        user.setName(fullName);
-        if (selectedAvatarPath != null) {
-            String fileName = userId + ".png";
-            String directoryPath = "src/main/resources/com/chocopi/images/avatar";
-            File directory = new File(directoryPath);
-            if (!directory.exists() && !directory.mkdirs()) {
-                return;
+            User updatedUser = new User();
+            updatedUser.setUsername(SessionManager.getUsername());
+            updatedUser.setRole(SessionManager.getRole());
+            updatedUser.setTotalBorrowed(SessionManager.getTotalBorrowed());
+            updatedUser.setUserId(userId);
+            updatedUser.setName(fullName);
+            updatedUser.setEmail(email);
+            updatedUser.setPhone(phone);
+            updatedUser.setAge(age);
+            updatedUser.setFavor(favor);
+            updatedUser.setPassword(password);
+            String temp = userImage.getImage().getUrl();
+            temp.replace("\\", "/");
+            int index = temp.indexOf("/com");
+            String resultPath = temp.substring(index);
+            updatedUser.setAvatar(resultPath);
+
+            boolean isUpdated = UserDAO.updateUser(updatedUser);
+
+            if (isUpdated) {
+                SessionManager.setName(fullName);
+                SessionManager.setEmail(email);
+                SessionManager.setPhone(phone);
+                SessionManager.setAge(age);
+                SessionManager.setFavor(favor);
+                SessionManager.setPassword(password);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("User information updated successfully!");
+                alert.showAndWait();
+
+                handleCancelButtonClick();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Failed to update user information. Please try again.");
+                alert.showAndWait();
             }
-            Path targetPath = Path.of(directoryPath, fileName);
-
-            try {
-                File sourceFile = new File(selectedAvatarPath);
-                BufferedImage originalImage = ImageIO.read(sourceFile);
-
-                if (originalImage != null) {
-                    ImageIO.write(originalImage, "png", targetPath.toFile());
-
-                    user.setAvatar(targetPath.toString());
-
-                    String avatarPath = SessionManager.getAvatar();
-                    if (avatarPath != null) {
-                        Image newImage = new Image("file:" + avatarPath, true);
-                        userImage.setImage(newImage);
-                    }
-
-                    Platform.runLater(() -> {
-                        userImage.setImage(null);
-                        Image newImage = new Image("file:" + targetPath.toString());
-                        userImage.setImage(newImage);
-                    });
-                } else {
-                    System.err.println("Unable to read the selected image file.");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            selectedAvatarPath = null;
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Invalid input! Please check your information.");
+            alert.showAndWait();
+            e.printStackTrace();
         }
-
-        boolean isUpdated = UserDAO.updateUser(user);
-
-        if (isUpdated) {
-            fullNameField.setEditable(false);
-            ageField.setEditable(false);
-            emailField.setEditable(false);
-            phoneField.setEditable(false);
-            favorField.setEditable(false);
-            passwordField.setEditable(false);
-            fullNameField.setVisible(false);
-            ageField.setVisible(false);
-            emailField.setVisible(false);
-            phoneField.setVisible(false);
-            favorField.setVisible(false);
-            passwordField.setVisible(false);
-            passwordLabel.setVisible(false);
-            addPhotoButton.setVisible(false);
-
-            nameLabel.setVisible(true);
-            userImage.setVisible(true);
-            ageLabel.setVisible(true);
-            emailLabel.setVisible(true);
-            phoneLabel.setVisible(true);
-            favorLabel.setVisible(true);
-
-            clearTextFields();
-            cancelButton.setVisible(false);
-            editButton.setVisible(true);
-            saveButton.setVisible(false);
-
-            userImage.setOnMouseClicked(null);
-        }
-        // Cập nhật lại session
-        SessionManager.update();
-//        SessionManager.ssInfo();
-        initialize();
-
     }
 
     @FXML
     private void handleEditButtonClick() {
+        userImage.setOnMouseClicked(event -> handleAddPhotoButtonClick());
+
         fullNameField.setEditable(true);
         fullNameField.setVisible(true);
         fullNameField.setText(SessionManager.getName());

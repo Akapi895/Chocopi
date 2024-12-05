@@ -3,12 +3,12 @@
     -fx-background-radius: 20;
     -fx-border-width: 2;
     -fx-border-radius: 20;
-    -fx-border-color: #b95274;
+    -fx-border-color: #3e72a7;
 }
 
 #avt {
     -fx-border-width: 3;
-    -fx-border-color: #b95274;
+    -fx-border-color: #3e72a7;
 }
 
 #cancel {
@@ -16,7 +16,7 @@
     -fx-background-radius: 20;
     -fx-border-width: 2;
     -fx-border-radius: 20;
-    -fx-border-color: #b95274;
+    -fx-border-color: #3e72a7;
     -fx-text-fill: #15498e;
     -fx-font-weight: bold;
     -fx-cursor: hand;
@@ -32,7 +32,7 @@
     -fx-background-radius: 20;
     -fx-border-width: 2;
     -fx-border-radius: 20;
-    -fx-border-color: #b95274;
+    -fx-border-color: #3e72a7;
     -fx-text-fill: #2d8e15;
     -fx-font-weight: bold;
     -fx-cursor: hand;
@@ -45,14 +45,14 @@
 
 #person {
     -fx-background-radius: 30;
-    -fx-background-color: #fff4f8;
+    -fx-background-color: #e0f1ff;
     -fx-border-radius: 30;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 5);
 }
 
 #document {
     -fx-background-radius: 30;
-    -fx-background-color: #fff4f8;
+    -fx-background-color: #e0f1ff;
     -fx-border-radius: 30;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 5);
 }
@@ -60,11 +60,11 @@
 #type {
     -fx-background-radius: 15;
     -fx-border-width: 2;
-    -fx-border-color: #b95274;
+    -fx-border-color: #3e72a7;
     -fx-border-radius: 15;
 }
 
 #type-fav {
     -fx-border-width: 2;
-    -fx-border-color: #b95274;
+    -fx-border-color: #3e72a7;
 }

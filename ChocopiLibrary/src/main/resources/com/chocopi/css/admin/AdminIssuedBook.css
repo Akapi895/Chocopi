@@ -3,7 +3,7 @@
 }
 
 #userid {
-    -fx-background-color: transparent;
+    -fx-background-color: white;
     -fx-background-radius: 20;
     -fx-border-width: 2;
     -fx-border-radius: 20;
@@ -11,13 +11,23 @@
 }
 
 #delete {
-    -fx-background-color: transparent;
+    -fx-background-color: white;
     -fx-background-radius: 20;
     -fx-border-width: 2;
     -fx-border-radius: 20;
-    -fx-border-color: #3e72a7;
-    -fx-text-fill: #3e72a7;
+    -fx-border-color: #b04949;
+    -fx-text-fill: #b04949;
     -fx-font-weight: bold;
+}
+
+#delete:hover {
+    -fx-background-radius: 30;
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 1.0), 10, 0.5, 0, 0);
+    -fx-border-radius: 30;
+    -fx-border-color: #b04949;
+    -fx-transition: background-color 0.3s ease;
+    -fx-border-width: 2;
 }
 
 #table {

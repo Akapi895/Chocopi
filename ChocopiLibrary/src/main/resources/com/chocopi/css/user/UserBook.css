@@ -1,14 +1,17 @@
-#back {
-        -fx-background-radius: 30;
-        -fx-background-color: #fff4f8;
-        -fx-border-radius: 30;
-        -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 5);
-        -fx-border-color: #b95274;
+#search {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-color: #3e72a7;
 }
 
-#image {
-        -fx-border-width: 3;
-        -fx-border-color: #b95274;
+#back {
+    -fx-background-radius: 30;
+    -fx-background-color: #fff4f8;
+    -fx-border-radius: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 5);
+    -fx-border-color: #b95274;
 }
 
 #borrow {

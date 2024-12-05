@@ -123,7 +123,7 @@ public class UserDAO {
     }
 
     public static boolean updateUser(User user) {
-        String sql = "UPDATE Users SET username = ?, password = ?, name = ?, email = ?, phone = ?, role = ?, age = ?, favor = ? WHERE user_id = ?";
+        String sql = "UPDATE Users SET username = ?, password = ?, name = ?, avatar = ?, email = ?, phone = ?, role = ?, age = ?, favor = ? WHERE user_id = ?";
         DatabaseConnection dbConnection = DatabaseConnection.getInstance();
         try (Connection conn = dbConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -131,12 +131,13 @@ public class UserDAO {
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getName());
-            pstmt.setString(4, user.getEmail());
-            pstmt.setString(5, user.getPhone());
-            pstmt.setString(6, user.getRole());
-            pstmt.setInt(7, user.getAge());
-            pstmt.setString(8, user.getFavor());
-            pstmt.setInt(9, user.getUserId());
+            pstmt.setString(4, user.getAvatar());
+            pstmt.setString(5, user.getEmail());
+            pstmt.setString(6, user.getPhone());
+            pstmt.setString(7, user.getRole());
+            pstmt.setInt(8, user.getAge());
+            pstmt.setString(9, user.getFavor());
+            pstmt.setInt(10, user.getUserId());
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0;

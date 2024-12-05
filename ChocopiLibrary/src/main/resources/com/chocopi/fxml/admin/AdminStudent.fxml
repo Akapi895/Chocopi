@@ -5,10 +5,17 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="bgr" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminStudentController">
+    <ImageView fitHeight="713.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../images/identify/adminback.png" />
+        </image>
+    </ImageView>
     <fx:include source="SideBar.fxml" />
     <AnchorPane />
     <TableView id="table" fx:id="userTableView" layoutX="297.0" layoutY="123.0" prefHeight="443.0" prefWidth="670.0">
@@ -32,9 +39,9 @@
             <Font size="16.0" />
         </font>
     </Button>
-   <Button id="delete" fx:id="btnEdit" layoutX="806.0" layoutY="587.0" mnemonicParsing="false" onAction="#handleEditClick" text="Edit">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Button>
+    <Button id="edit" fx:id="btnEdit" layoutX="764.0" layoutY="587.0" mnemonicParsing="false" onAction="#handleEditClick" prefHeight="37.0" prefWidth="90.0" text="Edit">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
 </AnchorPane>

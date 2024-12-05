@@ -5,10 +5,17 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="bgr" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.admin.AdminBookController">
+    <ImageView fitHeight="755.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../images/identify/adminback.png" />
+        </image>
+    </ImageView>
     <fx:include source="SideBar.fxml" />
     <TableView id="table" fx:id="bookTableView" layoutX="314.0" layoutY="124.0" prefHeight="462.0" prefWidth="650.0" styleClass="table">
         <columns>
@@ -29,14 +36,14 @@
             <Font size="14.0" />
         </font>
     </Button>
-    <Button id="delete" fx:id="btnDelete" layoutX="877.0" layoutY="611.0" mnemonicParsing="false" onAction="#handleDeleteClick" text="🗑 Delete">
+    <Button id="delete" fx:id="btnDelete" layoutX="873.0" layoutY="607.0" mnemonicParsing="false" onAction="#handleDeleteClick" text="🗑 Delete">
         <font>
             <Font size="16.0" />
         </font>
     </Button>
-   <Button id="delete" fx:id="btnEdit" layoutX="814.0" layoutY="611.0" mnemonicParsing="false" onAction="#handleEditClick" text="Edit">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Button>
+    <Button id="edit" fx:id="btnEdit" layoutX="765.0" layoutY="607.0" mnemonicParsing="false" onAction="#handleEditClick" prefHeight="40.0" prefWidth="90.0" text="Edit">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
 </AnchorPane>

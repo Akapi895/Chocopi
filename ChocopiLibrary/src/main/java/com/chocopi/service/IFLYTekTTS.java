@@ -1,4 +1,5 @@
 package com.chocopi.service;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -6,10 +7,16 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 public class IFLYTekTTS {
 
@@ -17,13 +24,25 @@ public class IFLYTekTTS {
     private static final String API_KEY = "97050b9909f23e2aba1ada2050a876c1"; // Thay thế bằng API Key của bạn
     private static final String API_URL = "https://api.xfyun.cn/v1/service/v1/tts"; // URL API iFLYTek TTS
 
+    // Đường dẫn thư mục lưu file âm thanh
+    private static final String AUDIO_FOLDER = "G:/BTL_OOP_14/Chocopi/ChocopiLibrary/src/main/resources/com/chocopi/sound/";
+
     public static void main(String[] args) throws IOException {
-        String textToSpeak = "Chào mừng bạn đến với thư viện Chocopi!";
-        String audioPath = "output_audio.mp3";  // Đảm bảo đường dẫn đúng với nơi bạn lưu file
+        String textToSpeak = "Chào bạn!";
+        String audioFileName = "output_audio.mp3"; // Tên tệp âm thanh
+        String audioPath = AUDIO_FOLDER + audioFileName;
+
+        // Tạo thư mục nếu chưa tồn tại
+        createAudioFolderIfNotExists();
 
         IFLYTekTTS tts = new IFLYTekTTS();
         tts.textToSpeech(textToSpeak, audioPath);
-        tts.readFile(audioPath);  // Gọi phương thức để đọc và in nội dung file âm thanh
+
+        if (Files.exists(Paths.get(audioPath))) {
+            tts.readFile(audioPath);
+        } else {
+            System.out.println("Tệp âm thanh chưa được tạo.");
+        }
     }
 
     public void textToSpeech(String text, String audioPath) throws IOException {
@@ -35,70 +54,135 @@ public class IFLYTekTTS {
         httpPost.setHeader("X-CurTime", String.valueOf(System.currentTimeMillis() / 1000));
         httpPost.setHeader("X-Param", encodeParam());
         httpPost.setHeader("X-CheckSum", generateCheckSum());
+        httpPost.setHeader("X-API-KEY", API_KEY);
 
         String jsonPayload = createJsonPayload(text);
-
-        StringEntity entity = new StringEntity(jsonPayload);
-        httpPost.setEntity(entity);
+        httpPost.setEntity(new StringEntity(jsonPayload));
 
         HttpResponse response = httpClient.execute(httpPost);
+        int statusCode = response.getStatusLine().getStatusCode();
+
+        if (statusCode != 200) {
+            System.out.println("Lỗi API: Mã trạng thái HTTP " + statusCode);
+            System.out.println("Chi tiết phản hồi: " + EntityUtils.toString(response.getEntity()));
+            return;
+        }
 
         HttpEntity responseEntity = response.getEntity();
         String responseContent = EntityUtils.toString(responseEntity);
+
+        System.out.println("Phản hồi API: " + responseContent);
 
         if (responseContent.contains("audio")) {
             byte[] audioData = decodeBase64Audio(responseContent);
             saveAudioToFile(audioData, audioPath);
             System.out.println("Đã lưu âm thanh vào: " + audioPath);
+        } else {
+            System.out.println("Không tìm thấy dữ liệu âm thanh trong phản hồi.");
         }
 
-        // Đóng kết nối
         httpClient.close();
     }
 
-    // Tạo mã checksum (Hàm này có thể khác nhau tùy thuộc vào cách bạn cần mã hóa thông tin của iFLYTek)
+    private static void createAudioFolderIfNotExists() throws IOException {
+        Path folderPath = Paths.get(AUDIO_FOLDER);
+        if (!Files.exists(folderPath)) {
+            Files.createDirectories(folderPath);
+            System.out.println("Đã tạo thư mục âm thanh: " + AUDIO_FOLDER);
+        }
+    }
+
     private String generateCheckSum() {
-        return "YOUR_CHECKSUM";
+        String curTime = String.valueOf(System.currentTimeMillis() / 1000);
+        String param = encodeParam();
+        String dataToSign = API_KEY + curTime + param; // Kết hợp API_KEY, thời gian, và tham số
+        return hashSHA256(dataToSign); // Mã hóa dữ liệu bằng SHA-256 (hoặc loại hash API yêu cầu)
     }
 
-    // Mã hóa các tham số
+    private String hashSHA256(String data) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(data.getBytes(StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Lỗi mã hóa SHA-256", e);
+        }
+    }
+
     private String encodeParam() {
-        return "YOUR_ENCODED_PARAM";
+        try {
+            // Tạo JSON chuỗi chứa các tham số cần thiết
+            String paramsJson = "{\n" +
+                    "  \"aue\": \"lame\",\n" + // Định dạng âm thanh (ví dụ: MP3 với lame encoder)
+                    "  \"auf\": \"audio/L16;rate=16000\",\n" + // Tần số mẫu âm thanh
+                    "  \"voice_name\": \"xiaoyan\",\n" + // Tên giọng đọc
+                    "  \"speed\": \"50\",\n" + // Tốc độ đọc
+                    "  \"volume\": \"50\",\n" + // Âm lượng
+                    "  \"pitch\": \"50\"\n" + // Cao độ
+                    "}";
+
+            // Mã hóa chuỗi JSON sang Base64
+            return Base64.getEncoder().encodeToString(paramsJson.getBytes("UTF-8"));
+        } catch (Exception e) {
+            throw new RuntimeException("Lỗi khi mã hóa tham số: " + e.getMessage(), e);
+        }
     }
 
-    // Tạo JSON payload
     private String createJsonPayload(String text) {
-        return "{\n" +
-                "  \"text\": \"" + text + "\",\n" +
-                "  \"lan\": \"zh_cn\",\n" +
-                "  \"voice_name\": \"xiaoyan\",\n" +
-                "  \"speed\": \"50\",\n" +
-                "  \"volume\": \"50\",\n" +
-                "  \"pitch\": \"50\"\n" +
-                "}";
+        if (text == null || text.trim().isEmpty()) {
+            throw new IllegalArgumentException("Văn bản không được để trống.");
+        }
+
+        try {
+            JSONObject payload = new JSONObject();
+            payload.put("text", text);
+            payload.put("lan", "zh_cn");
+            payload.put("voice_name", "xiaoyan");
+            payload.put("speed", "50");
+            payload.put("volume", "50");
+            payload.put("pitch", "50");
+
+            return payload.toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Lỗi khi tạo JSON payload: " + e.getMessage(), e);
+        }
     }
 
-    // Giải mã Base64 âm thanh và lưu vào file
     private byte[] decodeBase64Audio(String responseContent) {
-        // Giải mã Base64 và trả về dữ liệu âm thanh
-        return new byte[0];  // Cần xử lý theo API trả về
+        String base64Audio = extractAudioFromResponse(responseContent);
+        return Base64.getDecoder().decode(base64Audio);
+    }
+
+    private String extractAudioFromResponse(String responseContent) {
+        if (responseContent == null || responseContent.isEmpty()) {
+            throw new IllegalArgumentException("Phản hồi từ API trống hoặc null");
+        }
+
+        try {
+            JSONObject jsonResponse = new JSONObject(responseContent);
+            if (jsonResponse.has("audio")) {
+                return jsonResponse.getString("audio");
+            } else {
+                throw new IllegalStateException("Phản hồi không chứa trường 'audio'");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Lỗi khi phân tích phản hồi API: " + e.getMessage(), e);
+        }
     }
 
     private void saveAudioToFile(byte[] audioData, String filePath) throws IOException {
-        // Lưu dữ liệu âm thanh vào file (ví dụ: MP3)
-        java.nio.file.Files.write(java.nio.file.Paths.get(filePath), audioData);
+        Files.write(Paths.get(filePath), audioData);
     }
 
-    // Phương thức đọc file và in ra nội dung để debug
     public void readFile(String filePath) throws IOException {
-        // Đọc nội dung file vào mảng byte
         byte[] fileData = Files.readAllBytes(Paths.get(filePath));
-
-        // In ra số byte trong file để xác nhận nội dung đã được ghi
         System.out.println("Đọc file: " + filePath);
         System.out.println("Số byte trong file: " + fileData.length);
-
-        // Nếu là file âm thanh MP3, bạn không thể hiển thị trực tiếp nội dung, nhưng có thể kiểm tra dữ liệu byte
-        System.out.println("Dữ liệu file (bytes đầu tiên): " + new String(fileData, 0, Math.min(100, fileData.length)));
     }
 }

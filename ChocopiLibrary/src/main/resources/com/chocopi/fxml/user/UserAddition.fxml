@@ -16,17 +16,17 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="mainPane" prefHeight="700.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chocopi.controller.user.UserAddition">
-   <ImageView fitHeight="713.0" fitWidth="1032.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../../images/identify/bgr.png" />
-      </image>
-   </ImageView>
+    <ImageView fitHeight="718.0" fitWidth="1024.0" layoutX="-3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../images/identify/bgr.png" />
+        </image>
+    </ImageView>
     <fx:include source="SideBar.fxml" />
-      <TextField id="search" fx:id="searchField" layoutX="495.0" layoutY="14.0" onAction="#handleSearch" prefHeight="30.0" prefWidth="299.0" promptText="🔎 Searching ...">
-          <font>
-              <Font size="14.0" />
-          </font>
-      </TextField>
+    <TextField id="search" fx:id="searchField" layoutX="495.0" layoutY="14.0" onAction="#handleSearch" prefHeight="30.0" prefWidth="299.0" promptText="🔎 Searching ...">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </TextField>
     <GridPane fx:id="gridPane" layoutX="300.0" layoutY="85.0" prefHeight="608.0" prefWidth="688.0" vgap="13.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -38,207 +38,207 @@
             <RowConstraints maxHeight="40.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-         <VBox prefHeight="200.0" prefWidth="100.0">
-            <children>
-               <HBox prefHeight="198.0" prefWidth="688.0" spacing="35.0" styleClass="h1">
-                  <children>
-                     <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v1">
-                        <children>
-                                <ImageView fx:id="image1" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </ImageView>
-                        </children>
-                     </VBox>
-                     <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v1">
-                        <children>
-                                <ImageView fx:id="image2" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </ImageView>
-                        </children>
-                     </VBox>
-                     <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v1">
-                        <children>
-                                <ImageView fx:id="image3" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </ImageView>
-                        </children>
-                     </VBox>
-                     <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v1">
-                        <children>
-                                <ImageView fx:id="image4" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </ImageView>
-                        </children>
-                     </VBox>
-                     <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v1">
-                        <children>
-                                <ImageView fx:id="image5" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                           </ImageView>
-                        </children>
-                     </VBox>
-                  </children>
-               </HBox>
-               <HBox prefHeight="100.0" prefWidth="200.0" spacing="55.0">
-                  <children>
-                          <Button fx:id="nameBtn1" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                          <Button fx:id="nameBtn2" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                          <Button fx:id="nameBtn3" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                          <Button fx:id="nameBtn4" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                          <Button fx:id="nameBtn5" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                  </children>
-                  <VBox.margin>
-                     <Insets left="7.0" />
-                  </VBox.margin>
-               </HBox>
-            </children>
-         </VBox>
-            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="174.0" prefWidth="688.0" GridPane.rowIndex="1">
+            <VBox prefHeight="200.0" prefWidth="100.0">
                 <children>
-               <VBox prefHeight="200.0" prefWidth="100.0">
-                  <children>
-                     <HBox prefHeight="100.0" prefWidth="200.0" spacing="35.0" styleClass="h2">
+                    <HBox prefHeight="198.0" prefWidth="688.0" spacing="35.0" styleClass="h1">
                         <children>
-                           <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v2">
-                              <children>
-                                      <ImageView fx:id="image6" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
-                                 </ImageView>
-                              </children>
-                           </VBox>
-                           <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v2">
-                              <children>
-                                      <ImageView fx:id="image7" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
-                                 </ImageView>
-                              </children>
-                           </VBox>
-                           <VBox id="v2" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
-                              <children>
-                                      <ImageView fx:id="image8" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
-                                 </ImageView>
-                              </children>
-                           </VBox>
-                           <VBox id="v2" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
-                              <children>
-                                      <ImageView fx:id="image9" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
-                                 </ImageView>
-                              </children>
-                           </VBox>
-                           <VBox id="v2" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
-                              <children>
-                                      <ImageView fx:id="image10" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
-                                 </ImageView>
-                              </children>
-                           </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v1">
+                                <children>
+                                    <ImageView fx:id="image1" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                        <VBox.margin>
+                                            <Insets />
+                                        </VBox.margin>
+                                    </ImageView>
+                                </children>
+                            </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v1">
+                                <children>
+                                    <ImageView fx:id="image2" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                        <VBox.margin>
+                                            <Insets />
+                                        </VBox.margin>
+                                    </ImageView>
+                                </children>
+                            </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v1">
+                                <children>
+                                    <ImageView fx:id="image3" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                        <VBox.margin>
+                                            <Insets />
+                                        </VBox.margin>
+                                    </ImageView>
+                                </children>
+                            </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v1">
+                                <children>
+                                    <ImageView fx:id="image4" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                        <VBox.margin>
+                                            <Insets />
+                                        </VBox.margin>
+                                    </ImageView>
+                                </children>
+                            </VBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v1">
+                                <children>
+                                    <ImageView fx:id="image5" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                        <VBox.margin>
+                                            <Insets />
+                                        </VBox.margin>
+                                    </ImageView>
+                                </children>
+                            </VBox>
                         </children>
-                     </HBox>
-                     <HBox prefHeight="100.0" prefWidth="200.0" spacing="55.0">
+                    </HBox>
+                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="55.0">
                         <children>
-                                <Button fx:id="nameBtn6" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                                <Button fx:id="nameBtn7" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                                <Button fx:id="nameBtn8" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                                <Button fx:id="nameBtn9" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                                <Button fx:id="nameBtn10" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                            <Button fx:id="nameBtn1" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                            <Button fx:id="nameBtn2" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                            <Button fx:id="nameBtn3" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                            <Button fx:id="nameBtn4" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                            <Button fx:id="nameBtn5" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
                         </children>
                         <VBox.margin>
-                           <Insets left="7.0" />
+                            <Insets left="7.0" />
                         </VBox.margin>
-                     </HBox>
-                  </children>
-               </VBox>
+                    </HBox>
+                </children>
+            </VBox>
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="174.0" prefWidth="688.0" GridPane.rowIndex="1">
+                <children>
+                    <VBox prefHeight="200.0" prefWidth="100.0">
+                        <children>
+                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="35.0" styleClass="h2">
+                                <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v2">
+                                        <children>
+                                            <ImageView fx:id="image6" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ImageView>
+                                        </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v2">
+                                        <children>
+                                            <ImageView fx:id="image7" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ImageView>
+                                        </children>
+                                    </VBox>
+                                    <VBox id="v2" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
+                                        <children>
+                                            <ImageView fx:id="image8" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ImageView>
+                                        </children>
+                                    </VBox>
+                                    <VBox id="v2" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
+                                        <children>
+                                            <ImageView fx:id="image9" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ImageView>
+                                        </children>
+                                    </VBox>
+                                    <VBox id="v2" prefHeight="200.0" prefWidth="100.0" styleClass="v2">
+                                        <children>
+                                            <ImageView fx:id="image10" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ImageView>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="55.0">
+                                <children>
+                                    <Button fx:id="nameBtn6" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                    <Button fx:id="nameBtn7" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                    <Button fx:id="nameBtn8" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                    <Button fx:id="nameBtn9" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                    <Button fx:id="nameBtn10" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                </children>
+                                <VBox.margin>
+                                    <Insets left="7.0" />
+                                </VBox.margin>
+                            </HBox>
+                        </children>
+                    </VBox>
                 </children>
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="193.0" prefHeight="185.0" prefWidth="690.0" GridPane.rowIndex="2">
                 <children>
-               <VBox prefHeight="200.0" prefWidth="100.0">
-                  <children>
-                     <HBox prefHeight="100.0" prefWidth="200.0" spacing="35.0" styleClass="h3">
+                    <VBox prefHeight="200.0" prefWidth="100.0">
                         <children>
-                           <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v3">
-                              <children>
-                                      <ImageView fx:id="image11" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
-                                 </ImageView>
-                              </children>
-                           </VBox>
-                           <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v3">
-                              <children>
-                                      <ImageView fx:id="image12" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
-                                 </ImageView>
-                              </children>
-                           </VBox>
-                           <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v3">
-                              <children>
-                                      <ImageView fx:id="image13" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
-                                 </ImageView>
-                              </children>
-                           </VBox>
-                           <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v3">
-                              <children>
-                                      <ImageView fx:id="image14" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
-                                 </ImageView>
-                              </children>
-                           </VBox>
-                           <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v3">
-                              <children>
-                                      <ImageView fx:id="image15" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
-                                    <VBox.margin>
-                                       <Insets />
-                                    </VBox.margin>
-                                 </ImageView>
-                              </children>
-                           </VBox>
+                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="35.0" styleClass="h3">
+                                <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v3">
+                                        <children>
+                                            <ImageView fx:id="image11" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ImageView>
+                                        </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v3">
+                                        <children>
+                                            <ImageView fx:id="image12" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ImageView>
+                                        </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v3">
+                                        <children>
+                                            <ImageView fx:id="image13" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ImageView>
+                                        </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v3">
+                                        <children>
+                                            <ImageView fx:id="image14" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ImageView>
+                                        </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v3">
+                                        <children>
+                                            <ImageView fx:id="image15" fitHeight="145.0" fitWidth="105.0" pickOnBounds="true">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </ImageView>
+                                        </children>
+                                    </VBox>
+                                </children>
+                            </HBox>
+                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="57.0">
+                                <children>
+                                    <Button fx:id="nameBtn11" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                    <Button fx:id="nameBtn12" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                    <Button fx:id="nameBtn13" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                    <Button fx:id="nameBtn14" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                    <Button fx:id="nameBtn15" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
+                                </children>
+                                <VBox.margin>
+                                    <Insets left="7.0" />
+                                </VBox.margin>
+                            </HBox>
                         </children>
-                     </HBox>
-                     <HBox prefHeight="100.0" prefWidth="200.0" spacing="57.0">
-                        <children>
-                                <Button fx:id="nameBtn11" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                                <Button fx:id="nameBtn12" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                                <Button fx:id="nameBtn13" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                                <Button fx:id="nameBtn14" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                                <Button fx:id="nameBtn15" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="name" textFill="#622e23" underline="true" wrapText="true" />
-                        </children>
-                        <VBox.margin>
-                           <Insets left="7.0" />
-                        </VBox.margin>
-                     </HBox>
-                  </children>
-               </VBox>
+                    </VBox>
                 </children>
             </AnchorPane>
             <Button id="pre" fx:id="previousButton" mnemonicParsing="false" onAction="#showPreviousPage" text="Previous" GridPane.rowIndex="3">
@@ -264,5 +264,5 @@
             <Font name="System Bold" size="18.0" />
         </font>
     </Label>
-   <Rectangle arcHeight="1.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" layoutX="302.0" layoutY="72.0" stroke="#c57690" strokeType="INSIDE" style="-fx-fill: #c57690;" width="689.0" />
+    <Rectangle arcHeight="1.0" arcWidth="5.0" fill="DODGERBLUE" height="2.0" layoutX="302.0" layoutY="72.0" stroke="#c57690" strokeType="INSIDE" style="-fx-fill: #c57690;" width="689.0" />
 </AnchorPane>

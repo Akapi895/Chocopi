@@ -43,5 +43,30 @@
                 </Button>
             </children>
         </VBox>
+        <ImageView fitHeight="22.0" fitWidth="34.0" layoutX="20.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/identify/home1.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="22.0" fitWidth="34.0" layoutX="20.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/identify/user1.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="22.0" fitWidth="34.0" layoutX="21.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/identify/book.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="22.0" fitWidth="34.0" layoutX="21.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/identify/issue.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="22.0" fitWidth="34.0" layoutX="20.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/identify/out1.png" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>
