@@ -5,18 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    // Khai báo các thuộc tính cấu hình cơ sở dữ liệu
     private static final String URL = "jdbc:mysql://localhost:3306/chocopi";
     private static final String USER = "root";
     private static final String PASSWORD = "123123";
 
-    // Biến giữ instance Singleton
     private static volatile DatabaseConnection instance = null;
 
-    // Biến kết nối
     private Connection connection;
 
-    // Constructor private để ngăn tạo instance từ bên ngoài
     private DatabaseConnection() {
         try {
             this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -26,7 +22,6 @@ public class DatabaseConnection {
         }
     }
 
-    // Phương thức để lấy instance Singleton
     public static DatabaseConnection getInstance() {
         if (instance == null) {
             synchronized (DatabaseConnection.class) {
@@ -38,7 +33,6 @@ public class DatabaseConnection {
         return instance;
     }
 
-    // Phương thức để lấy Connection
     public Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {

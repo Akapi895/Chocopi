@@ -11,6 +11,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AdminAddBookAPIController {
+public class AdminAddBookAPIController extends Thread {
     @FXML
     private AnchorPane mainPane;
 
@@ -58,65 +59,53 @@ public class AdminAddBookAPIController {
             return;
         }
 
-        // Tạo một Task để gọi API trong background thread
-        Task<List<Book>> fetchBooksTask = new Task<>() {
-            @Override
-            protected List<Book> call() throws Exception {
-                return BookService.fetchBooksAdmin(query);
-            }
-        };
+        FetchBooksThread fetchBooksThread = new FetchBooksThread(
+                query,
+                books -> { // onSuccess
+                    genBooks = books;
 
-        // Xử lý kết quả sau khi Task hoàn thành
-        fetchBooksTask.setOnSucceeded(event -> {
-            genBooks = fetchBooksTask.getValue();
+                    if (genBooks == null || genBooks.isEmpty()) {
+                        titleLabel.setText("No books found for: " + query);
+                        return;
+                    }
 
-            if (genBooks == null || genBooks.isEmpty()) {
-                titleLabel.setText("No books found for: " + query);
-                return;
-            }
+                    titleLabel.setText("Searching for: " + query);
 
-            titleLabel.setText("Searching for: " + query);
+                    images = Arrays.asList(
+                            image1, image2, image3, image4, image5, image6, image7, image8, image9,
+                            image10, image11, image12, image13, image14, image15, image16, image17, image18
+                    );
 
-            // Gắn các thuộc tính giao diện
-            images = Arrays.asList(
-                    image1, image2, image3, image4, image5, image6, image7, image8, image9,
-                    image10, image11, image12, image13, image14, image15, image16, image17, image18
-            );
+                    nameBtns = Arrays.asList(
+                            nameBtn1, nameBtn2, nameBtn3, nameBtn4, nameBtn5, nameBtn6, nameBtn7,
+                            nameBtn8, nameBtn9, nameBtn10, nameBtn11, nameBtn12, nameBtn13,
+                            nameBtn14, nameBtn15, nameBtn16, nameBtn17, nameBtn18
+                    );
 
-            nameBtns = Arrays.asList(
-                    nameBtn1, nameBtn2, nameBtn3, nameBtn4, nameBtn5, nameBtn6, nameBtn7,
-                    nameBtn8, nameBtn9, nameBtn10, nameBtn11, nameBtn12, nameBtn13,
-                    nameBtn14, nameBtn15, nameBtn16, nameBtn17, nameBtn18
-            );
+                    for (int i = 0; i < ITEMS_PER_PAGE; ++i) {
+                        if (images != null && images.size() > i && images.get(i) != null) {
+                            images.get(i).setVisible(false);
+                            images.get(i).setDisable(true);
+                        }
+                        if (nameBtns != null && nameBtns.size() > i && nameBtns.get(i) != null) {
+                            nameBtns.get(i).setVisible(false);
+                            nameBtns.get(i).setDisable(true);
+                        }
+                    }
 
-            for (int i = 0; i < ITEMS_PER_PAGE; ++i) {
-                if (images != null && images.size() > i && images.get(i) != null) {
-                    images.get(i).setVisible(false);
-                    images.get(i).setDisable(true);
+                    updatePage();
+                },
+                exception -> { // onFailure
+                    titleLabel.setText("An error occurred while searching for books.");
+                    exception.printStackTrace();
                 }
-                if (nameBtns != null && nameBtns.size() > i && nameBtns.get(i) != null) {
-                    nameBtns.get(i).setVisible(false);
-                    nameBtns.get(i).setDisable(true);
-                }
-            }
+        );
 
-            updatePage();
-        });
-
-        // Xử lý lỗi nếu xảy ra
-        fetchBooksTask.setOnFailed(event -> {
-            titleLabel.setText("An error occurred while searching for books.");
-            fetchBooksTask.getException().printStackTrace();
-        });
-
-        // Chạy Task trong một luồng riêng
-        Thread thread = new Thread(fetchBooksTask);
-        thread.setDaemon(true); // Đảm bảo thread sẽ dừng khi ứng dụng kết thúc
-        thread.start();
+        fetchBooksThread.setDaemon(true);
+        fetchBooksThread.start();
 
         searchField.setOnAction(this::handleSearch);
     }
-
 
     private void updatePage() {
         if (genBooks == null || genBooks.isEmpty()) {

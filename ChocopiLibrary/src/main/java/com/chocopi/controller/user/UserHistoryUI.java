@@ -19,13 +19,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class UserHistoryUI extends UserSideBarController {
+public class UserHistoryUI extends Thread {
     // Borrowed books
     @FXML
     private ImageView borrow1, borrow2, borrow3, borrow4, borrow5;
@@ -45,37 +46,34 @@ public class UserHistoryUI extends UserSideBarController {
     @FXML
     private Button moreBrw, moreInterest;
 
-    // Question section
     @FXML
     private TextArea questionInput, questionOutput;
+
     @FXML
     private Button sendRequestButton;
 
-    //TODO
     @FXML
     private void handleSendRequest() {
         String question = questionInput.getText().trim();
         if (!question.isEmpty()) {
             questionOutput.setText("Loading...");
 
-            // Tạo một Task để gọi OpenAI API trong luồng riêng
-            Task<String> task = new Task<>() {
+            UserHistoryUI thread = new UserHistoryUI() {
                 @Override
-                protected String call() throws Exception {
-                    return OpenAIChatClient.handleUserQuestion(question);
+                public void run() {
+                    try {
+                        String response = OpenAIChatClient.handleUserQuestion(question);
+
+                        Platform.runLater(() -> questionOutput.setText(response));
+                    } catch (Exception e) {
+                        Platform.runLater(() -> {
+                            questionOutput.setText("An error occurred while processing the request.");
+                            e.printStackTrace();
+                        });
+                    }
                 }
             };
 
-            task.setOnSucceeded(event -> {
-                questionOutput.setText(task.getValue());
-            });
-
-            task.setOnFailed(event -> {
-                questionOutput.setText("An error occurred while processing the request.");
-                task.getException().printStackTrace();
-            });
-
-            Thread thread = new Thread(task);
             thread.setDaemon(true);
             thread.start();
         } else {
@@ -83,6 +81,15 @@ public class UserHistoryUI extends UserSideBarController {
         }
     }
 
+    @Override
+    public void run() {
+        Platform.runLater(() -> {
+            List<Integer> brwBookId = BookManagementDAO.getBookIdByUserId(SessionManager.getUserId());
+            if (brwBookId.isEmpty()) {
+                moreBrw.setDisable(true);
+            }
+        });
+    }
 
     @FXML
     private void handleBorrowMore() {
@@ -122,6 +129,8 @@ public class UserHistoryUI extends UserSideBarController {
 
     @FXML
     private void initialize() {
+        setDaemon(true);
+        start();
         List<Integer> brwBookId = BookManagementDAO.getBookIdByUserId(SessionManager.getUserId());
         if (brwBookId.isEmpty()) {
             moreBrw.setDisable(true);
